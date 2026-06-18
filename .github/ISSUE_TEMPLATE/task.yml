@@ -1,0 +1,36 @@
+name: 任务
+description: 创建一个开发任务
+labels: ["task"]
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: 目标
+      description: 这个任务要解决什么问题
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: 验收标准
+      description: 满足哪些条件才算完成
+    validations:
+      required: true
+  - type: dropdown
+    id: module
+    attributes:
+      label: 所属模块
+      options:
+        - 量化分析工具
+        - 调度优化实现
+        - 性能评测
+        - 技术报告
+        - 环境搭建
+        - 其他
+    validations:
+      required: true
+  - type: input
+    id: score
+    attributes:
+      label: 对应赛题分值
+      description: 该任务对应赛题的哪个评分项

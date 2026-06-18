@@ -1,0 +1,14 @@
+#!/bin/sh
+set -eu
+
+COMMIT_MSG_FILE="$1"
+COMMIT_MSG=$(cat "$COMMIT_MSG_FILE")
+
+if ! echo "$COMMIT_MSG" | grep -qE '^(feat|fix|docs|chore):\s'; then
+    echo ""
+    echo "  ❌ Commit message format invalid."
+    echo "     Must start with: feat: | fix: | docs: | chore:"
+    echo "     Example: feat: implement kprobe trace for riscv_vstate_save"
+    echo ""
+    exit 1
+fi
