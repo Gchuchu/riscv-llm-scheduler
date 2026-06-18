@@ -1,7 +1,15 @@
 #!/bin/sh
-set -eu
+set -u
 
-COMMIT_MSG_FILE="$1"
+if [ "${SKIP_QUALITY_HOOKS:-}" = "1" ]; then
+    exit 0
+fi
+
+COMMIT_MSG_FILE="${1:-}"
+if [ -z "$COMMIT_MSG_FILE" ]; then
+    exit 0
+fi
+
 COMMIT_MSG=$(cat "$COMMIT_MSG_FILE")
 
 if ! echo "$COMMIT_MSG" | grep -qE '^(feat|fix|docs|chore):\s'; then

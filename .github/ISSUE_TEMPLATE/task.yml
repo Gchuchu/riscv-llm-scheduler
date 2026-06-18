@@ -1,4 +1,4 @@
-name: 任务
+name: 比赛任务
 description: 创建一个开发任务
 labels: ["task"]
 body:
