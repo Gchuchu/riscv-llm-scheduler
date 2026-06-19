@@ -53,14 +53,39 @@ ideal_runtime = max(sysctl_sched_latency / cfs_rq->nr_running,
 
 目前新版 Linux 的 `fair.c` 已将 CFS 升级为 **EEVDF**（Earliest Eligible Virtual Deadline First），大部分沿用了 CFS 的基础架构但有很多改进。
 
-## 总结：CFS 三个核心点
+## 总结
 
+CFS 三个核心点：
 1. **选择最小 vruntime**
 2. **vruntime 加权增加**
 3. **时间片计算（ideal_runtime）**
 
+---
+
+# CFS 在 RVV 场景下的性能损失
+
+## 问题本质
+
+CFS 只关注"运行时间的加权公平"，但它**并不关注任务切换带来的成本**。CFS 的设计假设不同任务的上下文切换成本近似相同，因此调度决策主要基于 CPU 时间公平性。
+
+## RVV 场景的特殊性
+
+在 RISC-V Vector 扩展场景下，持有 **Dirty Vector State** 的推理线程具有显著更高的上下文切换成本：
+
+1. **V 状态保存开销**：每个 hart 拥有 32 个向量寄存器（v0–v31），单次完整保存需要 512–1024 字节内存写入
+2. **Dirty 状态的触发频率**：LLM 推理是持续向量密集型计算，线程几乎始终持有 Dirty V 状态
+3. **频繁被抢占**：CFS 在时间片用完后触发切换，推理线程在计算关键路径上被频繁打断
+
+## 影响
+
+默认的调度策略无法感知 RVV 上下文的差异，导致推理线程被频繁抢占时产生额外的 V 状态保存与恢复开销，从而影响 LLM 推理性能：
+
+- 整体吞吐（TPS）下降
+- 尾延迟（P95 TTFT）恶化
+
 ## 参考
 
+- [Linux 调度器文档](https://docs.kernel.org/scheduler/)
 - [Red-black Trees (rbtree) in Linux — The Linux Kernel documentation](https://docs.kernel.org/core-api/rbtree.html)
 - [完全公平调度器 — The Linux Kernel documentation](https://docs.kernel.org/scheduler/sched-design-CFS.html)
 - <https://github.com/torvalds/linux/blob/master/kernel/sched/fair.c>

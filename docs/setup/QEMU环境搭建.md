@@ -14,9 +14,9 @@ sudo apt install ninja-build
 sudo apt install pkg-config libglib2.0-dev
 wget https://download.qemu.org/qemu-10.2.3.tar.xz
 tar xvJf qemu-10.2.3.tar.xz
-cd qemu-11.0.1
+cd qemu-10.2.3
 ./configure
- make -j$(nproc)
+sudo make -j$(nproc)
 ```
 
 ### 虚拟机镜像
@@ -41,7 +41,7 @@ xz -dk openEuler-24.03-LTS-SP3-riscv64.qcow2.xz
 
 ## 启动虚拟机
 
-主机条件：CPU ≥ 8核，RAM ≥ 16G
+建议主机条件：CPU ≥ 8核，RAM ≥ 16G
 
 ```bash
 bash start_vm_RVA20.sh
