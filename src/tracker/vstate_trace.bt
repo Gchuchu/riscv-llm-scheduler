@@ -1,0 +1,87 @@
+#!/usr/bin/bpftrace
+
+tracepoint:sched:sched_switch
+
+/args->prev_pid != args->next_pid/
+
+{
+
+    $t    = (struct task_struct *)curtask;
+
+    $regs = (struct pt_regs *)((uint64)$t->stack + 16384 - sizeof(struct pt_regs));
+
+    $vs   = $regs->status & 0x0600;
+
+    /* ====== save 侧 ====== */
+
+    if ($vs == 0x0600 && (uint64)$t->mm != 0) {
+
+        @saves_total = count();
+
+        @saves[args->prev_comm, args->prev_pid] = count();
+
+    }
+
+    /* 缓存 task_struct 指针 + start_time，供 restore 侧使用并校验 pid 是否被复用 */
+
+    @task_cache[args->prev_pid] = (uint64)$t;
+
+    @task_start[args->prev_pid] = $t->start_time;
+
+    /* ====== restore 侧 ====== */
+
+    $cached = @task_cache[args->next_pid];
+
+    if ($cached != 0) {
+
+        $nt = (struct task_struct *)$cached;
+
+        if ($nt->start_time == @task_start[args->next_pid]) {
+
+            $nregs = (struct pt_regs *)((uint64)$nt->stack + 16384 - sizeof(struct pt_regs));
+
+            $nvs   = $nregs->status & 0x0600;
+
+            if ($nvs != 0 && (uint64)$nt->mm != 0) {
+
+                @restores_total = count();
+
+                @restores[args->next_comm, args->next_pid] = count();
+
+            }
+
+        }
+
+    }
+
+}
+    /* ====== 延时输出 可注释 ====== */
+interval:s:10 {
+
+    printf("\n--- %s ---\n", strftime("%H:%M:%S", nsecs));
+
+    printf("saves total:    "); print(@saves_total);
+
+    printf("restores total: "); print(@restores_total);
+
+    printf("saves by proc:\n");    print(@saves);
+
+    printf("restores by proc:\n"); print(@restores);
+
+}
+
+END {
+
+    clear(@task_cache); clear(@task_start);
+
+    printf("\n========== SUMMARY ==========\n");
+
+    printf("saves total:    "); print(@saves_total);
+
+    printf("restores total: "); print(@restores_total);
+
+    printf("saves by proc:\n");    print(@saves);
+
+    printf("restores by proc:\n"); print(@restores);
+
+}
