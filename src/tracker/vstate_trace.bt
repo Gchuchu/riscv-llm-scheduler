@@ -56,7 +56,7 @@ tracepoint:sched:sched_switch
 
 }
     /* ====== 延时输出 可注释 ====== */
-interval:s:10 {
+interval:s:1 {
 
     printf("\n--- %s ---\n", strftime("%H:%M:%S", nsecs));
 

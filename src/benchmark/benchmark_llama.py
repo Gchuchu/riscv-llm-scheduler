@@ -110,7 +110,7 @@ class VStateOverhead:
     SCRIPT = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                           "..", "tracker", "vstate_trace.bt")
     OUTPUT = "/tmp/vstate.txt"
-    SCRIPT_REMOTE = "/home/openkylin/vstate_trace.bt"
+    SCRIPT_REMOTE = "/root/vstate_trace.bt"
 
     def __init__(self, remote=None, ssh_user=None, remote_script=None):
         self.enabled = False
@@ -119,6 +119,10 @@ class VStateOverhead:
         self.ssh_user = ssh_user
         self.script = remote_script or self.SCRIPT_REMOTE if remote else self.SCRIPT
         self._ssh_target = None
+        self._last_save = None
+        self._last_restore = None
+        self._last_llama_save = None
+        self._last_llama_restore = None
         if remote:
             if ssh_user and "@" not in remote:
                 self._ssh_target = f"{ssh_user}@{remote}"
@@ -148,67 +152,100 @@ class VStateOverhead:
         try:
             if self.remote:
                 self._ssh(
-                    f"nohup sudo bpftrace {self.script} -o {self.OUTPUT} "
+                    f"nohup stdbuf -oL bpftrace {self.script} -o {self.OUTPUT} "
                     f"> /dev/null 2>&1 &"
                 )
             else:
                 self._proc = subprocess.Popen(
-                    ["sudo", "bpftrace", self.SCRIPT, "-o", self.OUTPUT],
+                    ["sudo", "stdbuf", "-oL", "bpftrace", self.SCRIPT, "-o", self.OUTPUT],
                     stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
                 )
             self.enabled = True
             where = self._ssh_target if self.remote else "localhost"
             print(f"[INFO] V-state trace started ({where})")
+            # 等 bpftrace 第一次 interval 输出（最多 3s）
+            for _ in range(3):
+                time.sleep(1)
+                baseline = self.collect()
+                if baseline.get("save_count") is not None:
+                    break
+            self._last_save = baseline.get("save_count")
+            self._last_restore = baseline.get("restore_count")
+            self._last_llama_save = baseline.get("llama_save")
+            self._last_llama_restore = baseline.get("llama_restore")
         except Exception as e:
             print(f"[WARN] Failed to start bpftrace: {e}")
             self.enabled = False
 
     def collect(self, concurrency=None, trial=None):
-        """读取 bpftrace 累计计数。
+        """读取 bpftrace 最新 interval 输出。
 
-        bpftrace 的 print(@saves_total) 输出格式:
-            @saves_total: 12345
-            @restores_total: 67890
+        提取 @saves_total / @restores_total（全系统）和
+        @saves[llama-server / @restores[llama-server（推理进程专属）。
         """
         if not self.enabled:
-            return {"save_count": None, "restore_count": None}
+            return {"save_count": None, "restore_count": None,
+                    "llama_save": None, "llama_restore": None}
         try:
-            if self.remote:
-                result = self._ssh(f"cat {self.OUTPUT}")
-                text = result.stdout
-            else:
-                with open(self.OUTPUT) as f:
-                    text = f.read()
+            text = self._read_output()
             import re
             save_count = None
             restore_count = None
-            m = re.search(r"@saves_total:\s*(\d+)", text)
-            if m:
-                save_count = int(m.group(1))
-            m = re.search(r"@restores_total:\s*(\d+)", text)
-            if m:
-                restore_count = int(m.group(1))
-            return {"save_count": save_count, "restore_count": restore_count}
+            llama_save = None
+            llama_restore = None
+            for line in text.strip().split("\n"):
+                m = re.search(r"@saves_total:\s*(\d+)", line)
+                if m: save_count = int(m.group(1))
+                m = re.search(r"@restores_total:\s*(\d+)", line)
+                if m: restore_count = int(m.group(1))
+                m = re.search(r"@saves\[llama-server[^]]+\]:\s*(\d+)", line)
+                if m: llama_save = (llama_save or 0) + int(m.group(1))
+                m = re.search(r"@restores\[llama-server[^]]+\]:\s*(\d+)", line)
+                if m: llama_restore = (llama_restore or 0) + int(m.group(1))
+            return {"save_count": save_count, "restore_count": restore_count,
+                    "llama_save": llama_save, "llama_restore": llama_restore}
         except Exception:
-            return {"save_count": None, "restore_count": None}
+            return {"save_count": None, "restore_count": None,
+                    "llama_save": None, "llama_restore": None}
+
+    def _read_output(self):
+        """读取 bpftrace 输出中所有 vstate 相关行"""
+        if self.remote:
+            result = self._ssh(
+                "grep -a '@saves_total\\|@restores_total\\|@saves\\[llama\\|@restores\\[llama' "
+                f"{self.OUTPUT} | tail -50"
+            )
+            return result.stdout
+        else:
+            with open(self.OUTPUT) as f:
+                return f.read()
 
     def stop(self):
-        """停止 bpftrace"""
+        """停止 bpftrace 并采集最终数据。
+
+        先 kill 触发 END 输出，再读文件，确保拿到完整 SUMMARY。
+        返回 {"save_count": N, "restore_count": M}。
+        """
+        result = {"save_count": None, "restore_count": None}
         try:
             if self.remote:
-                self._ssh("sudo pkill -f 'bpftrace vstate_trace'", timeout=10)
+                self._ssh("pkill -f 'bpftrace vstate_trace'", timeout=30)
+                time.sleep(1)
+                result = self.collect()
             elif self._proc and self._proc.poll() is None:
                 self._proc.terminate()
                 try:
                     self._proc.wait(timeout=5)
                 except subprocess.TimeoutExpired:
                     self._proc.kill()
+                result = self.collect()
             where = self._ssh_target if self.remote else "localhost"
-            print(f"[INFO] V-state trace stopped ({where})")
-        except Exception:
-            pass
+            print(f"[INFO] V-state trace stopped ({where}): {result}")
+        except Exception as e:
+            print(f"[WARN] V-state trace stop error: {e}")
         finally:
             self.enabled = False
+        return result
 
     def summary_table(self, all_data):
         """生成量化表格 Markdown（TODO: Issue #2）"""
@@ -451,8 +488,33 @@ def run_trial(url, concurrency, prompt, max_tokens, timeout, rounds=1, stream=Fa
     wall_time = time.time() - batch_start
     rss_after = get_rss_mib(server_pid) if server_pid else None
 
-    # V 状态切换开销采集（预留接口）
+    # V 状态切换开销——bpftrace 每 10s 刷新文件，读最新累积值
     vstate_data = vstate.collect(concurrency, None) if vstate and vstate.enabled else {}
+    if vstate and vstate.enabled and vstate_data.get("save_count") is not None:
+        raw_save = vstate_data["save_count"]
+        raw_restore = vstate_data["restore_count"]
+        raw_ls = vstate_data.get("llama_save")
+        raw_lr = vstate_data.get("llama_restore")
+        if vstate._last_save is None:
+            vstate._last_save = raw_save
+            vstate._last_restore = raw_restore
+            vstate._last_llama_save = raw_ls
+            vstate._last_llama_restore = raw_lr
+            vstate_data["save_count"] = 0
+            vstate_data["restore_count"] = 0
+            vstate_data["llama_save"] = 0
+            vstate_data["llama_restore"] = 0
+        else:
+            vstate_data["save_count"] = max(0, raw_save - vstate._last_save)
+            vstate_data["restore_count"] = max(0, raw_restore - vstate._last_restore)
+            if raw_ls is not None and vstate._last_llama_save is not None:
+                vstate_data["llama_save"] = max(0, raw_ls - vstate._last_llama_save)
+            if raw_lr is not None and vstate._last_llama_restore is not None:
+                vstate_data["llama_restore"] = max(0, raw_lr - vstate._last_llama_restore)
+            vstate._last_save = raw_save
+            vstate._last_restore = raw_restore
+            vstate._last_llama_save = raw_ls
+            vstate._last_llama_restore = raw_lr
 
     if not results:
         return None
@@ -538,6 +600,8 @@ def benchmark(url, concurrencies, trials, prompt, max_tokens, timeout, rounds, s
                 "sample_count": warmup_r["sample_count"],
                 "vstate_save_count": warmup_r.get("save_count", ""),
                 "vstate_restore_count": warmup_r.get("restore_count", ""),
+                "vstate_llama_save": warmup_r.get("llama_save", ""),
+                "vstate_llama_restore": warmup_r.get("llama_restore", ""),
                 "rss_idle_mib": warmup_r.get("rss_before_mib", ""),
                 "rss_after_mib": warmup_r.get("rss_after_mib", ""),
                 "is_warmup": True,
@@ -578,6 +642,8 @@ def benchmark(url, concurrencies, trials, prompt, max_tokens, timeout, rounds, s
                 "sample_count": r["sample_count"],
                 "vstate_save_count": r.get("save_count", ""),
                 "vstate_restore_count": r.get("restore_count", ""),
+                "vstate_llama_save": r.get("llama_save", ""),
+                "vstate_llama_restore": r.get("llama_restore", ""),
                 "rss_idle_mib": r.get("rss_before_mib", ""),
                 "rss_after_mib": r.get("rss_after_mib", ""),
                 "is_warmup": False,
@@ -624,16 +690,24 @@ def print_report(summary, tag, streaming=False):
         print(f"  Avg E2E(ms):      {np.mean(e2e_vals):.2f} ± {_safe_std(e2e_vals):.2f}  (client-side end-to-end)")
         print(f"  P95 E2E(ms):      {pooled_p95_e2e:.2f}  (pooled N={n_e2e})")
 
+        # V state 数据（per-trial delta 的合计）
+        save_vals = [x.get("save_count") for x in runs if x.get("save_count") is not None]
+        restore_vals = [x.get("restore_count") for x in runs if x.get("restore_count") is not None]
+        if save_vals:
+            print(f"  V save count:     {int(sum(save_vals))}  (sum of {len(save_vals)} trials)")
+            print(f"  V restore count:  {int(sum(restore_vals))}")
+        ls_vals = [x.get("llama_save") for x in runs if x.get("llama_save") is not None]
+        lr_vals = [x.get("llama_restore") for x in runs if x.get("llama_restore") is not None]
+        if ls_vals:
+            print(f"  V llama save:    {int(sum(ls_vals))}  (llama-server only)")
+            print(f"  V llama restore: {int(sum(lr_vals))}")
+
         if "rss_before_mib" in runs[0]:
             rss_before = runs[0]["rss_before_mib"]
             rss_after_vals = [x["rss_after_mib"] for x in runs]
             print(f"  RSS idle(MiB):    {rss_before}")
             print(f"  RSS after(MiB):   {np.mean(rss_after_vals):.0f}")
 
-        # V 状态数据（预留）
-        if runs[0].get("save_count") is not None:
-            save_vals = [x["save_count"] for x in runs]
-            print(f"  V save count:     {np.mean(save_vals):.0f}")
 
 
 def print_comparison(all_summaries, all_tags):
@@ -715,7 +789,7 @@ def save_csv(rows, tag=""):
         "avg_prompt_ms", "p95_prompt_ms",
         "avg_e2e_ms", "p95_e2e_ms",
         "wall_time_s", "sample_count",
-        "vstate_save_count", "vstate_restore_count",
+        "vstate_save_count", "vstate_restore_count", "vstate_llama_save", "vstate_llama_restore",
         "rss_idle_mib", "rss_after_mib",
     ]
 
@@ -904,7 +978,9 @@ def main():
         if all_rows:
             save_csv(all_rows, "comparison")
 
-        vstate.stop()
+        vstate_data = vstate.stop()
+        if vstate_data and vstate_data.get("save_count") is not None:
+            print(f"\n[TRACE] Total V-state: saves={vstate_data['save_count']}, restores={vstate_data['restore_count']}")
         return
 
     # ========================================
@@ -912,10 +988,13 @@ def main():
     # ========================================
     tag = args.tag or mode
     s, rows = run_one_benchmark(args, defaults, vstate, tag, url)
+
+    vstate_data = vstate.stop()
+    if vstate_data and vstate_data.get("save_count") is not None:
+        print(f"[TRACE] Total V-state: saves={vstate_data['save_count']}, restores={vstate_data['restore_count']}")
+
     if rows:
         save_csv(rows, tag)
-
-    vstate.stop()
 
 
 if __name__ == "__main__":
