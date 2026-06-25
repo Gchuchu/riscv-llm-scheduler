@@ -9,10 +9,10 @@ RISC-V LLM 推理并发调度优化 — 基准测试脚本 (Issue #4)
 
 指标说明:
   TPS        吞吐量 (token/s)        越高越好。 aggregate_tps = 总token数 / 整轮挂钟时间
-  Avg TTFT  平均首 token 延迟 (ms)    越低越好。 服务端 prompt 处理耗时, 不含排队
-  P95 TTFT  TTFT 的 95 分位值 (ms)   越低越好。 衡量尾延迟
-  Avg E2E   客户端端到端平均延迟 (ms)  越低越好。 含网络 + 排队 + 推理全过程
-  P95 E2E   端到端延迟的 95 分位值    越低越好。
+  TTFT       首 token 延迟 (ms)        越低越好。 客户端测量：非流式=E2E，流式=首个SSE事件到达
+  Prompt Ms  服务端 prompt 处理 (ms)    越低越好。 server-side prompt eval，不含排队
+  E2E        客户端端到端延迟 (ms)      越低越好。 含网络 + 排队 + 推理全过程
+  P95         95 分位值                 越低越好。 跨 trial 池化计算
   V 状态    V 状态切换开销            预留字段, 依赖 eBPF 工具 (Issue #1)
 
 用法:
@@ -31,24 +31,9 @@ RISC-V LLM 推理并发调度优化 — 基准测试脚本 (Issue #4)
 
 import argparse
 import csv
-import time
-import requests
-import numpy as np
-import subprocess
-from concurrent.futures import ThreadPoolExecutor, as_completed
-from collections import defaultdict
-from datetime import datetime
-import argparse
-import csv
-import time
-import requests
-import numpy as np
-import subprocess
-from concurrent.futures import ThreadPoolExecutor, as_completed
-from collections import defaultdict
-from datetime import datetime
-import argparse
-import csv
+import json
+import os
+import shutil
 import time
 import requests
 import numpy as np
@@ -69,6 +54,8 @@ DEFAULT_URLS = {
 MODE_DEFAULTS = {
     "qemu": {
         "trials": 3,
+        "rounds": 3,
+        "streaming": False,
         "max_tokens": 32,
         "timeout": 1800,
         "concurrency": "2,4,8",
@@ -76,6 +63,8 @@ MODE_DEFAULTS = {
     },
     "local": {
         "trials": 3,
+        "rounds": 3,
+        "streaming": False,
         "max_tokens": 128,
         "timeout": 600,
         "concurrency": "2,4,8",
@@ -83,6 +72,8 @@ MODE_DEFAULTS = {
     },
     "remote": {
         "trials": 3,
+        "rounds": 3,
+        "streaming": False,
         "max_tokens": 128,
         "timeout": 600,
         "concurrency": "2,4,8",
@@ -95,39 +86,133 @@ MODE_DEFAULTS = {
 # ⏳ 依赖 Issue #1（eBPF 追踪 riscv_vstate_save）
 
 class VStateOverhead:
-    """
-    V 状态切换开销采集接口。
-    当前为占位实现，返回空数据。
-    待 #1 完成后，替换为 eBPF 数据读取逻辑。
+    """V 状态切换开销量化接口。
 
-    预期接口:
-        collect() -> dict {
-            "save_count": int,           # V 状态保存次数
-            "avg_save_us": float,        # 平均保存耗时 (us)
-            "dirty_preempt_count": int,  # dirty V 被抢占次数
-        }
+    通过 bpftrace 挂载 sched:sched_switch tracepoint，统计 V 状态 save/restore 次数。
+
+    本地模式 (--mode local):
+        vstate = VStateOverhead()
+        vstate.start()    # sudo bpftrace ... &
+        vstate.collect()  # 读本地 /tmp/vstate.txt
+        vstate.stop()     # pkill bpftrace
+
+    远程模式 (--mode remote):
+        vstate = VStateOverhead(remote="192.168.0.104")
+        vstate.start()    # ssh board "nohup sudo bpftrace ... &"
+        vstate.collect()  # ssh board "cat /tmp/vstate.txt"
+        vstate.stop()     # ssh board "sudo pkill bpftrace"
+
+    bpftrace 脚本:
+        本地: src/tracker/vstate_trace.bt (由 SCRIPT 自动定位)
+        远程: 默认 /home/openkylin/vstate_trace.bt (需事先 scp 到板子)
     """
-    def __init__(self):
+
+    SCRIPT = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                          "..", "tracker", "vstate_trace.bt")
+    OUTPUT = "/tmp/vstate.txt"
+    SCRIPT_REMOTE = "/home/openkylin/vstate_trace.bt"
+
+    def __init__(self, remote=None, ssh_user=None, remote_script=None):
         self.enabled = False
+        self._proc = None
+        self.remote = remote
+        self.ssh_user = ssh_user
+        self.script = remote_script or self.SCRIPT_REMOTE if remote else self.SCRIPT
+        self._ssh_target = None
+        if remote:
+            if ssh_user and "@" not in remote:
+                self._ssh_target = f"{ssh_user}@{remote}"
+            else:
+                self._ssh_target = remote
+
+    def _ssh(self, cmd, timeout=15):
+        """SSH 执行命令，返回 CompletedProcess"""
+        return subprocess.run(
+            ["ssh", "-o", "ConnectTimeout=5", "-o", "StrictHostKeyChecking=no",
+             self._ssh_target, cmd],
+            capture_output=True, text=True, timeout=timeout
+        )
 
     def available(self):
-        """检测 eBPF 工具是否就绪"""
-        # TODO: 检测 /sys/kernel/debug/tracing/ 或 ebpf 程序是否加载
-        return False
+        """检测 bpftrace 和脚本是否就绪"""
+        if self.remote:
+            result = self._ssh("echo ok && which bpftrace")
+            return result.returncode == 0 and "bpftrace" in result.stdout
+        else:
+            return shutil.which("bpftrace") is not None and os.path.exists(self.SCRIPT)
 
-    def collect(self, concurrency, trial):
-        """采集当前 V 状态切换数据"""
-        # TODO: 调用 eBPF 脚本读取统计数据
-        return {
-            "save_count": None,
-            "avg_save_us": None,
-            "dirty_preempt_count": None,
-        }
+    def start(self):
+        """启动 bpftrace 后台采集"""
+        if not self.available():
+            return
+        try:
+            if self.remote:
+                self._ssh(
+                    f"nohup sudo bpftrace {self.script} -o {self.OUTPUT} "
+                    f"> /dev/null 2>&1 &"
+                )
+            else:
+                self._proc = subprocess.Popen(
+                    ["sudo", "bpftrace", self.SCRIPT, "-o", self.OUTPUT],
+                    stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+                )
+            self.enabled = True
+            where = self._ssh_target if self.remote else "localhost"
+            print(f"[INFO] V-state trace started ({where})")
+        except Exception as e:
+            print(f"[WARN] Failed to start bpftrace: {e}")
+            self.enabled = False
+
+    def collect(self, concurrency=None, trial=None):
+        """读取 bpftrace 累计计数。
+
+        bpftrace 的 print(@saves_total) 输出格式:
+            @saves_total: 12345
+            @restores_total: 67890
+        """
+        if not self.enabled:
+            return {"save_count": None, "restore_count": None}
+        try:
+            if self.remote:
+                result = self._ssh(f"cat {self.OUTPUT}")
+                text = result.stdout
+            else:
+                with open(self.OUTPUT) as f:
+                    text = f.read()
+            import re
+            save_count = None
+            restore_count = None
+            m = re.search(r"@saves_total:\s*(\d+)", text)
+            if m:
+                save_count = int(m.group(1))
+            m = re.search(r"@restores_total:\s*(\d+)", text)
+            if m:
+                restore_count = int(m.group(1))
+            return {"save_count": save_count, "restore_count": restore_count}
+        except Exception:
+            return {"save_count": None, "restore_count": None}
+
+    def stop(self):
+        """停止 bpftrace"""
+        try:
+            if self.remote:
+                self._ssh("sudo pkill -f 'bpftrace vstate_trace'", timeout=10)
+            elif self._proc and self._proc.poll() is None:
+                self._proc.terminate()
+                try:
+                    self._proc.wait(timeout=5)
+                except subprocess.TimeoutExpired:
+                    self._proc.kill()
+            where = self._ssh_target if self.remote else "localhost"
+            print(f"[INFO] V-state trace stopped ({where})")
+        except Exception:
+            pass
+        finally:
+            self.enabled = False
 
     def summary_table(self, all_data):
-        """生成量化表格 Markdown"""
-        # TODO: 整理为 docs/benchmark/ 下的表格
-        return "# V State Overhead Table\n(TODO: depends on Issue #1)\n"
+        """生成量化表格 Markdown（TODO: Issue #2）"""
+        return "# V State Overhead Table\n(TODO: depends on Issue #2)\n"
 
 
 # ==================== CPU Governor 管理 ====================
@@ -151,30 +236,34 @@ def set_performance_governor():
 
 # ==================== 请求辅助 ====================
 
-def make_request_data(prompt, max_tokens, url):
+def make_request_data(prompt, max_tokens, url, stream=False):
     if "/chat/completions" in url:
         return {
             "messages": [{"role": "user", "content": prompt}],
             "max_tokens": max_tokens,
-            "stream": False,
+            "stream": stream,
             "temperature": 0,
         }
     else:
-        return {"prompt": prompt, "n_predict": max_tokens, "temperature": 0}
+        return {"prompt": prompt, "n_predict": max_tokens, "stream": stream, "temperature": 0}
 
 
 def parse_response(result, url):
-    """从 API 响应中提取指标"""
+    """从 API 响应中提取服务端指标。
+
+    返回 prompt_ms（服务端 prompt 处理时间），而非客户端 TTFT。
+    客户端 TTFT 由 send_request 根据请求模式（流式/非流式）独立测量。
+    """
     timings = result.get("timings", {})
     usage = result.get("usage", {})
 
     if "/chat/completions" in url:
-        ttft_ms = timings.get("prompt_ms", 0)
+        prompt_ms = timings.get("prompt_ms", 0)
         completion_tokens = usage.get("completion_tokens", timings.get("predicted_n", 0))
         predicted_ms = timings.get("predicted_ms", 0)
         predicted_tps = timings.get("predicted_per_second", 0)
     else:
-        ttft_ms = timings.get("prompt_ms", 0)
+        prompt_ms = timings.get("prompt_ms", 0)
         completion_tokens = result.get("tokens_predicted", 0)
         predicted_ms = timings.get("predicted_ms", 0)
         predicted_tps = timings.get("predicted_per_second", 0)
@@ -184,7 +273,7 @@ def parse_response(result, url):
     )
 
     return {
-        "ttft_ms": ttft_ms,
+        "prompt_ms": prompt_ms,
         "tokens": completion_tokens,
         "predicted_ms": predicted_ms,
         "tps": tps,
@@ -221,20 +310,111 @@ def get_rss_mib(pid):
 
 # ==================== 单请求 ====================
 
-def send_request(url, prompt, max_tokens, timeout):
-    payload = make_request_data(prompt, max_tokens, url)
+def send_request(url, prompt, max_tokens, timeout, stream=False):
+    """发送单次请求，返回客户端测量指标。
+
+    - 非流式 (stream=False): TTFT = E2E（所有 token 一次性返回，无独立首 token 事件）
+    - 流式   (stream=True):  TTFT = 首个 SSE content 事件到达时间，E2E = 流结束时间
+    - prompt_ms 始终来自服务端 timings（流式下可能为 0，取决于服务端是否在 SSE 中返回）
+    """
+    payload = make_request_data(prompt, max_tokens, url, stream)
     req_start = time.time()
     try:
-        resp = requests.post(url, json=payload, timeout=timeout)
-        first_byte_time = time.time()  # 近似: 收到完整响应的时间
-        resp.raise_for_status()
-        result = parse_response(resp.json(), url)
-        # 补充客户端视角的端到端延迟
-        result["e2e_ms"] = (first_byte_time - req_start) * 1000
-        return result
+        if stream:
+            return _send_request_streaming(url, payload, timeout, req_start)
+        else:
+            return _send_request_non_streaming(url, payload, timeout, req_start)
     except Exception as e:
         print(f"[WARN] Request failed: {e}")
         return None
+
+
+def _send_request_non_streaming(url, payload, timeout, req_start):
+    """非流式请求：TTFT = E2E（全部 token 一次性到达）"""
+    resp = requests.post(url, json=payload, timeout=timeout)
+    resp_end = time.time()
+    resp.raise_for_status()
+    result = parse_response(resp.json(), url)
+    e2e_ms = (resp_end - req_start) * 1000
+    result["e2e_ms"] = e2e_ms
+    result["ttft_ms"] = e2e_ms          # 非流式：首 token = 全部到达
+    return result
+
+
+def _send_request_streaming(url, payload, timeout, req_start):
+    """流式请求：TTFT = 首个 SSE content 事件到达时间"""
+    resp = requests.post(url, json=payload, timeout=timeout, stream=True)
+    resp.raise_for_status()
+
+    ttft_ms = None
+    prompt_ms = 0
+    tokens = 0
+    predicted_ms = 0
+    predicted_tps = 0
+    sse_content_events = 0  # fallback: 计数 SSE content 事件作为 token 数
+
+    for line in resp.iter_lines(decode_unicode=True):
+        if not line or not line.startswith("data: "):
+            continue
+        data_str = line[6:]  # strip "data: "
+        if data_str == "[DONE]":
+            break
+        try:
+            chunk = json.loads(data_str)
+        except json.JSONDecodeError:
+            continue
+
+        # 首个包含 content 的 chunk → 记录客户端真实 TTFT
+        if ttft_ms is None:
+            choices = chunk.get("choices", [])
+            if choices and choices[0].get("delta", {}).get("content"):
+                ttft_ms = (time.time() - req_start) * 1000
+
+        # 计数 SSE content 事件（每个 ≈ 1 个生成的 token）
+        choices = chunk.get("choices", [])
+        if choices and choices[0].get("delta", {}).get("content"):
+            sse_content_events += 1
+
+        # 从 chunk 中提取服务端 timings（如果服务端在 SSE 中返回）
+        if "timings" in chunk:
+            t = chunk["timings"]
+            prompt_ms = t.get("prompt_ms", 0)
+            predicted_ms = t.get("predicted_ms", 0)
+            predicted_tps = t.get("predicted_per_second", 0)
+
+        # usage 可能随最后一个 chunk 返回
+        if "usage" in chunk:
+            tokens = chunk["usage"].get("completion_tokens", 0)
+
+        # 也尝试从 x-timings 获取
+        if "x-timings" in chunk:
+            t = chunk["x-timings"]
+            if prompt_ms == 0:
+                prompt_ms = t.get("prompt_ms", 0)
+            predicted_ms = t.get("predicted_ms", 0) or predicted_ms
+            predicted_tps = t.get("predicted_per_second", 0) or predicted_tps
+
+    e2e_ms = (time.time() - req_start) * 1000
+    if ttft_ms is None:
+        ttft_ms = e2e_ms  # fallback: 没有 content chunk（极端情况）
+
+    # 如果 SSE 中没有返回 usage，用 content 事件数作为 token 数
+    if tokens == 0 and sse_content_events > 0:
+        tokens = sse_content_events
+        predicted_ms = e2e_ms - (ttft_ms or 0)  # 近似生成时间
+
+    tps = predicted_tps if predicted_tps else (
+        tokens / (predicted_ms / 1000) if predicted_ms else 0
+    )
+
+    return {
+        "ttft_ms": ttft_ms,
+        "prompt_ms": prompt_ms,
+        "tokens": tokens,
+        "predicted_ms": predicted_ms,
+        "tps": tps,
+        "e2e_ms": e2e_ms,
+    }
 
 
 # ==================== 一轮测试 ====================
@@ -246,21 +426,27 @@ def _safe_std(vals):
     return float(np.std(vals, ddof=1))
 
 
-def run_trial(url, concurrency, prompt, max_tokens, timeout, server_pid=None, vstate=None):
+def run_trial(url, concurrency, prompt, max_tokens, timeout, rounds=1, stream=False, server_pid=None, vstate=None):
+    """一轮测试：发送 concurrency × rounds 个并发请求，返回聚合指标和原始样本。
+
+    每 round 提交 concurrency 个请求，等待全部完成后开始下一 round。
+    返回的 _ttft_samples / _prompt_samples / _e2e_samples 用于跨 trial 池化计算 P95。
+    """
     rss_before = get_rss_mib(server_pid) if server_pid else None
 
     batch_start = time.time()
     results = []
 
-    with ThreadPoolExecutor(max_workers=concurrency) as pool:
-        futures = [
-            pool.submit(send_request, url, prompt, max_tokens, timeout)
-            for _ in range(concurrency)
-        ]
-        for f in as_completed(futures):
-            r = f.result()
-            if r is not None:
-                results.append(r)
+    for _ in range(rounds):
+        with ThreadPoolExecutor(max_workers=concurrency) as pool:
+            futures = [
+                pool.submit(send_request, url, prompt, max_tokens, timeout, stream)
+                for _ in range(concurrency)
+            ]
+            for f in as_completed(futures):
+                r = f.result()
+                if r is not None:
+                    results.append(r)
 
     wall_time = time.time() - batch_start
     rss_after = get_rss_mib(server_pid) if server_pid else None
@@ -273,19 +459,35 @@ def run_trial(url, concurrency, prompt, max_tokens, timeout, server_pid=None, vs
 
     total_tokens = sum(x["tokens"] for x in results)
     aggregate_tps = total_tokens / wall_time if wall_time > 0 else 0
-    avg_ttft = float(np.mean([x["ttft_ms"] for x in results])) if results else 0
-    p95_ttft = float(np.percentile([x["ttft_ms"] for x in results], 95)) if results else 0
-    avg_e2e = float(np.mean([x["e2e_ms"] for x in results])) if results else 0
-    p95_e2e = float(np.percentile([x["e2e_ms"] for x in results], 95)) if results else 0
+    ttft_samples = [x["ttft_ms"] for x in results]
+    prompt_samples = [x["prompt_ms"] for x in results]
+    e2e_samples = [x["e2e_ms"] for x in results]
+
+    def _safe_pct(samples):
+        if len(samples) >= 2:
+            return float(np.percentile(samples, 95))
+        return samples[0] if samples else 0
+
+    avg_ttft = float(np.mean(ttft_samples)) if ttft_samples else 0
+    p95_ttft = _safe_pct(ttft_samples)
+    avg_prompt = float(np.mean(prompt_samples)) if prompt_samples else 0
+    p95_prompt = _safe_pct(prompt_samples)
+    avg_e2e = float(np.mean(e2e_samples)) if e2e_samples else 0
+    p95_e2e = _safe_pct(e2e_samples)
 
     ret = {
         "aggregate_tps": aggregate_tps,
         "avg_ttft_ms": avg_ttft,
         "p95_ttft_ms": p95_ttft,
+        "avg_prompt_ms": avg_prompt,
+        "p95_prompt_ms": p95_prompt,
         "avg_e2e_ms": avg_e2e,
         "p95_e2e_ms": p95_e2e,
         "sample_count": len(results),
         "wall_time_s": round(wall_time, 2),
+        "_ttft_samples": ttft_samples,
+        "_prompt_samples": prompt_samples,
+        "_e2e_samples": e2e_samples,
     }
     # V 状态数据
     ret.update(vstate_data)
@@ -299,12 +501,9 @@ def run_trial(url, concurrency, prompt, max_tokens, timeout, server_pid=None, vs
 
 # ==================== 多档位 ====================
 
-def benchmark(url, concurrencies, trials, prompt, max_tokens, timeout, server_pid, tag, vstate):
+def benchmark(url, concurrencies, trials, prompt, max_tokens, timeout, rounds, stream, server_pid, tag, vstate):
     summary = defaultdict(list)
     raw_rows = []
-
-    # 第一轮预热不计入结果（消除冷启动偏差）
-    discard_trial = True
 
     for concurrency in concurrencies:
         print()
@@ -312,15 +511,44 @@ def benchmark(url, concurrencies, trials, prompt, max_tokens, timeout, server_pi
         print(f"  [{tag}] Concurrency = {concurrency}")
         print("=" * 60)
 
+        # 每个并发档位先跑一轮预热（消除冷启动偏差），数据保留并标注 is_warmup
+        print(f"  Warmup ... ", end="", flush=True)
+        warmup_r = run_trial(url, concurrency, prompt, max_tokens, timeout, rounds, stream, server_pid, vstate)
+        if warmup_r:
+            log = (f"TPS={warmup_r['aggregate_tps']:.2f}  "
+                   f"TTFT={warmup_r['avg_ttft_ms']:.1f}ms  "
+                   f"P95={warmup_r['p95_ttft_ms']:.1f}ms  "
+                   f"Prompt={warmup_r['avg_prompt_ms']:.1f}ms  "
+                   f"E2E={warmup_r['avg_e2e_ms']:.1f}ms")
+            if "rss_before_mib" in warmup_r:
+                log += f"  Mem={warmup_r['rss_before_mib']}->{warmup_r['rss_after_mib']}MiB"
+            print(log)
+            raw_rows.append({
+                "tag": tag,
+                "concurrency": concurrency,
+                "trial": 0,
+                "throughput_tps": round(warmup_r["aggregate_tps"], 4),
+                "avg_ttft_ms": round(warmup_r["avg_ttft_ms"], 2),
+                "p95_ttft_ms": round(warmup_r["p95_ttft_ms"], 2),
+                "avg_prompt_ms": round(warmup_r["avg_prompt_ms"], 2),
+                "p95_prompt_ms": round(warmup_r["p95_prompt_ms"], 2),
+                "avg_e2e_ms": round(warmup_r["avg_e2e_ms"], 2),
+                "p95_e2e_ms": round(warmup_r["p95_e2e_ms"], 2),
+                "wall_time_s": warmup_r["wall_time_s"],
+                "sample_count": warmup_r["sample_count"],
+                "vstate_save_count": warmup_r.get("save_count", ""),
+                "vstate_restore_count": warmup_r.get("restore_count", ""),
+                "rss_idle_mib": warmup_r.get("rss_before_mib", ""),
+                "rss_after_mib": warmup_r.get("rss_after_mib", ""),
+                "is_warmup": True,
+            })
+        else:
+            print("FAILED (continuing anyway)")
+
         for trial in range(1, trials + 1):
-            if discard_trial:
-                # 暗跑一轮预热，数据不计入结果
-                _r = run_trial(url, concurrency, prompt, min(max_tokens, 8), timeout, server_pid, vstate)
-                print(f"  (discarded warmup trial)")
-                discard_trial = False
             print(f"  Trial {trial}/{trials} ... ", end="", flush=True)
 
-            r = run_trial(url, concurrency, prompt, max_tokens, timeout, server_pid, vstate)
+            r = run_trial(url, concurrency, prompt, max_tokens, timeout, rounds, stream, server_pid, vstate)
             if r is None:
                 print("FAILED")
                 continue
@@ -328,7 +556,8 @@ def benchmark(url, concurrencies, trials, prompt, max_tokens, timeout, server_pi
             log = (f"TPS={r['aggregate_tps']:.2f}  "
                    f"TTFT={r['avg_ttft_ms']:.1f}ms  "
                    f"P95={r['p95_ttft_ms']:.1f}ms  "
-                   f"AvgE2E={r['avg_e2e_ms']:.1f}ms")
+                   f"Prompt={r['avg_prompt_ms']:.1f}ms  "
+                   f"E2E={r['avg_e2e_ms']:.1f}ms")
             if "rss_before_mib" in r:
                 log += f"  Mem={r['rss_before_mib']}->{r['rss_after_mib']}MiB"
             print(log)
@@ -341,15 +570,17 @@ def benchmark(url, concurrencies, trials, prompt, max_tokens, timeout, server_pi
                 "throughput_tps": round(r["aggregate_tps"], 4),
                 "avg_ttft_ms": round(r["avg_ttft_ms"], 2),
                 "p95_ttft_ms": round(r["p95_ttft_ms"], 2),
+                "avg_prompt_ms": round(r["avg_prompt_ms"], 2),
+                "p95_prompt_ms": round(r["p95_prompt_ms"], 2),
                 "avg_e2e_ms": round(r["avg_e2e_ms"], 2),
                 "p95_e2e_ms": round(r["p95_e2e_ms"], 2),
                 "wall_time_s": r["wall_time_s"],
                 "sample_count": r["sample_count"],
                 "vstate_save_count": r.get("save_count", ""),
-                "vstate_avg_save_us": r.get("avg_save_us", ""),
-                "vstate_dirty_preempt": r.get("dirty_preempt_count", ""),
+                "vstate_restore_count": r.get("restore_count", ""),
                 "rss_idle_mib": r.get("rss_before_mib", ""),
                 "rss_after_mib": r.get("rss_after_mib", ""),
+                "is_warmup": False,
             })
 
     return summary, raw_rows
@@ -357,7 +588,7 @@ def benchmark(url, concurrencies, trials, prompt, max_tokens, timeout, server_pi
 
 # ==================== 报告输出 ====================
 
-def print_report(summary, tag):
+def print_report(summary, tag, streaming=False):
     print()
     print("#" * 70)
     print(f"  BENCHMARK RESULT [{tag}]")
@@ -366,27 +597,43 @@ def print_report(summary, tag):
     for concurrency in sorted(summary.keys()):
         runs = summary[concurrency]
         tps_vals = [x["aggregate_tps"] for x in runs]
-        avg_vals = [x["avg_ttft_ms"] for x in runs]
-        p95_vals = [x["p95_ttft_ms"] for x in runs]
+        ttft_vals = [x["avg_ttft_ms"] for x in runs]
+        prompt_vals = [x["avg_prompt_ms"] for x in runs]
         e2e_vals = [x["avg_e2e_ms"] for x in runs]
+
+        # Pool all raw samples across trials for true P95
+        def _pool_p95(runs, key):
+            all_s = []
+            for x in runs:
+                all_s.extend(x.get(key, []))
+            if len(all_s) >= 2:
+                return float(np.percentile(all_s, 95)), len(all_s)
+            return (all_s[0] if all_s else 0), len(all_s)
+
+        pooled_p95_ttft, n_ttft = _pool_p95(runs, "_ttft_samples")
+        pooled_p95_prompt, n_prompt = _pool_p95(runs, "_prompt_samples")
+        pooled_p95_e2e, n_e2e = _pool_p95(runs, "_e2e_samples")
 
         print()
         print(f"--- Concurrency = {concurrency} ---")
-        print(f"  TPS:          {np.mean(tps_vals):.2f} ± {_safe_std(tps_vals):.2f}")
-        print(f"  Avg TTFT(ms): {np.mean(avg_vals):.2f} ± {_safe_std(avg_vals):.2f}  (server-side prompt eval)")
-        print(f"  P95 TTFT(ms): {np.mean(p95_vals):.2f} ± {_safe_std(p95_vals):.2f}")
-        print(f"  Avg E2E(ms):  {np.mean(e2e_vals):.2f} ± {_safe_std(e2e_vals):.2f}  (client-side end-to-end)")
+        print(f"  TPS:              {np.mean(tps_vals):.2f} ± {_safe_std(tps_vals):.2f}")
+        print(f"  Avg TTFT(ms):     {np.mean(ttft_vals):.2f} ± {_safe_std(ttft_vals):.2f}  (client-side, {'streaming' if streaming else 'non-streaming=E2E'})")
+        print(f"  P95 TTFT(ms):     {pooled_p95_ttft:.2f}  (pooled N={n_ttft})")
+        print(f"  Avg Prompt(ms):   {np.mean(prompt_vals):.2f} ± {_safe_std(prompt_vals):.2f}  (server-side prompt eval)")
+        print(f"  P95 Prompt(ms):   {pooled_p95_prompt:.2f}  (pooled N={n_prompt})")
+        print(f"  Avg E2E(ms):      {np.mean(e2e_vals):.2f} ± {_safe_std(e2e_vals):.2f}  (client-side end-to-end)")
+        print(f"  P95 E2E(ms):      {pooled_p95_e2e:.2f}  (pooled N={n_e2e})")
 
         if "rss_before_mib" in runs[0]:
             rss_before = runs[0]["rss_before_mib"]
             rss_after_vals = [x["rss_after_mib"] for x in runs]
-            print(f"  RSS idle(MiB):  {rss_before}")
-            print(f"  RSS after(MiB): {np.mean(rss_after_vals):.0f}")
+            print(f"  RSS idle(MiB):    {rss_before}")
+            print(f"  RSS after(MiB):   {np.mean(rss_after_vals):.0f}")
 
         # V 状态数据（预留）
         if runs[0].get("save_count") is not None:
             save_vals = [x["save_count"] for x in runs]
-            print(f"  V save count:   {np.mean(save_vals):.0f}")
+            print(f"  V save count:     {np.mean(save_vals):.0f}")
 
 
 def print_comparison(all_summaries, all_tags):
@@ -406,7 +653,9 @@ def print_comparison(all_summaries, all_tags):
         print(f"--- Concurrency = {concurrency} ---")
         print(f"  {'Metric':<20} {'Baseline':>12} {'Optimized':>12} {'Change':>12}")
 
-        for metric, label in [("aggregate_tps", "TPS"), ("avg_ttft_ms", "Avg TTFT(ms)"), ("p95_ttft_ms", "P95 TTFT(ms)"), ("avg_e2e_ms", "Avg E2E(ms)")]:
+        # Metrics that use simple mean of per-trial values
+        for metric, label in [("aggregate_tps", "TPS"), ("avg_ttft_ms", "Avg TTFT(ms)"),
+                               ("avg_prompt_ms", "Avg Prompt(ms)"), ("avg_e2e_ms", "Avg E2E(ms)")]:
             vals = []
             for summary in all_summaries:
                 if concurrency in summary:
@@ -418,6 +667,31 @@ def print_comparison(all_summaries, all_tags):
             if vals[0] is not None and vals[1] is not None:
                 change = (vals[1] - vals[0]) / vals[0] * 100
                 print(f"  {label:<20} {vals[0]:>12.2f} {vals[1]:>12.2f} {change:>+11.1f}%")
+            else:
+                print(f"  {label:<20} {'N/A':>12} {'N/A':>12} {'N/A':>12}")
+
+        # P95: pool raw samples across all trials for each tag
+        for sample_key, label in [("_ttft_samples", "P95 TTFT(ms)"),
+                                   ("_prompt_samples", "P95 Prompt(ms)"),
+                                   ("_e2e_samples", "P95 E2E(ms)")]:
+            pooled_vals = []
+            for summary in all_summaries:
+                if concurrency in summary:
+                    all_samples = []
+                    for x in summary[concurrency]:
+                        all_samples.extend(x.get(sample_key, []))
+                    if len(all_samples) >= 2:
+                        pooled_vals.append(float(np.percentile(all_samples, 95)))
+                    elif all_samples:
+                        pooled_vals.append(all_samples[0])
+                    else:
+                        pooled_vals.append(None)
+                else:
+                    pooled_vals.append(None)
+
+            if pooled_vals[0] is not None and pooled_vals[1] is not None:
+                change = (pooled_vals[1] - pooled_vals[0]) / pooled_vals[0] * 100
+                print(f"  {label:<20} {pooled_vals[0]:>12.2f} {pooled_vals[1]:>12.2f} {change:>+11.1f}%")
             else:
                 print(f"  {label:<20} {'N/A':>12} {'N/A':>12} {'N/A':>12}")
 
@@ -436,10 +710,12 @@ def save_csv(rows, tag=""):
     filename = f"benchmark{suffix}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
 
     fieldnames = [
-        "tag", "concurrency", "trial", "throughput_tps",
-        "avg_ttft_ms", "p95_ttft_ms", "avg_e2e_ms", "p95_e2e_ms",
+        "tag", "concurrency", "trial", "is_warmup", "throughput_tps",
+        "avg_ttft_ms", "p95_ttft_ms",
+        "avg_prompt_ms", "p95_prompt_ms",
+        "avg_e2e_ms", "p95_e2e_ms",
         "wall_time_s", "sample_count",
-        "vstate_save_count", "vstate_avg_save_us", "vstate_dirty_preempt",
+        "vstate_save_count", "vstate_restore_count",
         "rss_idle_mib", "rss_after_mib",
     ]
 
@@ -462,6 +738,10 @@ def run_one_benchmark(args, defaults, vstate, tag, url):
 
     concurrencies = [int(x) for x in (args.concurrency or defaults["concurrency"]).split(",")]
     trials = args.trials or defaults["trials"]
+    rounds = getattr(args, 'rounds', None) or defaults.get("rounds", 3)
+    stream = getattr(args, 'streaming', None)
+    if stream is None:
+        stream = defaults.get("streaming", False)
     max_tokens = args.max_tokens or defaults["max_tokens"]
     timeout = args.timeout or defaults["timeout"]
     prompt = args.prompt or defaults["prompt"]
@@ -477,6 +757,8 @@ def run_one_benchmark(args, defaults, vstate, tag, url):
     print(f"  URL:           {url}")
     print(f"  Concurrency:   {concurrencies}")
     print(f"  Trials:        {trials}")
+    print(f"  Rounds:        {rounds}  (samples per trial = concurrency × {rounds})")
+    print(f"  Streaming:     {stream}  ({'real client TTFT' if stream else 'TTFT = E2E'})")
     print(f"  Max tokens:    {max_tokens}")
     print(f"  Timeout:       {timeout}s")
 
@@ -485,7 +767,7 @@ def run_one_benchmark(args, defaults, vstate, tag, url):
     # 预热：发一个完整请求（同 prompt + max_tokens），数据丢弃
     # 确保模型加载、prompt cache 初始化完成后才进正式 benchmark
     for attempt in range(5):
-        warmup = send_request(url, prompt, max_tokens, timeout)
+        warmup = send_request(url, prompt, max_tokens, timeout, stream)
         if warmup:
             break
         print(f"Warmup failed (attempt {attempt+1}/5), retrying...")
@@ -495,8 +777,8 @@ def run_one_benchmark(args, defaults, vstate, tag, url):
     else:
         print("Warmup FAILED after 5 attempts, continuing...")
 
-    summary, rows = benchmark(url, concurrencies, trials, prompt, max_tokens, timeout, server_pid, tag, vstate)
-    print_report(summary, tag)
+    summary, rows = benchmark(url, concurrencies, trials, prompt, max_tokens, timeout, rounds, stream, server_pid, tag, vstate)
+    print_report(summary, tag, stream)
     return summary, rows
 
 
@@ -521,6 +803,10 @@ def main():
         help="并发数，逗号分隔 (default: 2,4,8)")
     parser.add_argument("--trials", type=int, default=None,
         help="每档重复次数 (default: 3)")
+    parser.add_argument("--rounds", type=int, default=None,
+        help="每 trial 内重复批次数 (default: 3)。样本数 = concurrency × rounds，增大可提高 P95 精度")
+    parser.add_argument("--streaming", action="store_true", default=None,
+        help="使用流式请求 (stream=True)，测量客户端真实 TTFT（首个 SSE 事件到达时间）。非流式下 TTFT = E2E")
     parser.add_argument("--max-tokens", type=int, default=None,
         help="每个请求最大生成 token 数")
     parser.add_argument("--timeout", type=int, default=None,
@@ -529,6 +815,8 @@ def main():
         help="输入 prompt")
     parser.add_argument("--pid", type=int, default=None,
         help="llama-server PID (仅 local 模式)")
+    parser.add_argument("--ssh-user", default=None,
+        help="远程模式 SSH 用户名 (default: 当前用户)，用于启停 bpftrace")
 
     # ---- Issue #4 新增参数 ----
     parser.add_argument("--tag", default=None,
@@ -546,13 +834,8 @@ def main():
     if args.set_performance:
         set_performance_governor()
 
-    # --- V 状态采集（预留接口，当前不可用） ---
-    vstate = VStateOverhead()
-    if vstate.available():
-        vstate.enabled = True
-        print("[INFO] V state overhead tracking enabled")
-
     # --- 确定 URL ---
+    host = None
     if args.url:
         url = args.url
     elif mode == "remote":
@@ -565,6 +848,14 @@ def main():
         parsed = urlparse(url)
         netloc = parsed.hostname + (f":{args.port}")
         url = urlunparse(parsed._replace(netloc=netloc))
+
+    # --- V 状态采集（bpftrace 远程或本地） ---
+    vstate = VStateOverhead(
+        remote=host if mode == "remote" else None,
+        ssh_user=args.ssh_user,
+    )
+    if vstate.available():
+        vstate.start()
 
     # ========================================
     #  一键对比模式
@@ -613,6 +904,7 @@ def main():
         if all_rows:
             save_csv(all_rows, "comparison")
 
+        vstate.stop()
         return
 
     # ========================================
@@ -622,6 +914,8 @@ def main():
     s, rows = run_one_benchmark(args, defaults, vstate, tag, url)
     if rows:
         save_csv(rows, tag)
+
+    vstate.stop()
 
 
 if __name__ == "__main__":
