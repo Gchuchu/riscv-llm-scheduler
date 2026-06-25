@@ -191,17 +191,19 @@ class VStateOverhead:
             import re
             save_count = None
             restore_count = None
-            llama_save = None
-            llama_restore = None
+            save_map = {}
+            restore_map = {}
             for line in text.strip().split("\n"):
                 m = re.search(r"@saves_total:\s*(\d+)", line)
                 if m: save_count = int(m.group(1))
                 m = re.search(r"@restores_total:\s*(\d+)", line)
                 if m: restore_count = int(m.group(1))
-                m = re.search(r"@saves\[llama-server[^]]+\]:\s*(\d+)", line)
-                if m: llama_save = (llama_save or 0) + int(m.group(1))
-                m = re.search(r"@restores\[llama-server[^]]+\]:\s*(\d+)", line)
-                if m: llama_restore = (llama_restore or 0) + int(m.group(1))
+                m = re.search(r"@saves\[llama-server([^]]+)\]:\s*(\d+)", line)
+                if m: save_map[m.group(1)] = int(m.group(2))
+                m = re.search(r"@restores\[llama-server([^]]+)\]:\s*(\d+)", line)
+                if m: restore_map[m.group(1)] = int(m.group(2))
+            llama_save = sum(save_map.values()) if save_map else None
+            llama_restore = sum(restore_map.values()) if restore_map else None
             return {"save_count": save_count, "restore_count": restore_count,
                     "llama_save": llama_save, "llama_restore": llama_restore}
         except Exception:
@@ -209,13 +211,24 @@ class VStateOverhead:
                     "llama_save": None, "llama_restore": None}
 
     def _read_output(self):
-        """读取 bpftrace 输出中所有 vstate 相关行"""
+        """读取 bpftrace 输出中同一 interval 的总线和线程数据"""
         if self.remote:
             result = self._ssh(
-                "grep -a '@saves_total\\|@restores_total\\|@saves\\[llama\\|@restores\\[llama' "
-                f"{self.OUTPUT} | tail -50"
+                "grep -a '@saves_total' "
+                f"{self.OUTPUT} | tail -1"
             )
-            return result.stdout
+            save_total = result.stdout.strip()
+            result = self._ssh(
+                "grep -a '@restores_total' "
+                f"{self.OUTPUT} | tail -1"
+            )
+            restore_total = result.stdout.strip()
+            result = self._ssh(
+                "grep -a '@saves\\[llama\\|@restores\\[llama' "
+                f"{self.OUTPUT} | tail -16"
+            )
+            llama_lines = result.stdout.strip()
+            return save_total + "\n" + restore_total + "\n" + llama_lines
         else:
             with open(self.OUTPUT) as f:
                 return f.read()
