@@ -513,7 +513,7 @@ def benchmark(url, concurrencies, trials, prompt, max_tokens, timeout, rounds, s
 
         # 每个并发档位先跑一轮预热（消除冷启动偏差），数据保留并标注 is_warmup
         print(f"  Warmup ... ", end="", flush=True)
-        warmup_r = run_trial(url, concurrency, prompt, max_tokens, timeout, rounds, stream, server_pid, vstate)
+        warmup_r = run_trial(url, concurrency, prompt, max_tokens, timeout, 1, stream, server_pid, vstate)
         if warmup_r:
             log = (f"TPS={warmup_r['aggregate_tps']:.2f}  "
                    f"TTFT={warmup_r['avg_ttft_ms']:.1f}ms  "
