@@ -12,7 +12,7 @@ Milk\-v github 下载镜像：https://github\.com/milkv\-jupiter
 
 - SD卡以及读卡器 用于烧录镜像
 
-- 12V 3A或以上的充电器
+- 12V 3A或以上的电源适配器（不能用手机的电源适配器或电脑的typec口供电，功率不足）
 
 软件如下
 
@@ -40,17 +40,15 @@ https://etcher\.balena\.io/
 
 ## SD卡启动
 
-- usb转ttl插在电脑口
+- usb转ttl串口连接电脑和板子
 
 - 网线接到路由器/WIFI连接
 
 - sd卡插入
 
-然后打开串口助手（mobaxterm）
+然后打开串口助手（mobaxterm）选择串口后
 
-选择串口后
-
-- 最后插电（typec供电不行）
+- 最后插电
 
 此时能看到启动日志
 
@@ -111,17 +109,17 @@ ip a
 gparted
 ```
 
-> 如果看到一堆框四个角有数字的乱码，就退出然后启动
+> 如果看到是方块四角带有数字的乱码，就退出然后启动
 > 
 > ```Bash
 > LANG=en_US.UTF-8 gparted
 > ```
 
-然后会出现一个GUI
+然后会出现一个GUI界面
 
 ![Image](https://internal-api-drive-stream.feishu.cn/space/api/box/stream/download/authcode/?code=NWU5Mjg4M2U0YjkwZWVhNDI5YWJmY2M3YzRmNGUzMjNfMzYwNGYzNTYzODZlOTQ5OWQ5YWY2YzllNzJlZDRlODNfSUQ6NzY1NDU1NTU2MTE0ODg3NzgwMl8xNzgyNDY2Mjc5OjE3ODI1NTI2NzlfVjM)
 
-把0p6的空间拉满，然后点击上面的绿色钩子，apply一下等到操作完成退出即可。
+把0p6的空间拉满，然后点击上面的绿色确认按钮，接着点击apply，等到操作完成退出即可。
 
 然后应该可以看到这样就分区成功了
 
@@ -179,7 +177,7 @@ make -j$(nproc) llama-server
 
 ### 传到板子
 
-编译完 `build-riscv/bin/llama-server`，然后 scp 传过去：
+编译完 `build-riscv/bin/llama-server`，然后 scp 传输文件：
 
 ```Bash
 scp bin/llama-server root@192.168.0.101:/root/ #ip地址也按个人情况改
@@ -269,13 +267,13 @@ https://www\.openkylin\.top/downloads/index\-cn\.html
 
 使用[balenaEtcher](https://etcher.balena.io/)
 
-但是在烧录前最好将iso\.zip解压缩为iso文件，直接烧录会出现问题
+>  在烧录前最好将iso\.zip解压缩为iso文件，直接烧录可能会出现问题
 
 内核版本和bianbuos是一样的，6\.6
 
 ## SD卡启动
 
-- usb转ttl插在电脑口
+- usb转ttl串口连接电脑和板子
 
 - 网线接到路由器/WIFI连接
 
@@ -285,7 +283,7 @@ https://www\.openkylin\.top/downloads/index\-cn\.html
 
 选择串口后
 
-- 最后插电（typec供电不行）
+- 最后插电
 
 此时能看到启动日志
 
@@ -412,35 +410,9 @@ How are you?<|eot_id|><|start_header_id|>assistant<|end_header_id|>
 0.10.298.366 I srv  update_slots: all slots are idle
 ```
 
-## 问题
 
-Openkylin RISCV
 
-烧Kylin，
-
-烧一遍 
-
-昨天跑的时候，可以正常启动，然后开启llamaserver跑完benchmark以后停掉（
-
-情况1:有时候跑不完，开始跑就提示bus error，然后论在串口发送什么数据，都会显示Input/Output Error，此时ssh也无法连接）。
-
-dmesg \| tail \-n 50
-
-情况2:如果正常能跑完之后就无论在串口发送什么数据，都会显示Input/Output Error，此时ssh也无法连接。
-
-重启会进入emergencymode，有时候挂机一会会自己进入正常模式，有时候就卡住了。
-
-我没排查到问题来源，只可以排除是新购买的充电器问题，因为bianbuos不会出现这个问题。
-
-情况1和情况2是在我即使重新给sd卡烧一个新系统之后仍然可以复现的问题。
-
-（昨天跑板子的时候因为电费没了停电了一次，不知道是不是这个原因让sd卡坏了）
-
-格式空SD卡
-
-\[可以尝试\] SD变空，windwos去烧
-
-## 无SD卡日志
+# 无SD卡日志
 
 ```Bash
 resetting ...
@@ -591,9 +563,35 @@ Autoboot in 0 seconds
 run autoboot
 ```
 
-# 问题记录
+## 问题记录
 
-1. Ubuntu系统的Apt源错误
+### 1. OpenKylin 运行后 I/O 错误导致系统崩溃
+
+- **问题**：OpenKylin 系统上运行 llama-server跑完 benchmark 后，出现以下两种情况：
+  - **情况1**：跑 benchmark 中途提示 `bus error`，之后串口所有操作显示 `Input/Output Error`，SSH 也无法连接。
+  - **情况2**：正常跑完 benchmark 后，串口显示 `Input/Output Error`，SSH 也无法连接。
+    重启进入 emergency mode，有时挂机后恢复正常，有时卡住无法启动。重新烧录系统进 SD 卡后问题仍可复现。
+- **解决方案**：暂无
+- **分析**：已排除电源适配器和板子的问题（另一张SD卡的Bianbu OS 在相同硬件上不出此问题）。可能原因：
+  - 意外断电导致 SD 卡损坏
+  - OpenKylin 系统本身稳定性问题
+  - 内核/驱动在压力测试后的异常状态
+- **现象**：`dmesg | grep -iE "error|fail|io|sda|ata"` 日志
+
+```Bash
+root@openkylin:~# dmesg | grep -iE "error|fail|io|sda|ata" [ 0.000000] Linux version 6.6.63 (root@bianbu-24.04-build-bsp-p7lwr-xkz25) (gcc (Bianbu 13.2.0-23ubuntu4bb3) 13.2.0, GNU ld (GNU Binutils for Ubuntu) 2.42) #2.2~rc3.2 SMP PREEMPT Thu Apr 3 06:53:27 UTC 2025 [ 0.000000] SBI specification v1.0 detected [ 0.000000] SBI implementation ID=0x1 Version=0x10003 [ 0.000000] SBI IPI extension detected [ 0.000000] SBI RFENCE extension detected [ 0.000000] earlycon: sbi0 at I/O port 0x0 (options '') [ 0.000000] SBI HSM extension detected [ 0.000000] riscv: base ISA extensions acdfimv [ 0.000000] Kernel command line: earlyprintk quiet splash plymouth.ignore-serial-consoles plymouth.prefer-fbcon clk_ignore_unused swiotlb=65536 workqueue.default_affinity_scope=system rootwait rootfstype=ext4 root=UUID=ac93e93e-99e2-48b6-ada0-b8340516ef55 earlycon=sbi console=ttyS0,115200n8 loglevel=8 rdinit=/init [ 0.000000] software IO TLB: area num 8. [ 0.000000] software IO TLB: mapped [mem 0x0000000073c43000-0x000000007bc43000] (128MB) [ 0.000000] Memory: 7591516K/8388608K available (16273K kernel code, 8250K rwdata, 8192K rodata, 2307K init, 586K bss, 403876K reserved, 393216K cma-reserved) [ 0.000000] ** unsafe for production use. ** [ 0.000000] rcu: Preemptible hierarchical RCU implementation. [ 0.000000] riscv: providing IPIs using SBI IPI extension [ 0.000000] rcu: srcu_init: Setting srcu_struct sizes based on contention. [ 0.000000] riscv-timer: Timer interrupt in S-mode is available via sstc extension [ 0.000001] sched_clock: 64 bits at 24MHz, resolution 41ns, wraps every 4398046511097ns [ 0.084910] rcu: Hierarchical SRCU implementation. [ 0.156689] DMA: preallocated 1024 KiB GFP_KERNEL pool for atomic allocations [ 0.163050] DMA: preallocated 1024 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations [ 0.221328] cpu6: Ratio of byte access time to unaligned word access is 1.63, unaligned accesses are fast [ 0.221336] cpu4: Ratio of byte access time to unaligned word access is 1.65, unaligned accesses are fast [ 0.221337] cpu5: Ratio of byte access time to unaligned word access is 2.31, unaligned accesses are fast [ 0.221337] cpu7: Ratio of byte access time to unaligned word access is 1.72, unaligned accesses are fast [ 0.221337] cpu2: Ratio of byte access time to unaligned word access is 2.76, unaligned accesses are fast [ 0.221337] cpu3: Ratio of byte access time to unaligned word access is 3.98, unaligned accesses are fast [ 0.221337] cpu1: Ratio of byte access time to unaligned word access is 2.70, unaligned accesses are fast [ 0.305398] cpu0: Ratio of byte access time to unaligned word access is 10.08, unaligned accesses are fast [ 0.312128] The real ratio of byte access time to unaligned word access should refer to the value of CPU0 [ 0.321660] Cpu0 unaligned access is more efficient than nonboot cores, because of system bandwidth preemption. [ 0.331726] Nonboot cpus' unaligned access ratio measured simultaneously, but cpu0's measure is separately [ 0.341381] suspend: SBI SUSP extension detected [ 0.480213] gpio gpiochip0: Static allocation of GPIO base is deprecated, use dynamic allocation. [ 0.502471] libata version 3.00 loaded. [ 0.633918] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it> [ 0.740933] Bluetooth: HCI device and connection manager initialized [ 2.044857] ntfs3: Read-only LZX/Xpress compression included [ 2.050526] fuse: init (API version 7.39) [ 2.077183] jitterentropy: Initialization failed with host not compliant with requirements: 9 [ 2.100556] xor: using function: rvv (5643 MB/sec) [ 2.118860] io scheduler mq-deadline registered [ 2.123144] io scheduler kyber registered [ 2.127156] io scheduler bfq registered [ 2.141959] k1x-dwc-pcie ca400000.pcie: has no power on gpio. [ 2.152032] k1x-dwc-pcie ca400000.pcie: IO 0x009f002000..0x009f101fff -> 0x009f002000 [ 3.288739] pci_bus 0001:00: root bus resource [io 0x0000-0xfffff] (bus address [0x9f002000-0x9f101fff]) [ 3.371530] k1x-dwc-pcie ca800000.pcie: has no power on gpio. [ 3.383957] k1x-dwc-pcie ca800000.pcie: IO 0x00b7002000..0x00b7101fff -> 0x00b7002000 [ 4.528928] pci_bus 0002:00: root bus resource [io 0x100000-0x1fffff] (bus address [0xb7002000-0xb7101fff]) [ 4.630708] d4017000.serial: ttyS0 at MMIO 0xd4017000 (irq = 74, base_baud = 921250) is a UART1 [ 4.658094] d4017100.uart: ttyS2 at MMIO 0xd4017100 (irq = 75, base_baud = 3600000) is a UART3 [ 5.092492] PPP generic driver version 2.4.2 [ 5.115276] mv-usb2-phy c0940000.usbphy: phy-k1x-ci-usb2: will select HS parallel data path [ 5.123890] mv-usb2-phy c09c0000.usbphy1: phy-k1x-ci-usb2: will select HS parallel data path [ 5.132514] mv-usb2-phy c0a30000.usb2phy: phy-k1x-ci-usb2: will select HS parallel data path [ 5.168316] mv-ehci mv-ehci1: irq 82, io mem 0xc0980100 [ 5.217598] xhci-hcd xhci-hcd.0.auto: hcc params 0x0220fe6d hci version 0x110 quirks 0x0000008000000090 [ 5.227240] xhci-hcd xhci-hcd.0.auto: irq 81, io mem 0xc0a00000 [ 5.356268] <I>CTS-SPIDrv Chipone touch driver init, version: v3.7.0-sz [ 5.613494] device-mapper: uevent: version 1.0.3 [ 5.618439] device-mapper: ioctl: 4.48.0-ioctl (2023-03-01) initialised: dm-devel@redhat.com [ 5.627469] device-mapper: multipath round-robin: version 1.2.0 loaded [ 5.634099] device-mapper: multipath queue-length: version 0.2.0 loaded [ 5.634107] device-mapper: multipath service-time: version 0.3.0 loaded [ 5.644599] device-mapper: multipath historical-service-time: version 0.1.1 loaded [ 5.699391] sdhci-spacemit d4280000.sdh: Got CD GPIO [ 5.784090] sdio: save sdio_host <- 000000005236ad6a [ 5.820625] mmcblk0: mmc0:b36b SDABC 28.9 GiB [ 5.941561] mmc2: Failed to initialize a non-removable card [ 6.016773] rproc-virtio rproc-virtio.2.auto: assigned reserved memory node vdev0buffer@30206000 [ 6.101286] virtio_rpmsg_bus virtio0: rpmsg host is online [ 6.102058] virtio_rpmsg_bus virtio0: creating channel rir-service addr 0x400 [ 6.106875] rproc-virtio rproc-virtio.2.auto: registered virtio0 (type 7) [ 6.114202] ir_spacemit virtio0.rir-service.-1.1024: new channel: 0x400 -> 0x400! [ 6.128683] virtio_rpmsg_bus virtio0: creating channel adma-service addr 0x401 [ 6.149082] adma_spacemit virtio0.adma-service.-1.1025: new channel: 0x401 -> 0x401! [ 6.152387] riscv-pmu-sbi: SBI PMU extension is available [ 6.157635] virtio_rpmsg_bus virtio0: creating channel ruart-service0 addr 0x402 [ 6.169939] pxa_k1x virtio0.ruart-service0.-1.1026: new channel: 0x402 -> 0x402! [ 6.183500] virtio_rpmsg_bus virtio0: creating channel ruart-service1 addr 0x403 [ 6.191092] pxa_k1x virtio0.ruart-service1.-1.1027: new channel: 0x403 -> 0x403! [ 6.192125] usbcore: registered new interface driver snd-usb-audio [ 6.216816] virtio_rpmsg_bus virtio0: creating channel rcpu-pwr-management-service addr 0x404 [ 6.225646] k1x_rproc virtio0.rcpu-pwr-management-service.-1.1028: new channel: 0x404 -> 0x404! [ 6.234641] virtio_rpmsg_bus virtio0: creating channel i2c-service addr 0x405 [ 6.242059] i2c_k1x virtio0.i2c-service.-1.1029: new channel: 0x405 -> 0x405! [ 6.250870] Connection create success [ 6.253047] In-situ OAM (IOAM) with IPv6 [ 6.300930] Bluetooth: BNEP (Ethernet Emulation) ver 1.3 [ 6.316567] Bluetooth: HIDP (Human Interface Emulation) ver 1.2 [ 6.342929] registered taskstats version 1 [ 6.364481] Key type fscrypt-provisioning registered [ 6.428421] suspend: SBI SUSP extension detected [ 6.543861] cfg80211: Loading compiled-in X.509 certificates for regulatory database [ 7.938650] EXT4-fs (mmcblk0p6): mounted filesystem ac93e93e-99e2-48b6-ada0-b8340516ef55 ro with ordered data mode. Quota mode: none. [ 10.322625] systemd[1]: Configuration file /run/systemd/system/netplan-ovs-cleanup.service is marked world-inaccessible. This has no effect as configuration data is accessible via APIs without restrictions. Proceeding anyway. [ 10.391022] systemd[1]: Configuration file /usr/lib/systemd/system/ostree-coredata-copy.service is marked executable. Please remove executable permission bits. Proceeding anyway. [ 10.409645] systemd[1]: Configuration file /usr/lib/systemd/system/ostree-coredata-boot.service is marked executable. Please remove executable permission bits. Proceeding anyway. [ 10.428827] systemd[1]: /etc/systemd/system/org.kylin.kaiming.service:10: Unknown key name 'StartLimitIntervalSec' in section 'Service', ignoring. [ 10.443718] systemd[1]: /etc/systemd/system/org.kaiming.systemproxy.service:10: Unknown key name 'StartLimitIntervalSec' in section 'Service', ignoring. [ 10.489308] systemd[1]: Configuration file /usr/lib/systemd/system/jpu.service is marked executable. Please remove executable permission bits. Proceeding anyway. [ 10.550307] systemd[1]: Configuration file /usr/lib/systemd/system/camera.service is marked executable. Please remove executable permission bits. Proceeding anyway. [ 10.574318] systemd[1]: Configuration file /usr/lib/systemd/system/adsp.service is marked executable. Please remove executable permission bits. Proceeding anyway. [ 10.926257] systemd[1]: Created slice user.slice - User and Session Slice. [ 11.064451] systemd[1]: Listening on systemd-fsckd.socket - fsck to fsckd communication Socket. [ 11.100620] systemd[1]: systemd-pcrextend.socket - TPM2 PCR Extension (Varlink) was skipped because of an unmet condition check (ConditionSecurity=measured-uki). [ 11.436524] systemd[1]: systemd-pcrmachine.service - TPM2 PCR Machine ID Measurement was skipped because of an unmet condition check (ConditionSecurity=measured-uki). [ 11.452350] systemd[1]: systemd-tpm2-setup-early.service - TPM2 SRK Setup (Early) was skipped because of an unmet condition check (ConditionSecurity=measured-uki). [ 11.741669] systemd[1]: Mounting sys-fs-fuse-connections.mount - FUSE Control File System... [ 11.755037] systemd[1]: Mounting sys-kernel-config.mount - Kernel Configuration File System... [ 11.779823] systemd[1]: systemd-repart.service - Repartition Root Disk was skipped because no trigger condition checks were met. [ 11.827183] systemd[1]: Mounted sys-fs-fuse-connections.mount - FUSE Control File System. [ 11.836810] systemd[1]: Mounted sys-kernel-config.mount - Kernel Configuration File System. [ 15.505804] EXT4-fs (mmcblk0p6): warning: mounting fs with errors, running e2fsck is recommended [ 16.933857] EXT4-fs (mmcblk0p5): mounted filesystem 997fb1cf-2968-40bc-9930-d1c6027fab76 r/w with ordered data mode. Quota mode: none. [ 24.752726] spacemit-wlan rf-pwrseq:wlan-pwrseq: get pwrseq ok, type: sdio [ 24.752754] spacemit-wlan rf-pwrseq:wlan-pwrseq: get pwrseq ok, type: sdio [ 24.932755] mmc1: new ultra high speed SDR104 SDIO card at address 0001 [ 24.937199] RTW: == SDIO Card Info == root@openkylin:~# tail -n 100 /var/log/syslog | grep -i "input/output error" root@openkylin:~# journalctl -k -p err 8月 09 17:50:31 openkylin kernel: db_root: cannot open: /etc/target 8月 09 17:50:31 openkylin kernel: k1x-qspi d420c000.spi: RX buffer overflow 8月 09 17:50:32 openkylin kernel: Connection create success
+```
+
+- **尝试方向**：格式化 SD 卡为空，在 Windows 上用 balenaEtcher 重新烧录。
+
+### 2. Bianbu OS Apt 源错误
+
+- **问题**：`apt update` 报以下错误：
+  - 中科大 Ubuntu Ports 源（mantic）返回 `404 Not Found`
+  - Spacemit 官方源签名无效 `EXPKEYSIG 0C1C275F85F3A22A`
+- **解决方案**：暂无
+- **分析**：Bianbu OS 基于 Ubuntu Mantic（23.10），Mantic 已停止维护，官方源已下架。
+- **现象**：
 
 ```Bash
 apt update
