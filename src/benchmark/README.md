@@ -2,20 +2,121 @@
 
 ## 功能
 
-benchmark 测试脚本，用于评测优化前后的推理性能。
+包含一套完整的自动化测试工具链，用于评估不同绑核/调度策略下 RISC-V LLM 推理的性能与 V 状态切换开销。
 
-### 测试场景
-- 并发数：2、4、8
-- 模型：Llama-3.2-1B/3B Q4_K_M
-- 指标：TPS、平均 TTFT、P95 TTFT
+## 测试脚本
 
-### 使用方法
+| 文件 | 说明 |
+|------|------|
+| [benchmark_llama.py](benchmark_llama.py) | **基准测试主脚本**，支持三种模式：`qemu`（端口转发到 QEMU VM）、`local`（本地运行）、`remote`（远程板卡）。内置 `VStateOverhead` 类通过 bpftrace 采集 V 状态切换数据，支持一键对比（baseline vs optimized），输出 TPS/TTFT/P95/E2E 指标到 CSV。 |
+| [bench_runner.py](bench_runner.py) | **自动化测试运行器（单配置版）**，通过 SSH 连接板卡，自动启停 `llama-server` + `bpftrace`，发送 50 个并发 HTTP 推理请求，采集 TPS/TTFT/P95 和 V-state 计数，结果保存为 CSV。支持多种绑核/调度方法轮换。 |
+| [bench_runner_all.py](bench_runner_all.py) | **自动化测试运行器（多配置版）**，在 `bench_runner.py` 基础上预定义了 10 组测试配置（覆盖 1B/3B 模型、不同线程数、上下文长度、并行度），自动遍历并输出结果。 |
+
+## 支持的绑核/调度方法
+
+| 方法 | 原理 | 隔离方向 |
+|------|------|:--------:|
+| `taskset` | `taskset -c X-Y` 绑定推理线程到指定核心 | 单向 |
+| `cpuset` | cgroup 设置 `cpuset.cpus` + PID 移入 | 单向 |
+| `cpu-range` | `taskset` + `--cpu-strict 1`（存疑，未测试） | 单向 |
+| `partition-root` | cgroup + `echo root > cpuset.cpus.partition` | **双向** |
+| `systemd-scope` | `AllowedCPUs` + `systemd-run --scope` | 单向（等效） |
+| `taskset-chrt-b` | `taskset` + `chrt -b 0`（SCHED_BATCH） | 单向 + BATCH |
+| `taskset-chrt-f` | `taskset` + `chrt -f 90`（SCHED_FIFO） | 单向 + FIFO |
+
+## 输出指标
+
+| 指标 | 含义 | 说明 |
+|------|:--:|------|
+| agg_tps | token/s | 聚合吞吐量，越高越好 |
+| avg_ttft_ms | ms | 平均首 token 延迟，越低越好 |
+| p95_ttft_ms | ms | 95 分位首 token 延迟，越低越好 |
+| v_saves | 次数 | V 状态保存总数 |
+| v_restores | 次数 | V 状态恢复总数 |
+| target_saves | 次数 | 目标核上的 V 状态 save，正常应集中在目标核 |
+| nontarget_saves | 次数 | 非目标核上的 V 状态 save，>0 表示绑核泄漏 |
+| per-CPU saves | 次数 | 每个 CPU 核上的 V 状态 save 分布 |
+
+## 测试场景
+
+- 模型：Llama-3.2-1B / 3B Instruct Q4_K_M
+- 并发数：2 / 4 / 8
+- Prompt 长度：64 / 128 / 256 token
+- 输出 token 数：32 / 64 / 128 / 256
+- 每个配置重复：3 次 trial
+
+## 使用方法
+
+### 方式一：benchmark_llama.py（灵活模式）
 
 ```bash
-# TBD
-python benchmark_llama.py --concurrency 2,4,8 --model model.gguf
+# QEMU 模式
+python benchmark_llama.py --mode qemu --tag baseline
+
+# 一键对比（baseline → optimized）
+python benchmark_llama.py --mode local --compare
+
+# 远程板卡
+python benchmark_llama.py --mode remote --host 192.168.x.x
 ```
+
+### 方式二：bench_runner.py（单配置自动化）
+
+```bash
+# 安装依赖（宿主机）
+pip install paramiko requests numpy
+
+# 修改 bench_runner.py 中的 SSH_HOST/SSH_USER/SSH_PASS 等配置
+# 然后直接运行
+python bench_runner.py
+```
+
+### 方式三：bench_runner_all.py（多配置批量）
+
+```bash
+# 自动遍历 10 组测试配置
+python bench_runner_all.py
+```
+
+## 数据流
+
+```
+宿主机                       板卡 (RISC-V)
+─────                        ────────────
+bench_runner.py
+    │
+    ├─ SSH ───────────────→  pkill llama-server
+    ├─ SSH ───────────────→  pre_hook (创建 cgroup / systemd scope)
+    ├─ SSH ───────────────→  nohup llama-server -m model ...
+    ├─ SSH ───────────────→  nohup bpftrace vstate_trace_cpu.bt
+    ├─ SSH ───────────────→  python3 b.py (50 个并发 HTTP 请求)
+    │                           ├─ POST /v1/chat/completions
+    │                           └─ 结果 → /tmp/bench_result.json
+    ├─ 轮询等待 ──────────→  cat /tmp/bench_result.json
+    ├─ SSH ───────────────→  pkill bpftrace
+    ├─ SSH ───────────────→  cat /tmp/vstate_result.log
+    │
+    └─ 本地保存 CSV (TPS / TTFT / P95 / V-saves)
+```
+
+## 输出文件
+
+每个方法跑完生成两个 CSV：
+
+| 文件 | 内容 |
+|------|------|
+| `results/{group}_{method}.csv` | 汇总，每 trial 一行（TPS/TTFT/V-saves） |
+| `results/{group}_{method}_detail.csv` | 明细，每请求一行（TTFT/TPS/E2E） |
+
+## 详细文档
+
+参见 [README_bench_runner.md](README_bench_runner.md) 获取 bench_runner 的完整使用说明。
+
+## 依赖
+
+- 宿主机：`pip install paramiko requests numpy`
+- 板卡：`python3-requests python3-numpy curl bpftrace`
 
 ## 当前状态
 
-🚧 项目开发中
+✅ 已完成（benchmark_llama.py + bench_runner.py + bench_runner_all.py）

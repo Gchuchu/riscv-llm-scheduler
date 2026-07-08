@@ -1,0 +1,113 @@
+#!/usr/bin/bpftrace
+
+tracepoint:sched:sched_switch
+
+/args->prev_pid != args->next_pid/
+
+{
+
+    $t    = (struct task_struct *)curtask;
+
+    $regs = (struct pt_regs *)((uint64)$t->stack + 16384 - sizeof(struct pt_regs));
+
+    $vs   = $regs->status & 0x0600;
+
+    /* ====== save 侧 ====== */
+
+    if ($vs == 0x0600 && (uint64)$t->mm != 0) {
+
+        @saves_total = count();
+
+        @saves[args->prev_comm, args->prev_pid] = count();
+
+        @cpu_saves[cpu] = count();
+
+        @cpu_saves_by_proc[cpu, args->prev_comm] = count();
+
+        @tid_cpu_saves[args->prev_pid, cpu] = count();   /* 新增：tid 在哪个核上发生 save */
+
+    }
+
+    @task_cache[args->prev_pid] = (uint64)$t;
+
+    @task_start[args->prev_pid] = $t->start_time;
+
+    /* ====== restore 侧 ====== */
+
+    $cached = @task_cache[args->next_pid];
+
+    if ($cached != 0) {
+
+        $nt = (struct task_struct *)$cached;
+
+        if ($nt->start_time == @task_start[args->next_pid]) {
+
+            $nregs = (struct pt_regs *)((uint64)$nt->stack + 16384 - sizeof(struct pt_regs));
+
+            $nvs   = $nregs->status & 0x0600;
+
+            if ($nvs != 0 && (uint64)$nt->mm != 0) {
+
+                @restores_total = count();
+
+                @restores[args->next_comm, args->next_pid] = count();
+
+                @cpu_restores[cpu] = count();
+
+                @cpu_restores_by_proc[cpu, args->next_comm] = count();
+
+                @tid_cpu_restores[args->next_pid, cpu] = count();   /* 新增：tid 在哪个核上发生 restore */
+
+            }
+
+        }
+
+    }
+
+}
+
+interval:s:10
+
+{
+
+    printf("\n--- %s ---\n", strftime("%H:%M:%S", nsecs));
+
+    printf("saves total:    "); print(@saves_total);
+
+    printf("restores total: "); print(@restores_total);
+
+}
+
+END
+
+{
+
+    clear(@task_cache); clear(@task_start);
+
+    printf("\n========== SUMMARY ==========\n");
+
+    printf("saves total:    "); print(@saves_total);
+
+    printf("restores total: "); print(@restores_total);
+
+    printf("\n=== 每个核的 save 次数 ===\n");     print(@cpu_saves);
+
+    printf("\n=== 每个核 save 的进程分布 ===\n"); print(@cpu_saves_by_proc);
+
+    printf("\n=== 每个核的 restore 次数 ===\n");     print(@cpu_restores);
+
+    printf("\n=== 每个核 restore 的进程分布 ===\n"); print(@cpu_restores_by_proc);
+
+    printf("\n=== 每个线程(tid)在哪些核上发生过 save ===\n");
+
+    print(@tid_cpu_saves);
+
+    printf("\n=== 每个线程(tid)在哪些核上发生过 restore ===\n");
+
+    print(@tid_cpu_restores);
+
+    printf("\nsaves by proc:\n");    print(@saves);
+
+    printf("restores by proc:\n"); print(@restores);
+
+}
