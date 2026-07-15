@@ -8,7 +8,7 @@
 
 | 文件 | 说明 |
 |------|------|
-| [benchmark_llama.py](benchmark_llama.py) | **基准测试主脚本**，支持三种模式：`qemu`（端口转发到 QEMU VM）、`local`（本地运行）、`remote`（远程板卡）。内置 `VStateOverhead` 类通过 bpftrace 采集 V 状态切换数据，支持一键对比（baseline vs optimized），输出 TPS/TTFT/P95/E2E 指标到 CSV。 |
+| [benchmark_llama.py](benchmark_llama.py) | **基准测试主脚本**，支持 `qemu`、`local`、`remote` 普通模式和自动化远程实验矩阵。矩阵可运行 1B/3B/8B p4 与 3B p2/p4/p8/p16，自动管理 server 生命周期，输出轮次汇总和逐请求 CSV。 |
 | [bench_runner.py](bench_runner.py) | **自动化测试运行器（单配置版）**，通过 SSH 连接板卡，自动启停 `llama-server` + `bpftrace`，发送 50 个并发 HTTP 推理请求，采集 TPS/TTFT/P95 和 V-state 计数，结果保存为 CSV。支持多种绑核/调度方法轮换。 |
 | [bench_runner_all.py](bench_runner_all.py) | **自动化测试运行器（多配置版）**，在 `bench_runner.py` 基础上预定义了 10 组测试配置（覆盖 1B/3B 模型、不同线程数、上下文长度、并行度），自动遍历并输出结果。 |
 
@@ -58,7 +58,15 @@ python benchmark_llama.py --mode local --compare
 
 # 远程板卡
 python benchmark_llama.py --mode remote --host 192.168.x.x
+
+# 自动化远程矩阵：模型规模实验 + 3B 并发扫描
+python benchmark_llama.py --mode remote --host <BOARD_IP> --ssh-user root \
+  --experiment-matrix full --server-binary /root/llama-server-rvv \
+  --server-threads 4 --server-context 4096 \
+  --parallel-sweep-context-per-slot 1024 --output-dir results
 ```
+
+自动化矩阵每轮通过客户端启动屏障并发发送 32 条请求，不做批内 warmup 排除；V-state、吞吐和延迟统计覆盖同一轮完整请求。完整参数、指标边界和结果字段见[性能评测指南](../../docs/benchmark/性能评测指南.md)。
 
 ### 方式二：bench_runner.py（单配置自动化）
 
