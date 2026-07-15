@@ -1,0 +1,4 @@
+﻿modelsize,server_parallel,server_threads,server_context,max_token,request_count,throughput_tps,vstate_save_count,vstate_restore_count,vstate_llama_save,vstate_llama_restore
+1B,4,8,16384,128,32,5.3568,185438,186025,185402,185998
+3B,4,8,16384,128,32,1.7675,530563,538558,530527,538532
+8B,4,8,16384,128,32,0.8343,1024887,1038471,1024851,1038445

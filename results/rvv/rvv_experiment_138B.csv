@@ -1,0 +1,545 @@
+experiment,model_size,model_path,server_parallel,server_threads,server_context,server_port,server_binary,server_lib_dir,server_extra_args,server_command,server_started_at,server_host,streaming,max_tokens,prompt,request_count,warmup_request_count,measured_request_count,trial,is_warmup,request_id,completion_rank,ttft_ms,prompt_ms,e2e_ms,tps,tokens,response_text
+model_scale,1B,/root/llama-3.2-1b-instruct-q4_k_m.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/llama-3.2-1b-instruct-q4_k_m.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:43:18,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,True,1,4,9695.76,7207.04,103552.52,1.3638,128,"RISC-V Vector Extension is a feature in the RISC-V instruction set architecture (ISA) that allows for the extension of the standard RISC-V vector instructions to support vectorized operations. Vector instructions are designed to perform operations on multiple data elements simultaneously, which can significantly improve performance in certain applications, such as artificial intelligence (AI) inference.
+
+The RISC-V Vector Extension is a key feature that enables the use of vectorized operations in AI inference, which is a critical component of many modern AI applications, including deep learning frameworks like TensorFlow and PyTorch. By supporting vectorized operations, the RISC-V Vector Extension can help to"
+model_scale,1B,/root/llama-3.2-1b-instruct-q4_k_m.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/llama-3.2-1b-instruct-q4_k_m.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:43:18,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,True,2,1,2487.6,2462.57,102742.8,1.2768,128,"RISC-V Vector Extension is a feature in the RISC-V instruction set architecture (ISA) that allows for the extension of the standard RISC-V vector instructions to support vectorized operations. Vector instructions are designed to perform operations on multiple data elements simultaneously, which can significantly improve performance in certain applications, such as artificial intelligence (AI) inference.
+
+The RISC-V Vector Extension is a key feature that enables the use of vectorized operations in AI inference, which is a critical component of many modern AI applications, including deep learning frameworks like TensorFlow and PyTorch. By supporting vectorized operations, the RISC-V Vector Extension can help to"
+model_scale,1B,/root/llama-3.2-1b-instruct-q4_k_m.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/llama-3.2-1b-instruct-q4_k_m.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:43:18,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,3,8,104194.27,637.8,198066.46,1.3636,128,"RISC-V Vector Extension is a feature in the RISC-V instruction set architecture (ISA) that allows for the extension of the standard RISC-V vector instructions to support vectorized operations. Vector instructions are designed to perform operations on multiple data elements simultaneously, which can significantly improve performance in certain applications, such as artificial intelligence (AI) inference.
+
+The RISC-V Vector Extension is a key feature that enables the use of vectorized operations in AI inference, which is a critical component of many modern AI applications, including deep learning frameworks like TensorFlow and PyTorch. By supporting vectorized operations, the RISC-V Vector Extension can help to"
+model_scale,1B,/root/llama-3.2-1b-instruct-q4_k_m.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/llama-3.2-1b-instruct-q4_k_m.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:43:18,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,True,4,3,9691.76,7205.04,103548.52,1.3638,128,"RISC-V Vector Extension is a feature in the RISC-V instruction set architecture (ISA) that allows for the extension of the standard RISC-V vector instructions to support vectorized operations. Vector instructions are designed to perform operations on multiple data elements simultaneously, which can significantly improve performance in certain applications, such as artificial intelligence (AI) inference.
+
+The RISC-V Vector Extension is a key feature that enables the use of vectorized operations in AI inference, which is a critical component of many modern AI applications, including deep learning frameworks like TensorFlow and PyTorch. By supporting vectorized operations, the RISC-V Vector Extension can help to"
+model_scale,1B,/root/llama-3.2-1b-instruct-q4_k_m.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/llama-3.2-1b-instruct-q4_k_m.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:43:18,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,5,5,103552.52,805.09,197253.05,1.3661,128,"RISC-V Vector Extension is a feature in the RISC-V instruction set architecture (ISA) that allows for the extension of the standard RISC-V vector instructions to support vectorized operations. Vector instructions are designed to perform operations on multiple data elements simultaneously, which can significantly improve performance in certain applications, such as artificial intelligence (AI) inference.
+
+The RISC-V Vector Extension is a key feature that enables the use of vectorized operations in AI inference, which is a critical component of many modern AI applications, including deep learning frameworks like TensorFlow and PyTorch. By supporting vectorized operations, the RISC-V Vector Extension can help to"
+model_scale,1B,/root/llama-3.2-1b-instruct-q4_k_m.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/llama-3.2-1b-instruct-q4_k_m.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:43:18,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,True,6,2,9687.76,7202.84,103544.52,1.3638,128,"RISC-V Vector Extension is a feature in the RISC-V instruction set architecture (ISA) that allows for the extension of the standard RISC-V vector instructions to support vectorized operations. Vector instructions are designed to perform operations on multiple data elements simultaneously, which can significantly improve performance in certain applications, such as artificial intelligence (AI) inference.
+
+The RISC-V Vector Extension is a key feature that enables the use of vectorized operations in AI inference, which is a critical component of many modern AI applications, including deep learning frameworks like TensorFlow and PyTorch. By supporting vectorized operations, the RISC-V Vector Extension can help to"
+model_scale,1B,/root/llama-3.2-1b-instruct-q4_k_m.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/llama-3.2-1b-instruct-q4_k_m.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:43:18,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,7,6,104186.27,634.03,198055.46,1.3636,128,"RISC-V Vector Extension is a feature in the RISC-V instruction set architecture (ISA) that allows for the extension of the standard RISC-V vector instructions to support vectorized operations. Vector instructions are designed to perform operations on multiple data elements simultaneously, which can significantly improve performance in certain applications, such as artificial intelligence (AI) inference.
+
+The RISC-V Vector Extension is a key feature that enables the use of vectorized operations in AI inference, which is a critical component of many modern AI applications, including deep learning frameworks like TensorFlow and PyTorch. By supporting vectorized operations, the RISC-V Vector Extension can help to"
+model_scale,1B,/root/llama-3.2-1b-instruct-q4_k_m.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/llama-3.2-1b-instruct-q4_k_m.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:43:18,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,8,12,198665.84,598.28,292534.96,1.3636,128,"RISC-V Vector Extension is a feature in the RISC-V instruction set architecture (ISA) that allows for the extension of the standard RISC-V vector instructions to support vectorized operations. Vector instructions are designed to perform operations on multiple data elements simultaneously, which can significantly improve performance in certain applications, such as artificial intelligence (AI) inference.
+
+The RISC-V Vector Extension is a key feature that enables the use of vectorized operations in AI inference, which is a critical component of many modern AI applications, including deep learning frameworks like TensorFlow and PyTorch. By supporting vectorized operations, the RISC-V Vector Extension can help to"
+model_scale,1B,/root/llama-3.2-1b-instruct-q4_k_m.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/llama-3.2-1b-instruct-q4_k_m.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:43:18,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,9,17,387022.56,818.02,480665.61,1.3669,128,"RISC-V Vector Extension is a feature in the RISC-V instruction set architecture (ISA) that allows for the extension of the standard RISC-V vector instructions to support vectorized operations. Vector instructions are designed to perform operations on multiple data elements simultaneously, which can significantly improve performance in certain applications, such as artificial intelligence (AI) inference.
+
+The RISC-V Vector Extension is a key feature that enables the use of vectorized operations in AI inference, which is a critical component of many modern AI applications, including deep learning frameworks like TensorFlow and PyTorch. By supporting vectorized operations, the RISC-V Vector Extension can help to"
+model_scale,1B,/root/llama-3.2-1b-instruct-q4_k_m.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/llama-3.2-1b-instruct-q4_k_m.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:43:18,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,10,13,292534.96,811.91,386203.21,1.3665,128,"RISC-V Vector Extension is a feature in the RISC-V instruction set architecture (ISA) that allows for the extension of the standard RISC-V vector instructions to support vectorized operations. Vector instructions are designed to perform operations on multiple data elements simultaneously, which can significantly improve performance in certain applications, such as artificial intelligence (AI) inference.
+
+The RISC-V Vector Extension is a key feature that enables the use of vectorized operations in AI inference, which is a critical component of many modern AI applications, including deep learning frameworks like TensorFlow and PyTorch. By supporting vectorized operations, the RISC-V Vector Extension can help to"
+model_scale,1B,/root/llama-3.2-1b-instruct-q4_k_m.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/llama-3.2-1b-instruct-q4_k_m.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:43:18,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,11,21,481485.8,820.84,575205.4,1.3658,128,"RISC-V Vector Extension is a feature in the RISC-V instruction set architecture (ISA) that allows for the extension of the standard RISC-V vector instructions to support vectorized operations. Vector instructions are designed to perform operations on multiple data elements simultaneously, which can significantly improve performance in certain applications, such as artificial intelligence (AI) inference.
+
+The RISC-V Vector Extension is a key feature that enables the use of vectorized operations in AI inference, which is a critical component of many modern AI applications, including deep learning frameworks like TensorFlow and PyTorch. By supporting vectorized operations, the RISC-V Vector Extension can help to"
+model_scale,1B,/root/llama-3.2-1b-instruct-q4_k_m.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/llama-3.2-1b-instruct-q4_k_m.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:43:18,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,12,11,198660.84,596.51,292529.96,1.3636,128,"RISC-V Vector Extension is a feature in the RISC-V instruction set architecture (ISA) that allows for the extension of the standard RISC-V vector instructions to support vectorized operations. Vector instructions are designed to perform operations on multiple data elements simultaneously, which can significantly improve performance in certain applications, such as artificial intelligence (AI) inference.
+
+The RISC-V Vector Extension is a key feature that enables the use of vectorized operations in AI inference, which is a critical component of many modern AI applications, including deep learning frameworks like TensorFlow and PyTorch. By supporting vectorized operations, the RISC-V Vector Extension can help to"
+model_scale,1B,/root/llama-3.2-1b-instruct-q4_k_m.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/llama-3.2-1b-instruct-q4_k_m.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:43:18,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,13,7,104186.27,635.94,198055.46,1.3636,128,"RISC-V Vector Extension is a feature in the RISC-V instruction set architecture (ISA) that allows for the extension of the standard RISC-V vector instructions to support vectorized operations. Vector instructions are designed to perform operations on multiple data elements simultaneously, which can significantly improve performance in certain applications, such as artificial intelligence (AI) inference.
+
+The RISC-V Vector Extension is a key feature that enables the use of vectorized operations in AI inference, which is a critical component of many modern AI applications, including deep learning frameworks like TensorFlow and PyTorch. By supporting vectorized operations, the RISC-V Vector Extension can help to"
+model_scale,1B,/root/llama-3.2-1b-instruct-q4_k_m.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/llama-3.2-1b-instruct-q4_k_m.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:43:18,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,14,9,198059.46,814.41,291719.21,1.3666,128,"RISC-V Vector Extension is a feature in the RISC-V instruction set architecture (ISA) that allows for the extension of the standard RISC-V vector instructions to support vectorized operations. Vector instructions are designed to perform operations on multiple data elements simultaneously, which can significantly improve performance in certain applications, such as artificial intelligence (AI) inference.
+
+The RISC-V Vector Extension is a key feature that enables the use of vectorized operations in AI inference, which is a critical component of many modern AI applications, including deep learning frameworks like TensorFlow and PyTorch. By supporting vectorized operations, the RISC-V Vector Extension can help to"
+model_scale,1B,/root/llama-3.2-1b-instruct-q4_k_m.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/llama-3.2-1b-instruct-q4_k_m.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:43:18,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,15,16,293133.46,599.22,387015.56,1.3634,128,"RISC-V Vector Extension is a feature in the RISC-V instruction set architecture (ISA) that allows for the extension of the standard RISC-V vector instructions to support vectorized operations. Vector instructions are designed to perform operations on multiple data elements simultaneously, which can significantly improve performance in certain applications, such as artificial intelligence (AI) inference.
+
+The RISC-V Vector Extension is a key feature that enables the use of vectorized operations in AI inference, which is a critical component of many modern AI applications, including deep learning frameworks like TensorFlow and PyTorch. By supporting vectorized operations, the RISC-V Vector Extension can help to"
+model_scale,1B,/root/llama-3.2-1b-instruct-q4_k_m.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/llama-3.2-1b-instruct-q4_k_m.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:43:18,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,16,22,482122.97,639.58,576002.94,1.3634,128,"RISC-V Vector Extension is a feature in the RISC-V instruction set architecture (ISA) that allows for the extension of the standard RISC-V vector instructions to support vectorized operations. Vector instructions are designed to perform operations on multiple data elements simultaneously, which can significantly improve performance in certain applications, such as artificial intelligence (AI) inference.
+
+The RISC-V Vector Extension is a key feature that enables the use of vectorized operations in AI inference, which is a critical component of many modern AI applications, including deep learning frameworks like TensorFlow and PyTorch. By supporting vectorized operations, the RISC-V Vector Extension can help to"
+model_scale,1B,/root/llama-3.2-1b-instruct-q4_k_m.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/llama-3.2-1b-instruct-q4_k_m.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:43:18,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,17,18,387636.82,616.37,481473.8,1.364,128,"RISC-V Vector Extension is a feature in the RISC-V instruction set architecture (ISA) that allows for the extension of the standard RISC-V vector instructions to support vectorized operations. Vector instructions are designed to perform operations on multiple data elements simultaneously, which can significantly improve performance in certain applications, such as artificial intelligence (AI) inference.
+
+The RISC-V Vector Extension is a key feature that enables the use of vectorized operations in AI inference, which is a critical component of many modern AI applications, including deep learning frameworks like TensorFlow and PyTorch. By supporting vectorized operations, the RISC-V Vector Extension can help to"
+model_scale,1B,/root/llama-3.2-1b-instruct-q4_k_m.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/llama-3.2-1b-instruct-q4_k_m.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:43:18,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,18,24,482124.97,643.13,576005.94,1.3634,128,"RISC-V Vector Extension is a feature in the RISC-V instruction set architecture (ISA) that allows for the extension of the standard RISC-V vector instructions to support vectorized operations. Vector instructions are designed to perform operations on multiple data elements simultaneously, which can significantly improve performance in certain applications, such as artificial intelligence (AI) inference.
+
+The RISC-V Vector Extension is a key feature that enables the use of vectorized operations in AI inference, which is a critical component of many modern AI applications, including deep learning frameworks like TensorFlow and PyTorch. By supporting vectorized operations, the RISC-V Vector Extension can help to"
+model_scale,1B,/root/llama-3.2-1b-instruct-q4_k_m.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/llama-3.2-1b-instruct-q4_k_m.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:43:18,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,19,20,387637.82,621.26,481476.79,1.3641,128,"RISC-V Vector Extension is a feature in the RISC-V instruction set architecture (ISA) that allows for the extension of the standard RISC-V vector instructions to support vectorized operations. Vector instructions are designed to perform operations on multiple data elements simultaneously, which can significantly improve performance in certain applications, such as artificial intelligence (AI) inference.
+
+The RISC-V Vector Extension is a key feature that enables the use of vectorized operations in AI inference, which is a critical component of many modern AI applications, including deep learning frameworks like TensorFlow and PyTorch. By supporting vectorized operations, the RISC-V Vector Extension can help to"
+model_scale,1B,/root/llama-3.2-1b-instruct-q4_k_m.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/llama-3.2-1b-instruct-q4_k_m.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:43:18,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,20,14,293126.45,595.82,387005.56,1.3635,128,"RISC-V Vector Extension is a feature in the RISC-V instruction set architecture (ISA) that allows for the extension of the standard RISC-V vector instructions to support vectorized operations. Vector instructions are designed to perform operations on multiple data elements simultaneously, which can significantly improve performance in certain applications, such as artificial intelligence (AI) inference.
+
+The RISC-V Vector Extension is a key feature that enables the use of vectorized operations in AI inference, which is a critical component of many modern AI applications, including deep learning frameworks like TensorFlow and PyTorch. By supporting vectorized operations, the RISC-V Vector Extension can help to"
+model_scale,1B,/root/llama-3.2-1b-instruct-q4_k_m.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/llama-3.2-1b-instruct-q4_k_m.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:43:18,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,21,10,198651.84,594.71,292520.96,1.3636,128,"RISC-V Vector Extension is a feature in the RISC-V instruction set architecture (ISA) that allows for the extension of the standard RISC-V vector instructions to support vectorized operations. Vector instructions are designed to perform operations on multiple data elements simultaneously, which can significantly improve performance in certain applications, such as artificial intelligence (AI) inference.
+
+The RISC-V Vector Extension is a key feature that enables the use of vectorized operations in AI inference, which is a critical component of many modern AI applications, including deep learning frameworks like TensorFlow and PyTorch. By supporting vectorized operations, the RISC-V Vector Extension can help to"
+model_scale,1B,/root/llama-3.2-1b-instruct-q4_k_m.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/llama-3.2-1b-instruct-q4_k_m.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:43:18,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,22,15,293125.45,597.48,387008.56,1.3634,128,"RISC-V Vector Extension is a feature in the RISC-V instruction set architecture (ISA) that allows for the extension of the standard RISC-V vector instructions to support vectorized operations. Vector instructions are designed to perform operations on multiple data elements simultaneously, which can significantly improve performance in certain applications, such as artificial intelligence (AI) inference.
+
+The RISC-V Vector Extension is a key feature that enables the use of vectorized operations in AI inference, which is a critical component of many modern AI applications, including deep learning frameworks like TensorFlow and PyTorch. By supporting vectorized operations, the RISC-V Vector Extension can help to"
+model_scale,1B,/root/llama-3.2-1b-instruct-q4_k_m.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/llama-3.2-1b-instruct-q4_k_m.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:43:18,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,23,19,387633.82,618.42,481471.8,1.364,128,"RISC-V Vector Extension is a feature in the RISC-V instruction set architecture (ISA) that allows for the extension of the standard RISC-V vector instructions to support vectorized operations. Vector instructions are designed to perform operations on multiple data elements simultaneously, which can significantly improve performance in certain applications, such as artificial intelligence (AI) inference.
+
+The RISC-V Vector Extension is a key feature that enables the use of vectorized operations in AI inference, which is a critical component of many modern AI applications, including deep learning frameworks like TensorFlow and PyTorch. By supporting vectorized operations, the RISC-V Vector Extension can help to"
+model_scale,1B,/root/llama-3.2-1b-instruct-q4_k_m.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/llama-3.2-1b-instruct-q4_k_m.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:43:18,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,24,28,576636.96,630.76,670449.59,1.3644,128,"RISC-V Vector Extension is a feature in the RISC-V instruction set architecture (ISA) that allows for the extension of the standard RISC-V vector instructions to support vectorized operations. Vector instructions are designed to perform operations on multiple data elements simultaneously, which can significantly improve performance in certain applications, such as artificial intelligence (AI) inference.
+
+The RISC-V Vector Extension is a key feature that enables the use of vectorized operations in AI inference, which is a critical component of many modern AI applications, including deep learning frameworks like TensorFlow and PyTorch. By supporting vectorized operations, the RISC-V Vector Extension can help to"
+model_scale,1B,/root/llama-3.2-1b-instruct-q4_k_m.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/llama-3.2-1b-instruct-q4_k_m.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:43:18,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,25,23,482117.97,641.27,575998.94,1.3634,128,"RISC-V Vector Extension is a feature in the RISC-V instruction set architecture (ISA) that allows for the extension of the standard RISC-V vector instructions to support vectorized operations. Vector instructions are designed to perform operations on multiple data elements simultaneously, which can significantly improve performance in certain applications, such as artificial intelligence (AI) inference.
+
+The RISC-V Vector Extension is a key feature that enables the use of vectorized operations in AI inference, which is a critical component of many modern AI applications, including deep learning frameworks like TensorFlow and PyTorch. By supporting vectorized operations, the RISC-V Vector Extension can help to"
+model_scale,1B,/root/llama-3.2-1b-instruct-q4_k_m.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/llama-3.2-1b-instruct-q4_k_m.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:43:18,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,26,26,576630.95,627.39,670443.58,1.3644,128,"RISC-V Vector Extension is a feature in the RISC-V instruction set architecture (ISA) that allows for the extension of the standard RISC-V vector instructions to support vectorized operations. Vector instructions are designed to perform operations on multiple data elements simultaneously, which can significantly improve performance in certain applications, such as artificial intelligence (AI) inference.
+
+The RISC-V Vector Extension is a key feature that enables the use of vectorized operations in AI inference, which is a critical component of many modern AI applications, including deep learning frameworks like TensorFlow and PyTorch. By supporting vectorized operations, the RISC-V Vector Extension can help to"
+model_scale,1B,/root/llama-3.2-1b-instruct-q4_k_m.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/llama-3.2-1b-instruct-q4_k_m.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:43:18,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,27,25,575999.94,809.14,669637.84,1.367,128,"RISC-V Vector Extension is a feature in the RISC-V instruction set architecture (ISA) that allows for the extension of the standard RISC-V vector instructions to support vectorized operations. Vector instructions are designed to perform operations on multiple data elements simultaneously, which can significantly improve performance in certain applications, such as artificial intelligence (AI) inference.
+
+The RISC-V Vector Extension is a key feature that enables the use of vectorized operations in AI inference, which is a critical component of many modern AI applications, including deep learning frameworks like TensorFlow and PyTorch. By supporting vectorized operations, the RISC-V Vector Extension can help to"
+model_scale,1B,/root/llama-3.2-1b-instruct-q4_k_m.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/llama-3.2-1b-instruct-q4_k_m.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:43:18,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,28,27,576631.95,629.14,670443.58,1.3644,128,"RISC-V Vector Extension is a feature in the RISC-V instruction set architecture (ISA) that allows for the extension of the standard RISC-V vector instructions to support vectorized operations. Vector instructions are designed to perform operations on multiple data elements simultaneously, which can significantly improve performance in certain applications, such as artificial intelligence (AI) inference.
+
+The RISC-V Vector Extension is a key feature that enables the use of vectorized operations in AI inference, which is a critical component of many modern AI applications, including deep learning frameworks like TensorFlow and PyTorch. By supporting vectorized operations, the RISC-V Vector Extension can help to"
+model_scale,1B,/root/llama-3.2-1b-instruct-q4_k_m.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/llama-3.2-1b-instruct-q4_k_m.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:43:18,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,29,29,670446.58,809.15,763938.53,1.3691,128,"RISC-V Vector Extension is a feature in the RISC-V instruction set architecture (ISA) that allows for the extension of the standard RISC-V vector instructions to support vectorized operations. Vector instructions are designed to perform operations on multiple data elements simultaneously, which can significantly improve performance in certain applications, such as artificial intelligence (AI) inference.
+
+The RISC-V Vector Extension is a key feature that enables the use of vectorized operations in AI inference, which is a critical component of many modern AI applications, including deep learning frameworks like TensorFlow and PyTorch. By supporting vectorized operations, the RISC-V Vector Extension can help to"
+model_scale,1B,/root/llama-3.2-1b-instruct-q4_k_m.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/llama-3.2-1b-instruct-q4_k_m.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:43:18,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,30,30,671043.12,595.61,764607.55,1.3681,128,"RISC-V Vector Extension is a feature in the RISC-V instruction set architecture (ISA) that allows for the extension of the standard RISC-V vector instructions to support vectorized operations. Vector instructions are designed to perform operations on multiple data elements simultaneously, which can significantly improve performance in certain applications, such as artificial intelligence (AI) inference.
+
+The RISC-V Vector Extension is a key feature that enables the use of vectorized operations in AI inference, which is a critical component of many modern AI applications, including deep learning frameworks like TensorFlow and PyTorch. By supporting vectorized operations, the RISC-V Vector Extension can help to"
+model_scale,1B,/root/llama-3.2-1b-instruct-q4_k_m.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/llama-3.2-1b-instruct-q4_k_m.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:43:18,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,31,32,671047.12,599.12,764610.55,1.3681,128,"RISC-V Vector Extension is a feature in the RISC-V instruction set architecture (ISA) that allows for the extension of the standard RISC-V vector instructions to support vectorized operations. Vector instructions are designed to perform operations on multiple data elements simultaneously, which can significantly improve performance in certain applications, such as artificial intelligence (AI) inference.
+
+The RISC-V Vector Extension is a key feature that enables the use of vectorized operations in AI inference, which is a critical component of many modern AI applications, including deep learning frameworks like TensorFlow and PyTorch. By supporting vectorized operations, the RISC-V Vector Extension can help to"
+model_scale,1B,/root/llama-3.2-1b-instruct-q4_k_m.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/llama-3.2-1b-instruct-q4_k_m.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:43:18,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,32,31,671044.12,597.4,764607.55,1.3681,128,"RISC-V Vector Extension is a feature in the RISC-V instruction set architecture (ISA) that allows for the extension of the standard RISC-V vector instructions to support vectorized operations. Vector instructions are designed to perform operations on multiple data elements simultaneously, which can significantly improve performance in certain applications, such as artificial intelligence (AI) inference.
+
+The RISC-V Vector Extension is a key feature that enables the use of vectorized operations in AI inference, which is a critical component of many modern AI applications, including deep learning frameworks like TensorFlow and PyTorch. By supporting vectorized operations, the RISC-V Vector Extension can help to"
+model_scale,3B,/root/Llama-3.2-3B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Llama-3.2-3B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:57:29,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,True,1,1,39655.09,39570.79,342027.22,0.4233,128,"RISC-V Vector Extension is an instruction set extension for the RISC-V processor architecture that provides support for vector operations, which are essential for many machine learning (ML) and artificial intelligence (AI) applications, including AI inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that allow the processor to perform vector operations on data. Vector operations involve performing the same operation on multiple data elements simultaneously, which is particularly useful for ML and AI workloads that involve large matrices and tensors.
+
+The RISC-V Vector Extension provides a set of instructions that can be used to perform various vector operations"
+model_scale,3B,/root/Llama-3.2-3B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Llama-3.2-3B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:57:29,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,2,5,344471.12,2412.97,624084.92,0.4578,128,"RISC-V Vector Extension is an instruction set extension for the RISC-V processor architecture that provides support for vector operations, which are essential for many machine learning (ML) and artificial intelligence (AI) applications, including AI inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that allow the processor to perform vector operations on data. Vector operations involve performing the same operation on multiple data elements simultaneously, which is particularly useful for ML and AI workloads that involve large matrices and tensors.
+
+The RISC-V Vector Extension provides a set of instructions that can be used to perform various vector operations"
+model_scale,3B,/root/Llama-3.2-3B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Llama-3.2-3B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:57:29,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,3,9,626486.21,2401.22,905903.3,0.4581,128,"RISC-V Vector Extension is an instruction set extension for the RISC-V processor architecture that provides support for vector operations, which are essential for many machine learning (ML) and artificial intelligence (AI) applications, including AI inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that allow the processor to perform vector operations on data. Vector operations involve performing the same operation on multiple data elements simultaneously, which is particularly useful for ML and AI workloads that involve large matrices and tensors.
+
+The RISC-V Vector Extension provides a set of instructions that can be used to perform various vector operations"
+model_scale,3B,/root/Llama-3.2-3B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Llama-3.2-3B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:57:29,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,4,19,1191878.5,1840.59,1471948.92,0.457,128,"RISC-V Vector Extension is an instruction set extension for the RISC-V processor architecture that provides support for vector operations, which are essential for many machine learning (ML) and artificial intelligence (AI) applications, including AI inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that allow the processor to perform vector operations on data. Vector operations involve performing the same operation on multiple data elements simultaneously, which is particularly useful for ML and AI workloads that involve large matrices and tensors.
+
+The RISC-V Vector Extension provides a set of instructions that can be used to perform various vector operations"
+model_scale,3B,/root/Llama-3.2-3B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Llama-3.2-3B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:57:29,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,5,20,1191886.5,1842.22,1471950.92,0.457,128,"RISC-V Vector Extension is an instruction set extension for the RISC-V processor architecture that provides support for vector operations, which are essential for many machine learning (ML) and artificial intelligence (AI) applications, including AI inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that allow the processor to perform vector operations on data. Vector operations involve performing the same operation on multiple data elements simultaneously, which is particularly useful for ML and AI workloads that involve large matrices and tensors.
+
+The RISC-V Vector Extension provides a set of instructions that can be used to perform various vector operations"
+model_scale,3B,/root/Llama-3.2-3B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Llama-3.2-3B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:57:29,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,True,6,2,64195.89,56047.94,344462.1,0.4567,128,"RISC-V Vector Extension is an instruction set extension for the RISC-V processor architecture that provides support for vector operations, which are essential for many machine learning (ML) and artificial intelligence (AI) applications, including AI inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that allow the processor to perform vector operations on data. Vector operations involve performing the same operation on multiple data elements simultaneously, which is particularly useful for ML and AI workloads that involve large matrices and tensors.
+
+The RISC-V Vector Extension provides a set of instructions that can be used to perform various vector operations"
+model_scale,3B,/root/Llama-3.2-3B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Llama-3.2-3B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:57:29,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,7,8,346403.82,1932.88,626482.21,0.457,128,"RISC-V Vector Extension is an instruction set extension for the RISC-V processor architecture that provides support for vector operations, which are essential for many machine learning (ML) and artificial intelligence (AI) applications, including AI inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that allow the processor to perform vector operations on data. Vector operations involve performing the same operation on multiple data elements simultaneously, which is particularly useful for ML and AI workloads that involve large matrices and tensors.
+
+The RISC-V Vector Extension provides a set of instructions that can be used to perform various vector operations"
+model_scale,3B,/root/Llama-3.2-3B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Llama-3.2-3B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:57:29,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,True,8,4,64201.89,56054.31,344465.1,0.4567,128,"RISC-V Vector Extension is an instruction set extension for the RISC-V processor architecture that provides support for vector operations, which are essential for many machine learning (ML) and artificial intelligence (AI) applications, including AI inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that allow the processor to perform vector operations on data. Vector operations involve performing the same operation on multiple data elements simultaneously, which is particularly useful for ML and AI workloads that involve large matrices and tensors.
+
+The RISC-V Vector Extension provides a set of instructions that can be used to perform various vector operations"
+model_scale,3B,/root/Llama-3.2-3B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Llama-3.2-3B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:57:29,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,9,29,2035080.07,2422.63,2315426.4,0.4566,128,"RISC-V Vector Extension is an instruction set extension for the RISC-V processor architecture that provides support for vector operations, which are essential for many machine learning (ML) and artificial intelligence (AI) applications, including AI inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that allow the processor to perform vector operations on data. Vector operations involve performing the same operation on multiple data elements simultaneously, which is particularly useful for ML and AI workloads that involve large matrices and tensors.
+
+The RISC-V Vector Extension provides a set of instructions that can be used to perform various vector operations"
+model_scale,3B,/root/Llama-3.2-3B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Llama-3.2-3B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:57:29,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,10,7,346400.82,1931.27,626478.2,0.457,128,"RISC-V Vector Extension is an instruction set extension for the RISC-V processor architecture that provides support for vector operations, which are essential for many machine learning (ML) and artificial intelligence (AI) applications, including AI inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that allow the processor to perform vector operations on data. Vector operations involve performing the same operation on multiple data elements simultaneously, which is particularly useful for ML and AI workloads that involve large matrices and tensors.
+
+The RISC-V Vector Extension provides a set of instructions that can be used to perform various vector operations"
+model_scale,3B,/root/Llama-3.2-3B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Llama-3.2-3B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:57:29,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,11,26,1755357.08,1822.82,2035073.06,0.4576,128,"RISC-V Vector Extension is an instruction set extension for the RISC-V processor architecture that provides support for vector operations, which are essential for many machine learning (ML) and artificial intelligence (AI) applications, including AI inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that allow the processor to perform vector operations on data. Vector operations involve performing the same operation on multiple data elements simultaneously, which is particularly useful for ML and AI workloads that involve large matrices and tensors.
+
+The RISC-V Vector Extension provides a set of instructions that can be used to perform various vector operations"
+model_scale,3B,/root/Llama-3.2-3B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Llama-3.2-3B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:57:29,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,12,12,628349.37,1866.42,908307.51,0.4572,128,"RISC-V Vector Extension is an instruction set extension for the RISC-V processor architecture that provides support for vector operations, which are essential for many machine learning (ML) and artificial intelligence (AI) applications, including AI inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that allow the processor to perform vector operations on data. Vector operations involve performing the same operation on multiple data elements simultaneously, which is particularly useful for ML and AI workloads that involve large matrices and tensors.
+
+The RISC-V Vector Extension provides a set of instructions that can be used to perform various vector operations"
+model_scale,3B,/root/Llama-3.2-3B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Llama-3.2-3B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:57:29,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,13,6,346395.81,1929.53,626473.2,0.457,128,"RISC-V Vector Extension is an instruction set extension for the RISC-V processor architecture that provides support for vector operations, which are essential for many machine learning (ML) and artificial intelligence (AI) applications, including AI inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that allow the processor to perform vector operations on data. Vector operations involve performing the same operation on multiple data elements simultaneously, which is particularly useful for ML and AI workloads that involve large matrices and tensors.
+
+The RISC-V Vector Extension provides a set of instructions that can be used to perform various vector operations"
+model_scale,3B,/root/Llama-3.2-3B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Llama-3.2-3B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:57:29,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,14,21,1471944.9,2411.61,1751106.29,0.4585,128,"RISC-V Vector Extension is an instruction set extension for the RISC-V processor architecture that provides support for vector operations, which are essential for many machine learning (ML) and artificial intelligence (AI) applications, including AI inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that allow the processor to perform vector operations on data. Vector operations involve performing the same operation on multiple data elements simultaneously, which is particularly useful for ML and AI workloads that involve large matrices and tensors.
+
+The RISC-V Vector Extension provides a set of instructions that can be used to perform various vector operations"
+model_scale,3B,/root/Llama-3.2-3B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Llama-3.2-3B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:57:29,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,15,32,2036905.68,1827.43,2317432.95,0.4563,128,"RISC-V Vector Extension is an instruction set extension for the RISC-V processor architecture that provides support for vector operations, which are essential for many machine learning (ML) and artificial intelligence (AI) applications, including AI inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that allow the processor to perform vector operations on data. Vector operations involve performing the same operation on multiple data elements simultaneously, which is particularly useful for ML and AI workloads that involve large matrices and tensors.
+
+The RISC-V Vector Extension provides a set of instructions that can be used to perform various vector operations"
+model_scale,3B,/root/Llama-3.2-3B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Llama-3.2-3B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:57:29,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,True,16,3,64191.88,56050.11,344458.09,0.4567,128,"RISC-V Vector Extension is an instruction set extension for the RISC-V processor architecture that provides support for vector operations, which are essential for many machine learning (ML) and artificial intelligence (AI) applications, including AI inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that allow the processor to perform vector operations on data. Vector operations involve performing the same operation on multiple data elements simultaneously, which is particularly useful for ML and AI workloads that involve large matrices and tensors.
+
+The RISC-V Vector Extension provides a set of instructions that can be used to perform various vector operations"
+model_scale,3B,/root/Llama-3.2-3B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Llama-3.2-3B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:57:29,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,17,15,910155.35,1848.18,1190018.92,0.4574,128,"RISC-V Vector Extension is an instruction set extension for the RISC-V processor architecture that provides support for vector operations, which are essential for many machine learning (ML) and artificial intelligence (AI) applications, including AI inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that allow the processor to perform vector operations on data. Vector operations involve performing the same operation on multiple data elements simultaneously, which is particularly useful for ML and AI workloads that involve large matrices and tensors.
+
+The RISC-V Vector Extension provides a set of instructions that can be used to perform various vector operations"
+model_scale,3B,/root/Llama-3.2-3B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Llama-3.2-3B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:57:29,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,18,18,1191864.48,1838.76,1471934.9,0.457,128,"RISC-V Vector Extension is an instruction set extension for the RISC-V processor architecture that provides support for vector operations, which are essential for many machine learning (ML) and artificial intelligence (AI) applications, including AI inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that allow the processor to perform vector operations on data. Vector operations involve performing the same operation on multiple data elements simultaneously, which is particularly useful for ML and AI workloads that involve large matrices and tensors.
+
+The RISC-V Vector Extension provides a set of instructions that can be used to perform various vector operations"
+model_scale,3B,/root/Llama-3.2-3B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Llama-3.2-3B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:57:29,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,19,11,628340.36,1864.66,908298.51,0.4572,128,"RISC-V Vector Extension is an instruction set extension for the RISC-V processor architecture that provides support for vector operations, which are essential for many machine learning (ML) and artificial intelligence (AI) applications, including AI inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that allow the processor to perform vector operations on data. Vector operations involve performing the same operation on multiple data elements simultaneously, which is particularly useful for ML and AI workloads that involve large matrices and tensors.
+
+The RISC-V Vector Extension provides a set of instructions that can be used to perform various vector operations"
+model_scale,3B,/root/Llama-3.2-3B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Llama-3.2-3B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:57:29,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,20,28,1755355.07,1829.62,2035067.06,0.4576,128,"RISC-V Vector Extension is an instruction set extension for the RISC-V processor architecture that provides support for vector operations, which are essential for many machine learning (ML) and artificial intelligence (AI) applications, including AI inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that allow the processor to perform vector operations on data. Vector operations involve performing the same operation on multiple data elements simultaneously, which is particularly useful for ML and AI workloads that involve large matrices and tensors.
+
+The RISC-V Vector Extension provides a set of instructions that can be used to perform various vector operations"
+model_scale,3B,/root/Llama-3.2-3B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Llama-3.2-3B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:57:29,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,21,14,910149.35,1846.48,1190012.92,0.4574,128,"RISC-V Vector Extension is an instruction set extension for the RISC-V processor architecture that provides support for vector operations, which are essential for many machine learning (ML) and artificial intelligence (AI) applications, including AI inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that allow the processor to perform vector operations on data. Vector operations involve performing the same operation on multiple data elements simultaneously, which is particularly useful for ML and AI workloads that involve large matrices and tensors.
+
+The RISC-V Vector Extension provides a set of instructions that can be used to perform various vector operations"
+model_scale,3B,/root/Llama-3.2-3B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Llama-3.2-3B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:57:29,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,22,17,1190018.92,2399.37,1469524.92,0.4579,128,"RISC-V Vector Extension is an instruction set extension for the RISC-V processor architecture that provides support for vector operations, which are essential for many machine learning (ML) and artificial intelligence (AI) applications, including AI inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that allow the processor to perform vector operations on data. Vector operations involve performing the same operation on multiple data elements simultaneously, which is particularly useful for ML and AI workloads that involve large matrices and tensors.
+
+The RISC-V Vector Extension provides a set of instructions that can be used to perform various vector operations"
+model_scale,3B,/root/Llama-3.2-3B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Llama-3.2-3B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:57:29,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,23,13,908297.51,2412.26,1187617.1,0.4583,128,"RISC-V Vector Extension is an instruction set extension for the RISC-V processor architecture that provides support for vector operations, which are essential for many machine learning (ML) and artificial intelligence (AI) applications, including AI inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that allow the processor to perform vector operations on data. Vector operations involve performing the same operation on multiple data elements simultaneously, which is particularly useful for ML and AI workloads that involve large matrices and tensors.
+
+The RISC-V Vector Extension provides a set of instructions that can be used to perform various vector operations"
+model_scale,3B,/root/Llama-3.2-3B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Llama-3.2-3B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:57:29,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,24,23,1473775.98,1836.62,1753516.32,0.4576,128,"RISC-V Vector Extension is an instruction set extension for the RISC-V processor architecture that provides support for vector operations, which are essential for many machine learning (ML) and artificial intelligence (AI) applications, including AI inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that allow the processor to perform vector operations on data. Vector operations involve performing the same operation on multiple data elements simultaneously, which is particularly useful for ML and AI workloads that involve large matrices and tensors.
+
+The RISC-V Vector Extension provides a set of instructions that can be used to perform various vector operations"
+model_scale,3B,/root/Llama-3.2-3B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Llama-3.2-3B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:57:29,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,25,24,1473776.98,1838.45,1753517.32,0.4576,128,"RISC-V Vector Extension is an instruction set extension for the RISC-V processor architecture that provides support for vector operations, which are essential for many machine learning (ML) and artificial intelligence (AI) applications, including AI inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that allow the processor to perform vector operations on data. Vector operations involve performing the same operation on multiple data elements simultaneously, which is particularly useful for ML and AI workloads that involve large matrices and tensors.
+
+The RISC-V Vector Extension provides a set of instructions that can be used to perform various vector operations"
+model_scale,3B,/root/Llama-3.2-3B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Llama-3.2-3B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:57:29,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,26,25,1753517.32,2422.5,2032641.56,0.4586,128,"RISC-V Vector Extension is an instruction set extension for the RISC-V processor architecture that provides support for vector operations, which are essential for many machine learning (ML) and artificial intelligence (AI) applications, including AI inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that allow the processor to perform vector operations on data. Vector operations involve performing the same operation on multiple data elements simultaneously, which is particularly useful for ML and AI workloads that involve large matrices and tensors.
+
+The RISC-V Vector Extension provides a set of instructions that can be used to perform various vector operations"
+model_scale,3B,/root/Llama-3.2-3B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Llama-3.2-3B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:57:29,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,27,27,1755349.07,1828.06,2035061.06,0.4576,128,"RISC-V Vector Extension is an instruction set extension for the RISC-V processor architecture that provides support for vector operations, which are essential for many machine learning (ML) and artificial intelligence (AI) applications, including AI inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that allow the processor to perform vector operations on data. Vector operations involve performing the same operation on multiple data elements simultaneously, which is particularly useful for ML and AI workloads that involve large matrices and tensors.
+
+The RISC-V Vector Extension provides a set of instructions that can be used to perform various vector operations"
+model_scale,3B,/root/Llama-3.2-3B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Llama-3.2-3B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:57:29,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,28,22,1473771.4,1834.91,1753510.32,0.4576,128,"RISC-V Vector Extension is an instruction set extension for the RISC-V processor architecture that provides support for vector operations, which are essential for many machine learning (ML) and artificial intelligence (AI) applications, including AI inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that allow the processor to perform vector operations on data. Vector operations involve performing the same operation on multiple data elements simultaneously, which is particularly useful for ML and AI workloads that involve large matrices and tensors.
+
+The RISC-V Vector Extension provides a set of instructions that can be used to perform various vector operations"
+model_scale,3B,/root/Llama-3.2-3B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Llama-3.2-3B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:57:29,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,29,16,910148.35,1849.62,1190012.92,0.4574,128,"RISC-V Vector Extension is an instruction set extension for the RISC-V processor architecture that provides support for vector operations, which are essential for many machine learning (ML) and artificial intelligence (AI) applications, including AI inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that allow the processor to perform vector operations on data. Vector operations involve performing the same operation on multiple data elements simultaneously, which is particularly useful for ML and AI workloads that involve large matrices and tensors.
+
+The RISC-V Vector Extension provides a set of instructions that can be used to perform various vector operations"
+model_scale,3B,/root/Llama-3.2-3B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Llama-3.2-3B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:57:29,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,30,10,628330.36,1862.96,908288.51,0.4572,128,"RISC-V Vector Extension is an instruction set extension for the RISC-V processor architecture that provides support for vector operations, which are essential for many machine learning (ML) and artificial intelligence (AI) applications, including AI inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that allow the processor to perform vector operations on data. Vector operations involve performing the same operation on multiple data elements simultaneously, which is particularly useful for ML and AI workloads that involve large matrices and tensors.
+
+The RISC-V Vector Extension provides a set of instructions that can be used to perform various vector operations"
+model_scale,3B,/root/Llama-3.2-3B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Llama-3.2-3B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:57:29,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,31,31,2036889.68,1825.93,2317416.95,0.4563,128,"RISC-V Vector Extension is an instruction set extension for the RISC-V processor architecture that provides support for vector operations, which are essential for many machine learning (ML) and artificial intelligence (AI) applications, including AI inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that allow the processor to perform vector operations on data. Vector operations involve performing the same operation on multiple data elements simultaneously, which is particularly useful for ML and AI workloads that involve large matrices and tensors.
+
+The RISC-V Vector Extension provides a set of instructions that can be used to perform various vector operations"
+model_scale,3B,/root/Llama-3.2-3B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Llama-3.2-3B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T19:57:29,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,32,30,2036886.68,1824.21,2317414.95,0.4563,128,"RISC-V Vector Extension is an instruction set extension for the RISC-V processor architecture that provides support for vector operations, which are essential for many machine learning (ML) and artificial intelligence (AI) applications, including AI inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that allow the processor to perform vector operations on data. Vector operations involve performing the same operation on multiple data elements simultaneously, which is particularly useful for ML and AI workloads that involve large matrices and tensors.
+
+The RISC-V Vector Extension provides a set of instructions that can be used to perform various vector operations"
+model_scale,8B,/root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T20:37:58,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,True,1,1,98984.26,98930.34,743443.04,0.1986,128,"**RISC-V Vector Extension and its Impact on AI Inference**
+
+The RISC-V Vector Extension, also known as RVV, is a recent addition to the RISC-V instruction set architecture (ISA). It is designed to provide high-performance vector processing capabilities, making it an attractive option for applications that require intense numerical computations, such as artificial intelligence (AI) inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that enable vector processing on RISC-V processors. It provides a flexible and scalable way to perform operations on large vectors of data, which is essential for many AI"
+model_scale,8B,/root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T20:37:58,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,True,2,3,157901.69,137646.17,748501.64,0.2167,128,"**RISC-V Vector Extension and its Impact on AI Inference**
+
+The RISC-V Vector Extension, also known as RVV, is a recent addition to the RISC-V instruction set architecture (ISA). It is designed to provide high-performance vector processing capabilities, making it an attractive option for applications that require intense numerical computations, such as artificial intelligence (AI) inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that enable vector processing on RISC-V processors. It provides a flexible and scalable way to perform operations on large vectors of data, which is essential for many AI"
+model_scale,8B,/root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T20:37:58,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,True,3,4,157906.69,137650.2,748503.64,0.2167,128,"**RISC-V Vector Extension and its Impact on AI Inference**
+
+The RISC-V Vector Extension, also known as RVV, is a recent addition to the RISC-V instruction set architecture (ISA). It is designed to provide high-performance vector processing capabilities, making it an attractive option for applications that require intense numerical computations, such as artificial intelligence (AI) inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that enable vector processing on RISC-V processors. It provides a flexible and scalable way to perform operations on large vectors of data, which is essential for many AI"
+model_scale,8B,/root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T20:37:58,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,True,4,2,157897.69,137642.14,748495.64,0.2167,128,"**RISC-V Vector Extension and its Impact on AI Inference**
+
+The RISC-V Vector Extension, also known as RVV, is a recent addition to the RISC-V instruction set architecture (ISA). It is designed to provide high-performance vector processing capabilities, making it an attractive option for applications that require intense numerical computations, such as artificial intelligence (AI) inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that enable vector processing on RISC-V processors. It provides a flexible and scalable way to perform operations on large vectors of data, which is essential for many AI"
+model_scale,8B,/root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T20:37:58,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,5,8,752596.9,4086.25,1343186.46,0.2167,128,"**RISC-V Vector Extension and its Impact on AI Inference**
+
+The RISC-V Vector Extension, also known as RVV, is a recent addition to the RISC-V instruction set architecture (ISA). It is designed to provide high-performance vector processing capabilities, making it an attractive option for applications that require intense numerical computations, such as artificial intelligence (AI) inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that enable vector processing on RISC-V processors. It provides a flexible and scalable way to perform operations on large vectors of data, which is essential for many AI"
+model_scale,8B,/root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T20:37:58,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,6,12,1347261.52,4070.33,1937889.4,0.2167,128,"**RISC-V Vector Extension and its Impact on AI Inference**
+
+The RISC-V Vector Extension, also known as RVV, is a recent addition to the RISC-V instruction set architecture (ISA). It is designed to provide high-performance vector processing capabilities, making it an attractive option for applications that require intense numerical computations, such as artificial intelligence (AI) inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that enable vector processing on RISC-V processors. It provides a flexible and scalable way to perform operations on large vectors of data, which is essential for many AI"
+model_scale,8B,/root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T20:37:58,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,7,13,1937890.4,5011.82,2527786.39,0.217,128,"**RISC-V Vector Extension and its Impact on AI Inference**
+
+The RISC-V Vector Extension, also known as RVV, is a recent addition to the RISC-V instruction set architecture (ISA). It is designed to provide high-performance vector processing capabilities, making it an attractive option for applications that require intense numerical computations, such as artificial intelligence (AI) inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that enable vector processing on RISC-V processors. It provides a flexible and scalable way to perform operations on large vectors of data, which is essential for many AI"
+model_scale,8B,/root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T20:37:58,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,8,10,1347255.52,4067.24,1937881.4,0.2167,128,"**RISC-V Vector Extension and its Impact on AI Inference**
+
+The RISC-V Vector Extension, also known as RVV, is a recent addition to the RISC-V instruction set architecture (ISA). It is designed to provide high-performance vector processing capabilities, making it an attractive option for applications that require intense numerical computations, such as artificial intelligence (AI) inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that enable vector processing on RISC-V processors. It provides a flexible and scalable way to perform operations on large vectors of data, which is essential for many AI"
+model_scale,8B,/root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T20:37:58,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,9,5,748500.64,5028.8,1338143.76,0.2171,128,"**RISC-V Vector Extension and its Impact on AI Inference**
+
+The RISC-V Vector Extension, also known as RVV, is a recent addition to the RISC-V instruction set architecture (ISA). It is designed to provide high-performance vector processing capabilities, making it an attractive option for applications that require intense numerical computations, such as artificial intelligence (AI) inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that enable vector processing on RISC-V processors. It provides a flexible and scalable way to perform operations on large vectors of data, which is essential for many AI"
+model_scale,8B,/root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T20:37:58,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,10,9,1343183.47,5040.37,1932874.41,0.2171,128,"**RISC-V Vector Extension and its Impact on AI Inference**
+
+The RISC-V Vector Extension, also known as RVV, is a recent addition to the RISC-V instruction set architecture (ISA). It is designed to provide high-performance vector processing capabilities, making it an attractive option for applications that require intense numerical computations, such as artificial intelligence (AI) inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that enable vector processing on RISC-V processors. It provides a flexible and scalable way to perform operations on large vectors of data, which is essential for many AI"
+model_scale,8B,/root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T20:37:58,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,11,17,2532798.36,5014.44,3122159.92,0.2172,128,"**RISC-V Vector Extension and its Impact on AI Inference**
+
+The RISC-V Vector Extension, also known as RVV, is a recent addition to the RISC-V instruction set architecture (ISA). It is designed to provide high-performance vector processing capabilities, making it an attractive option for applications that require intense numerical computations, such as artificial intelligence (AI) inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that enable vector processing on RISC-V processors. It provides a flexible and scalable way to perform operations on large vectors of data, which is essential for many AI"
+model_scale,8B,/root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T20:37:58,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,12,11,1347254.52,4068.61,1937881.4,0.2167,128,"**RISC-V Vector Extension and its Impact on AI Inference**
+
+The RISC-V Vector Extension, also known as RVV, is a recent addition to the RISC-V instruction set architecture (ISA). It is designed to provide high-performance vector processing capabilities, making it an attractive option for applications that require intense numerical computations, such as artificial intelligence (AI) inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that enable vector processing on RISC-V processors. It provides a flexible and scalable way to perform operations on large vectors of data, which is essential for many AI"
+model_scale,8B,/root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T20:37:58,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,13,6,752582.9,4082.42,1343174.74,0.2167,128,"**RISC-V Vector Extension and its Impact on AI Inference**
+
+The RISC-V Vector Extension, also known as RVV, is a recent addition to the RISC-V instruction set architecture (ISA). It is designed to provide high-performance vector processing capabilities, making it an attractive option for applications that require intense numerical computations, such as artificial intelligence (AI) inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that enable vector processing on RISC-V processors. It provides a flexible and scalable way to perform operations on large vectors of data, which is essential for many AI"
+model_scale,8B,/root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T20:37:58,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,14,16,1941969.3,4080.08,2532793.36,0.2166,128,"**RISC-V Vector Extension and its Impact on AI Inference**
+
+The RISC-V Vector Extension, also known as RVV, is a recent addition to the RISC-V instruction set architecture (ISA). It is designed to provide high-performance vector processing capabilities, making it an attractive option for applications that require intense numerical computations, such as artificial intelligence (AI) inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that enable vector processing on RISC-V processors. It provides a flexible and scalable way to perform operations on large vectors of data, which is essential for many AI"
+model_scale,8B,/root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T20:37:58,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,15,7,752585.89,4084.41,1343176.74,0.2167,128,"**RISC-V Vector Extension and its Impact on AI Inference**
+
+The RISC-V Vector Extension, also known as RVV, is a recent addition to the RISC-V instruction set architecture (ISA). It is designed to provide high-performance vector processing capabilities, making it an attractive option for applications that require intense numerical computations, such as artificial intelligence (AI) inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that enable vector processing on RISC-V processors. It provides a flexible and scalable way to perform operations on large vectors of data, which is essential for many AI"
+model_scale,8B,/root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T20:37:58,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,16,15,1941965.3,4078.16,2532789.36,0.2166,128,"**RISC-V Vector Extension and its Impact on AI Inference**
+
+The RISC-V Vector Extension, also known as RVV, is a recent addition to the RISC-V instruction set architecture (ISA). It is designed to provide high-performance vector processing capabilities, making it an attractive option for applications that require intense numerical computations, such as artificial intelligence (AI) inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that enable vector processing on RISC-V processors. It provides a flexible and scalable way to perform operations on large vectors of data, which is essential for many AI"
+model_scale,8B,/root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T20:37:58,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,17,25,3721765.12,5037.96,4311065.39,0.2172,128,"**RISC-V Vector Extension and its Impact on AI Inference**
+
+The RISC-V Vector Extension, also known as RVV, is a recent addition to the RISC-V instruction set architecture (ISA). It is designed to provide high-performance vector processing capabilities, making it an attractive option for applications that require intense numerical computations, such as artificial intelligence (AI) inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that enable vector processing on RISC-V processors. It provides a flexible and scalable way to perform operations on large vectors of data, which is essential for many AI"
+model_scale,8B,/root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T20:37:58,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,18,24,3131236.54,4063.68,3721762.11,0.2168,128,"**RISC-V Vector Extension and its Impact on AI Inference**
+
+The RISC-V Vector Extension, also known as RVV, is a recent addition to the RISC-V instruction set architecture (ISA). It is designed to provide high-performance vector processing capabilities, making it an attractive option for applications that require intense numerical computations, such as artificial intelligence (AI) inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that enable vector processing on RISC-V processors. It provides a flexible and scalable way to perform operations on large vectors of data, which is essential for many AI"
+model_scale,8B,/root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T20:37:58,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,19,23,3131238.54,4065.44,3721762.11,0.2168,128,"**RISC-V Vector Extension and its Impact on AI Inference**
+
+The RISC-V Vector Extension, also known as RVV, is a recent addition to the RISC-V instruction set architecture (ISA). It is designed to provide high-performance vector processing capabilities, making it an attractive option for applications that require intense numerical computations, such as artificial intelligence (AI) inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that enable vector processing on RISC-V processors. It provides a flexible and scalable way to perform operations on large vectors of data, which is essential for many AI"
+model_scale,8B,/root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T20:37:58,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,20,32,4320099.54,4064.04,4909234.71,0.2173,128,"**RISC-V Vector Extension and its Impact on AI Inference**
+
+The RISC-V Vector Extension, also known as RVV, is a recent addition to the RISC-V instruction set architecture (ISA). It is designed to provide high-performance vector processing capabilities, making it an attractive option for applications that require intense numerical computations, such as artificial intelligence (AI) inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that enable vector processing on RISC-V processors. It provides a flexible and scalable way to perform operations on large vectors of data, which is essential for many AI"
+model_scale,8B,/root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T20:37:58,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,21,20,2536906.49,4111.24,3127164.86,0.2169,128,"**RISC-V Vector Extension and its Impact on AI Inference**
+
+The RISC-V Vector Extension, also known as RVV, is a recent addition to the RISC-V instruction set architecture (ISA). It is designed to provide high-performance vector processing capabilities, making it an attractive option for applications that require intense numerical computations, such as artificial intelligence (AI) inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that enable vector processing on RISC-V processors. It provides a flexible and scalable way to perform operations on large vectors of data, which is essential for many AI"
+model_scale,8B,/root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T20:37:58,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,22,31,4320094.54,4061.99,4909229.71,0.2173,128,"**RISC-V Vector Extension and its Impact on AI Inference**
+
+The RISC-V Vector Extension, also known as RVV, is a recent addition to the RISC-V instruction set architecture (ISA). It is designed to provide high-performance vector processing capabilities, making it an attractive option for applications that require intense numerical computations, such as artificial intelligence (AI) inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that enable vector processing on RISC-V processors. It provides a flexible and scalable way to perform operations on large vectors of data, which is essential for many AI"
+model_scale,8B,/root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T20:37:58,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,23,19,2536902.49,4109.54,3127160.86,0.2169,128,"**RISC-V Vector Extension and its Impact on AI Inference**
+
+The RISC-V Vector Extension, also known as RVV, is a recent addition to the RISC-V instruction set architecture (ISA). It is designed to provide high-performance vector processing capabilities, making it an attractive option for applications that require intense numerical computations, such as artificial intelligence (AI) inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that enable vector processing on RISC-V processors. It provides a flexible and scalable way to perform operations on large vectors of data, which is essential for many AI"
+model_scale,8B,/root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T20:37:58,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,24,21,3127163.86,5013.91,3716720.57,0.2171,128,"**RISC-V Vector Extension and its Impact on AI Inference**
+
+The RISC-V Vector Extension, also known as RVV, is a recent addition to the RISC-V instruction set architecture (ISA). It is designed to provide high-performance vector processing capabilities, making it an attractive option for applications that require intense numerical computations, such as artificial intelligence (AI) inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that enable vector processing on RISC-V processors. It provides a flexible and scalable way to perform operations on large vectors of data, which is essential for many AI"
+model_scale,8B,/root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T20:37:58,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,25,22,3131230.54,4061.94,3721754.11,0.2168,128,"**RISC-V Vector Extension and its Impact on AI Inference**
+
+The RISC-V Vector Extension, also known as RVV, is a recent addition to the RISC-V instruction set architecture (ISA). It is designed to provide high-performance vector processing capabilities, making it an attractive option for applications that require intense numerical computations, such as artificial intelligence (AI) inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that enable vector processing on RISC-V processors. It provides a flexible and scalable way to perform operations on large vectors of data, which is essential for many AI"
+model_scale,8B,/root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T20:37:58,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,26,26,3725836.41,4075.62,4316021.1,0.2169,128,"**RISC-V Vector Extension and its Impact on AI Inference**
+
+The RISC-V Vector Extension, also known as RVV, is a recent addition to the RISC-V instruction set architecture (ISA). It is designed to provide high-performance vector processing capabilities, making it an attractive option for applications that require intense numerical computations, such as artificial intelligence (AI) inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that enable vector processing on RISC-V processors. It provides a flexible and scalable way to perform operations on large vectors of data, which is essential for many AI"
+model_scale,8B,/root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T20:37:58,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,27,14,1941955.3,4076.73,2532777.36,0.2166,128,"**RISC-V Vector Extension and its Impact on AI Inference**
+
+The RISC-V Vector Extension, also known as RVV, is a recent addition to the RISC-V instruction set architecture (ISA). It is designed to provide high-performance vector processing capabilities, making it an attractive option for applications that require intense numerical computations, such as artificial intelligence (AI) inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that enable vector processing on RISC-V processors. It provides a flexible and scalable way to perform operations on large vectors of data, which is essential for many AI"
+model_scale,8B,/root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T20:37:58,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,28,18,2536898.49,4107.9,3127154.86,0.2169,128,"**RISC-V Vector Extension and its Impact on AI Inference**
+
+The RISC-V Vector Extension, also known as RVV, is a recent addition to the RISC-V instruction set architecture (ISA). It is designed to provide high-performance vector processing capabilities, making it an attractive option for applications that require intense numerical computations, such as artificial intelligence (AI) inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that enable vector processing on RISC-V processors. It provides a flexible and scalable way to perform operations on large vectors of data, which is essential for many AI"
+model_scale,8B,/root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T20:37:58,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,29,29,4316024.06,4967.28,4905216.42,0.2172,128,"**RISC-V Vector Extension and its Impact on AI Inference**
+
+The RISC-V Vector Extension, also known as RVV, is a recent addition to the RISC-V instruction set architecture (ISA). It is designed to provide high-performance vector processing capabilities, making it an attractive option for applications that require intense numerical computations, such as artificial intelligence (AI) inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that enable vector processing on RISC-V processors. It provides a flexible and scalable way to perform operations on large vectors of data, which is essential for many AI"
+model_scale,8B,/root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T20:37:58,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,30,28,3725837.41,4079.17,4316021.06,0.2169,128,"**RISC-V Vector Extension and its Impact on AI Inference**
+
+The RISC-V Vector Extension, also known as RVV, is a recent addition to the RISC-V instruction set architecture (ISA). It is designed to provide high-performance vector processing capabilities, making it an attractive option for applications that require intense numerical computations, such as artificial intelligence (AI) inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that enable vector processing on RISC-V processors. It provides a flexible and scalable way to perform operations on large vectors of data, which is essential for many AI"
+model_scale,8B,/root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T20:37:58,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,31,30,4320086.54,4060.26,4909221.72,0.2173,128,"**RISC-V Vector Extension and its Impact on AI Inference**
+
+The RISC-V Vector Extension, also known as RVV, is a recent addition to the RISC-V instruction set architecture (ISA). It is designed to provide high-performance vector processing capabilities, making it an attractive option for applications that require intense numerical computations, such as artificial intelligence (AI) inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that enable vector processing on RISC-V processors. It provides a flexible and scalable way to perform operations on large vectors of data, which is essential for many AI"
+model_scale,8B,/root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf,4,8,16384,8080,/root/llama-server-rvv,,-lv 4,/root/llama-server-rvv -m /root/Meta-Llama-3.1-8B-Instruct-Q4_K_M.gguf -t 8 -tb 8 --parallel 4 -c 16384 --cont-batching --host 0.0.0.0 --port 8080 -lv 4,2026-07-13T20:37:58,192.168.1.100,True,128,What is RISC-V Vector Extension and its impact on AI inference?,32,4,28,1,False,32,27,3725834.41,4077.41,4316020.06,0.2169,128,"**RISC-V Vector Extension and its Impact on AI Inference**
+
+The RISC-V Vector Extension, also known as RVV, is a recent addition to the RISC-V instruction set architecture (ISA). It is designed to provide high-performance vector processing capabilities, making it an attractive option for applications that require intense numerical computations, such as artificial intelligence (AI) inference.
+
+**What is RISC-V Vector Extension?**
+
+The RISC-V Vector Extension is a set of instructions that enable vector processing on RISC-V processors. It provides a flexible and scalable way to perform operations on large vectors of data, which is essential for many AI"

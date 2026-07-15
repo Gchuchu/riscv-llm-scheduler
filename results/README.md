@@ -1,33 +1,27 @@
 # 测试结果
 
-## 环境说明
+## 数据集
 
-- **平台**：WSL （x86 模拟环境，非 RVV 硬件）
-- **CPU**：Intel
-- **RAM**：16G
-- **推理框架**：llama.cpp
-- **模型**：Llama-3.2-1B Q4_K_M
+本目录同时保存 WSL 基线和真实 RVV 板卡的原始 benchmark 结果。实验参数、指标定义与 CSV 字段说明见[性能评测指南](../docs/benchmark/性能评测指南.md)。
 
-> ⚠️ 以下为 WSL 基线数据，仅作参考。正式性能评分数据须来自真实 RVV 1.0 硬件。
+### 真实 RVV 板卡数据
 
-## 基线数据
+`rvv/` 目录包含自动化矩阵运行产生的完整 CSV。所有文件均保留 server 命令、模型路径、并发参数、context、prompt 和 V-state 字段，便于回溯。
 
-| Concurrency | Trial | TPS | Avg TTFT (ms) | P99 TTFT (ms) |
-|------------|-------|-----|---------------|---------------|
-| 2 | 1 | 109.15 | 102.07 | 102.13 |
-| 2 | 2 | 112.13 | 59.29 | 59.37 |
-| 2 | 3 | 112.36 | 62.42 | 62.50 |
-| 4 | 1 | 195.50 | 165.88 | 166.07 |
-| 4 | 2 | 195.78 | 158.61 | 158.79 |
-| 4 | 3 | 189.48 | 184.05 | 184.30 |
-| 8 | 1 | 188.60 | 165.34 | 169.08 |
-| 8 | 2 | 189.59 | 173.34 | 181.73 |
-| 8 | 3 | 185.06 | 171.24 | 171.90 |
+| 实验 | 文件 | 内容 |
+|---|---|---|
+| 1B/3B/8B 模型规模，p4 | `rvv_experiment_138B.csv`、`rvv_experiment_138B_no_response.csv`、`rvv_experiment_138B_Summary.csv`、`rvv_experiment_138B_Summary_VState.csv` | 请求级原始结果、去响应正文版本、轮次汇总、V-state 汇总。 |
+| 3B 并发扫描，第 1 次运行 | `rvv_experiment_3B_parallel.csv`、`rvv_experiment_3B_parallel_no_response.csv`、`rvv_experiment_3B_parallel_Summary.csv`、`rvv_experiment_3B_parallel_Summary_VState.csv` | p2/p4/p8/p16 的请求级结果与汇总。 |
+| 3B 并发扫描，第 2 次运行 | `rvv_experiment_3B_parallel_2.csv`、`rvv_experiment_3B_parallel_2_no_response.csv`、`rvv_experiment_3B_parallel_2_Summary.csv`、`rvv_experiment_3B_parallel_2_Summary_VState.csv` | p2/p4/p8/p16 的第二次独立运行结果与汇总。 |
 
-## 汇总统计
+原始 CSV 包含模型响应正文；对应的 `_no_response` 文件仅移除 `response_text`，其余实验字段与数值保持一致，适合表格处理和绘图。
 
-| Concurrency | TPS (mean ± std) | Avg TTFT (mean) | P99 TTFT (mean) |
-|------------|-------------------|-----------------|-----------------|
-| 2 | 111.21 ± 1.85 | 74.59 | 74.67 |
-| 4 | 193.59 ± 3.59 | 169.51 | 169.72 |
-| 8 | 187.75 ± 2.35 | 169.97 | 174.24 |
+### WSL 基线
+
+以下为 WSL x86 模拟环境数据，仅作功能验证和参考，不与真实 RVV 板卡性能混合统计。
+
+| Concurrency | TPS (mean +/- std) | Avg TTFT (ms) | P99 TTFT (ms) |
+|---|---:|---:|---:|
+| 2 | 111.21 +/- 1.85 | 74.59 | 74.67 |
+| 4 | 193.59 +/- 3.59 | 169.51 | 169.72 |
+| 8 | 187.75 +/- 2.35 | 169.97 | 174.24 |
