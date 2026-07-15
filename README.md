@@ -62,7 +62,7 @@ riscv-llm-scheduler/
 
 | 文件 | 说明 |
 |------|------|
-| [benchmark_llama.py](src/benchmark/benchmark_llama.py) | **基准测试主脚本**，支持三种模式：`qemu`（端口转发到 QEMU VM）、`local`（本地运行）、`remote`（远程板卡）。内置 `VStateOverhead` 类通过 bpftrace 采集 V 状态切换数据，支持一键对比（baseline vs optimized），输出 TPS/TTFT/P95/E2E 指标到 CSV。 |
+| [benchmark_llama.py](src/benchmark/benchmark_llama.py) | **基准测试主脚本**，支持 `qemu`、`local`、`remote` 普通模式，以及自动化远程实验矩阵（1B/3B/8B p4、3B p2/p4/p8/p16）。通过 bpftrace 采集轮次级 V-state，输出 Client TTFT、Server TTFT、Queue+Net、E2E、TPS 与汇总/逐请求 CSV。详见[性能评测指南](docs/benchmark/性能评测指南.md)。 |
 | [bench_runner.py](src/benchmark/bench_runner.py) | **自动化测试运行器（单配置版）**，通过 SSH 连接板卡，自动启停 `llama-server` + `bpftrace`，发送 50 个并发 HTTP 推理请求，采集 TPS/TTFT/P95 和 V-state 计数，结果保存为 CSV。支持多种绑核/调度方法轮换。 |
 | [bench_runner_all.py](src/benchmark/bench_runner_all.py) | **自动化测试运行器（多配置版）**，在 `bench_runner.py` 基础上预定义了 10 组测试配置（覆盖 Llama-3.2-1B/3B Q4_K_M 模型、不同线程数、上下文长度、并行度、prompt 长度、输出 token 数），自动遍历并输出结果。 |
 
