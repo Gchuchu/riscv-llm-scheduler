@@ -33,7 +33,7 @@ IDLE
   -> IDLE
 ```
 
-完整状态机：![llama-server slot 状态机](./figures/llama_server_slot_state_machine.png)
+完整状态机参考：[llama-server 单个 slot 状态机](./figures/llama_server_slot_state_machine.drawio)。
 
 有些路径代码里写了但是其实不太用得到，不必理会，只看主要路径即可。
 
