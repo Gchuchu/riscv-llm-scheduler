@@ -43,15 +43,15 @@ riscv-llm-scheduler/
 
 ---
 
-### src/scheduler/ — 调度优化实现（方案规划阶段）
+### src/scheduler/ — 调度优化实现（已实现）
 
-当前为方案规划文档，具体实现待后续开发。
+已实现多种 V 状态感知的调度优化策略，详细文档见 [src/scheduler/README.md](src/scheduler/README.md)。
 
 | 模块 | 优先级 | 方案 |
 |------|:---:|------|
 | CPU affinity | 必做 | `taskset -c` 将推理线程绑定到指定物理核心 |
 | cgroup cpuset | 必做 | 创建 cgroup 并设置 `cpuset.cpus` + `cpuset.cpus.partition` 实现双向隔离 |
-| sched_ext | 可选 | BPF 可编程调度器（支持 llm.sched 等调度策略） |
+| sched_ext | ~~可选~~ **已实现** | `vec_affine_sched` — BPF 可编程调度器，通过 Uprobe 精准识别推理线程并执行异构核心硬隔离 |
 | sched_setattr | 可选 | 扩展调度提示区分 V 状态敏感线程 |
 
 ---
