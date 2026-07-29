@@ -13,8 +13,8 @@ char _license[] SEC("license") = "GPL";
 #define SHARED_DSQ 0
 
 /* 最优时间片定义 */
-#define SLICE_DEFAULT_NS   (4 * 1000 * 1000LL)   /* 普通任务 4ms */
-#define SLICE_INFER_NS     (20 * 1000 * 1000LL)  /* 推理计算线程 20ms */
+#define SLICE_DEFAULT_NS   (2 * 1000 * 1000LL)   /* 普通任务 2ms */
+#define SLICE_INFER_NS     (30 * 1000 * 1000LL)  /* 推理计算线程 30ms */
 
 /* 单线程级别的调度上下文 */
 struct task_ctx {
