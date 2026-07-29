@@ -82,7 +82,7 @@ METHODS = [
 |------|------|:---:|:---:|
 | `taskset` | `taskset -c X-Y ./llama-server ...` | 单向 | 无 |
 | `cpuset` | 建 cgroup + echo cpuset.cpus + PID 移入 | 单向 | 删 cgroup |
-| `cpu-range` | `taskset` + `--cpu-strict 1` **存疑 未测试** | 单向 | 无 |
+| `cpu-range` | `taskset` + `--cpu-strict 1` | 单向 | 无 |
 | `partition-root` | cgroup + `echo root > cpuset.cpus.partition` | **双向** | 删 cgroup |
 | `systemd-scope` | `AllowedCPUs` + `systemd-run --scope` | 单向(等效) | 清 AllowedCPUs |
 | `taskset-chrt-b` | `taskset -c X-Y chrt -b 0` | 单向+SCHED_BATCH | 无 |
