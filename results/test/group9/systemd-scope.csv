@@ -1,0 +1,4 @@
+wall_s,agg_tps,avg_ttft_ms,p95_ttft_ms,avg_tps,total_tokens,v_saves,v_restores,target_saves,nontarget_saves,cpu0_saves,cpu1_saves,cpu2_saves,cpu3_saves,cpu4_saves,cpu5_saves,cpu6_saves,cpu7_saves,trial,method
+1131.0,2.83,26993.0,172630.0,0.47,3200,19304,19581,12887,6417,2639,1562,658,1558,3665,1129,913,7180,1,systemd-scope
+1136.0,2.82,27206.0,174151.0,0.47,3200,13870,14002,8132,5738,1733,1755,1062,1188,1343,1693,1181,3915,2,systemd-scope
+1133.0,2.82,27015.0,172741.0,0.47,3200,16443,16688,12555,3888,693,710,745,1740,5508,2104,1192,3751,3,systemd-scope

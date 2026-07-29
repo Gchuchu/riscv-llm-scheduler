@@ -1,0 +1,4 @@
+wall_s,agg_tps,avg_ttft_ms,p95_ttft_ms,avg_tps,total_tokens,v_saves,v_restores,target_saves,nontarget_saves,cpu0_saves,cpu1_saves,cpu2_saves,cpu3_saves,cpu4_saves,cpu5_saves,cpu6_saves,cpu7_saves,trial,method
+1288.0,2.48,11188.0,142131.0,0.76,3200,45292,45924,45292,0,0,0,0,0,14674,8022,6086,16510,1,taskset-chrt-b
+1288.0,2.48,11209.0,142202.0,0.76,3200,42524,43302,42524,0,0,0,0,0,13700,6985,7630,14209,2,taskset-chrt-b
+1294.0,2.47,11191.0,141950.0,0.76,3200,43526,44136,43526,0,0,0,0,0,13899,7922,6718,14987,3,taskset-chrt-b
