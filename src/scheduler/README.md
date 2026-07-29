@@ -37,7 +37,7 @@
 - **Uprobe 级线程精准识别**：通过挂载 `ggml_compute_forward_mul_mat` 函数的 uprobe/uretprobe，将真正执行矩阵乘法的线程标记为推理 worker，区分于 LLM 主线程与普通系统任务。
 - **异构核心硬隔离**：推理 worker 线程强绑定 AI 计算核心（CPU 0~3），普通任务隔离到通用核心（CPU 4~7），实现物理算力的绝对隔离。
 - **Prev-CPU 热 Cache 归巢**：唤醒推理线程时优先检测原核是否空闲，保留 L1/L2 Cache 与 Vector 寄存器热度。
-- **差异化时间片与优先级**：推理线程赋予 20ms 长时间片，唤醒时直插 Local DSQ 队列头部；普通任务赋予 4ms 时间片，推入 Shared DSQ。
+- **差异化时间片与优先级**：推理线程赋予 30ms 长时间片，唤醒时直插 Local DSQ 队列头部；普通任务赋予 2ms 时间片，推入 Shared DSQ。
 - **安全降级回退**：loader 退出时自动销毁 BPF struct_ops，平滑回退至原生 CFS 调度器。
 
 ### 文件说明
