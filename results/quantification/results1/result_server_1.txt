@@ -1,0 +1,3411 @@
+Attaching 5 probes...
+Tracing RVV context switch save/restore + overhead...
+Periodic reports every 10 seconds (stats + hist).
+
+=== Periodic report at 22:16:52 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10, average 16069, total 160693
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)              9 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)             1 |@@@@@                                               |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 10, average 19718, total 197189
+
+Histogram (ns):
+@non_v_interval_hist: 
+[8K, 16K)              2 |@@@@@@@@@@@@@@                                      |
+[16K, 32K)             7 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[32K, 64K)             1 |@@@@@@@                                             |
+
+saves total (cumulative):    @saves_total: 10
+restores total (cumulative): @restores_total: 9
+
+=== Periodic report at 22:17:02 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 430, average 44148, total 18984032
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)              9 |@                                                   |
+[16K, 32K)            63 |@@@@@@@@@                                           |
+[32K, 64K)           351 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            7 |@                                                   |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 440, average 15625, total 6875377
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)             114 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@                |
+[8K, 16K)            161 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           124 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@            |
+[32K, 64K)            40 |@@@@@@@@@@@@                                        |
+[64K, 128K)            1 |                                                    |
+
+saves total (cumulative):    @saves_total: 440
+restores total (cumulative): @restores_total: 596
+
+=== Periodic report at 22:17:12 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10262, average 42095, total 431979065
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            116 |                                                    |
+[16K, 32K)           674 |@@@                                                 |
+[32K, 64K)          9462 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)           10 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 1142, average 22638, total 25853182
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)               5 |                                                    |
+[8K, 16K)            165 |@@@@@@@@@                                           |
+[16K, 32K)           877 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[32K, 64K)            93 |@@@@@                                               |
+[64K, 128K)            1 |                                                    |
+
+saves total (cumulative):    @saves_total: 10706
+restores total (cumulative): @restores_total: 10999
+
+=== Periodic report at 22:17:22 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10297, average 42052, total 433015722
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            118 |                                                    |
+[16K, 32K)           663 |@@@                                                 |
+[32K, 64K)          9500 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)           16 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 1087, average 22421, total 24371943
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)               7 |                                                    |
+[8K, 16K)            165 |@@@@@@@@@@                                          |
+[16K, 32K)           843 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[32K, 64K)            70 |@@@@                                                |
+[64K, 128K)            2 |                                                    |
+
+saves total (cumulative):    @saves_total: 21007
+restores total (cumulative): @restores_total: 21396
+
+=== Periodic report at 22:17:32 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9649, average 41427, total 399731638
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            123 |                                                    |
+[16K, 32K)          1045 |@@@@@@                                              |
+[32K, 64K)          8459 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)           21 |                                                    |
+[128K, 256K)           1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 1708, average 21766, total 37177097
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              20 |                                                    |
+[8K, 16K)            452 |@@@@@@@@@@@@@@@@@@@@@                               |
+[16K, 32K)          1075 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[32K, 64K)           160 |@@@@@@@                                             |
+[64K, 128K)            1 |                                                    |
+
+saves total (cumulative):    @saves_total: 30660
+restores total (cumulative): @restores_total: 31824
+
+=== Periodic report at 22:17:42 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9775, average 39924, total 390264885
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            303 |@                                                   |
+[16K, 32K)          1288 |@@@@@@@@                                            |
+[32K, 64K)          8180 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            4 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 1871, average 20981, total 39257255
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              33 |@                                                   |
+[8K, 16K)            640 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@                 |
+[16K, 32K)           933 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[32K, 64K)           265 |@@@@@@@@@@@@@@                                      |
+
+saves total (cumulative):    @saves_total: 40435
+restores total (cumulative): @restores_total: 42540
+
+=== Periodic report at 22:17:52 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9798, average 41676, total 408348944
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)             98 |                                                    |
+[16K, 32K)           697 |@@@@                                                |
+[32K, 64K)          8986 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)           13 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 1476, average 24596, total 36304369
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              10 |                                                    |
+[8K, 16K)            212 |@@@@@@@@@@@                                         |
+[16K, 32K)           946 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[32K, 64K)           307 |@@@@@@@@@@@@@@@@                                    |
+[64K, 128K)            1 |                                                    |
+
+saves total (cumulative):    @saves_total: 50237
+restores total (cumulative): @restores_total: 52951
+
+=== Periodic report at 22:18:02 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10330, average 34584, total 357253967
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            933 |@@@@@@@                                             |
+[16K, 32K)          3244 |@@@@@@@@@@@@@@@@@@@@@@@@@@@                         |
+[32K, 64K)          6152 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2215, average 17599, total 38982157
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              53 |@@                                                  |
+[8K, 16K)           1125 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           948 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@         |
+[32K, 64K)            89 |@@@@                                                |
+
+saves total (cumulative):    @saves_total: 60571
+restores total (cumulative): @restores_total: 64406
+
+=== Periodic report at 22:18:12 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10274, average 34600, total 355486027
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            799 |@@@@@@                                              |
+[16K, 32K)          3388 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@                        |
+[32K, 64K)          6086 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2149, average 16883, total 36282073
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              77 |@@@                                                 |
+[8K, 16K)           1101 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           937 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@        |
+[32K, 64K)            32 |@                                                   |
+[64K, 128K)            2 |                                                    |
+
+saves total (cumulative):    @saves_total: 70845
+restores total (cumulative): @restores_total: 75735
+
+=== Periodic report at 22:18:22 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10167, average 34866, total 354484051
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            718 |@@@@@@                                              |
+[16K, 32K)          3354 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@                        |
+[32K, 64K)          6089 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            2 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2110, average 16866, total 35587348
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              99 |@@@@                                                |
+[8K, 16K)           1052 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           909 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@        |
+[32K, 64K)            50 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 81015
+restores total (cumulative): @restores_total: 86914
+
+=== Periodic report at 22:18:32 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10256, average 34767, total 356580128
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            720 |@@@@@@                                              |
+[16K, 32K)          3444 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@                       |
+[32K, 64K)          6092 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2116, average 17636, total 37318728
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              39 |@                                                   |
+[8K, 16K)           1015 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ |
+[16K, 32K)          1020 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[32K, 64K)            42 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 91275
+restores total (cumulative): @restores_total: 98240
+
+=== Periodic report at 22:18:42 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10202, average 34879, total 355836480
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            757 |@@@@@@                                              |
+[16K, 32K)          3325 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@                        |
+[32K, 64K)          6120 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2074, average 17335, total 35952853
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              41 |@@                                                  |
+[8K, 16K)           1030 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           959 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    |
+[32K, 64K)            44 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 101480
+restores total (cumulative): @restores_total: 109468
+
+=== Periodic report at 22:18:52 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10075, average 34798, total 350591425
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            702 |@@@@@@                                              |
+[16K, 32K)          3376 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@                       |
+[32K, 64K)          5995 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            2 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2084, average 17209, total 35864119
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              49 |@@                                                  |
+[8K, 16K)           1066 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           917 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@        |
+[32K, 64K)            53 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 111559
+restores total (cumulative): @restores_total: 120597
+
+=== Periodic report at 22:19:02 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10054, average 34803, total 349916838
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            681 |@@@@@                                               |
+[16K, 32K)          3366 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@                       |
+[32K, 64K)          6007 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2018, average 17426, total 35165944
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              45 |@@                                                  |
+[8K, 16K)            966 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           960 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ |
+[32K, 64K)            47 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 121613
+restores total (cumulative): @restores_total: 131657
+
+=== Periodic report at 22:19:12 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9990, average 34742, total 347074415
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            706 |@@@@@@                                              |
+[16K, 32K)          3293 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@                        |
+[32K, 64K)          5990 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2100, average 16985, total 35668677
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              62 |@@                                                  |
+[8K, 16K)           1138 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           856 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@             |
+[32K, 64K)            44 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 131605
+restores total (cumulative): @restores_total: 142721
+
+=== Periodic report at 22:19:22 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10089, average 34826, total 351367169
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            667 |@@@@@                                               |
+[16K, 32K)          3374 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@                       |
+[32K, 64K)          6048 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2184, average 16598, total 36250129
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)             167 |@@@@@@@@                                            |
+[8K, 16K)           1074 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           895 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@         |
+[32K, 64K)            48 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 141698
+restores total (cumulative): @restores_total: 153888
+
+=== Periodic report at 22:19:32 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10020, average 34525, total 345943813
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            745 |@@@@@@                                              |
+[16K, 32K)          3340 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@                       |
+[32K, 64K)          5932 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2120, average 16976, total 35989748
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              50 |@@                                                  |
+[8K, 16K)           1137 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           890 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@            |
+[32K, 64K)            45 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 151730
+restores total (cumulative): @restores_total: 165009
+
+=== Periodic report at 22:19:42 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10136, average 35021, total 354982398
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            712 |@@@@@@                                              |
+[16K, 32K)          3270 |@@@@@@@@@@@@@@@@@@@@@@@@@@@                         |
+[32K, 64K)          6154 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 1991, average 17140, total 34126567
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              62 |@@@                                                 |
+[8K, 16K)            981 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           910 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    |
+[32K, 64K)            38 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 161870
+restores total (cumulative): @restores_total: 176143
+
+=== Periodic report at 22:19:52 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10065, average 34927, total 351541202
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            698 |@@@@@                                               |
+[16K, 32K)          3255 |@@@@@@@@@@@@@@@@@@@@@@@@@@@                         |
+[32K, 64K)          6110 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            2 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2083, average 17277, total 35989742
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              58 |@@                                                  |
+[8K, 16K)           1047 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           934 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@      |
+[32K, 64K)            45 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 171939
+restores total (cumulative): @restores_total: 187246
+
+=== Periodic report at 22:20:02 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10017, average 34844, total 349039478
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            692 |@@@@@                                               |
+[16K, 32K)          3297 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@                        |
+[32K, 64K)          6028 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2138, average 16917, total 36169556
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              69 |@@@                                                 |
+[8K, 16K)           1113 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           915 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@          |
+[32K, 64K)            41 |@                                                   |
+
+saves total (cumulative):    @saves_total: 181960
+restores total (cumulative): @restores_total: 198351
+
+=== Periodic report at 22:20:12 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10205, average 34935, total 356517998
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            720 |@@@@@@                                              |
+[16K, 32K)          3267 |@@@@@@@@@@@@@@@@@@@@@@@@@@@                         |
+[32K, 64K)          6217 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2000, average 17347, total 34695654
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              55 |@@                                                  |
+[8K, 16K)            968 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           933 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  |
+[32K, 64K)            44 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 192169
+restores total (cumulative): @restores_total: 209527
+
+=== Periodic report at 22:20:22 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10076, average 35002, total 352686061
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            682 |@@@@@                                               |
+[16K, 32K)          3290 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@                        |
+[32K, 64K)          6106 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2123, average 17312, total 36755070
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              56 |@@                                                  |
+[8K, 16K)           1068 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           956 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@      |
+[32K, 64K)            43 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 202249
+restores total (cumulative): @restores_total: 220671
+
+=== Periodic report at 22:20:32 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10015, average 35123, total 351758476
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            660 |@@@@@                                               |
+[16K, 32K)          3216 |@@@@@@@@@@@@@@@@@@@@@@@@@@@                         |
+[32K, 64K)          6136 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            3 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2139, average 16848, total 36038399
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              93 |@@@@                                                |
+[8K, 16K)           1097 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           903 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@          |
+[32K, 64K)            46 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 212268
+restores total (cumulative): @restores_total: 231786
+
+=== Periodic report at 22:20:42 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10087, average 34609, total 349106881
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            729 |@@@@@@                                              |
+[16K, 32K)          3390 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@                       |
+[32K, 64K)          5989 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2155, average 17338, total 37365259
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              45 |@@                                                  |
+[8K, 16K)           1064 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           994 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    |
+[32K, 64K)            52 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 222400
+restores total (cumulative): @restores_total: 243005
+
+=== Periodic report at 22:20:52 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10163, average 34907, total 354767614
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            715 |@@@@@@                                              |
+[16K, 32K)          3283 |@@@@@@@@@@@@@@@@@@@@@@@@@@@                         |
+[32K, 64K)          6164 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2063, average 17527, total 36160074
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              48 |@@                                                  |
+[8K, 16K)           1039 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           918 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@       |
+[32K, 64K)            58 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 232563
+restores total (cumulative): @restores_total: 254194
+
+=== Periodic report at 22:21:02 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10124, average 34891, total 353242886
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            693 |@@@@@                                               |
+[16K, 32K)          3329 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@                        |
+[32K, 64K)          6098 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2031, average 17268, total 35072220
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              43 |@@                                                  |
+[8K, 16K)           1013 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           931 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@     |
+[32K, 64K)            44 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 242687
+restores total (cumulative): @restores_total: 265311
+
+=== Periodic report at 22:21:12 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10018, average 34963, total 350261796
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            645 |@@@@@                                               |
+[16K, 32K)          3262 |@@@@@@@@@@@@@@@@@@@@@@@@@@@                         |
+[32K, 64K)          6110 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2070, average 16715, total 34600846
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)             101 |@@@@                                                |
+[8K, 16K)           1073 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           849 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@           |
+[32K, 64K)            47 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 252705
+restores total (cumulative): @restores_total: 276387
+
+=== Periodic report at 22:21:22 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10109, average 34883, total 352638656
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            693 |@@@@@                                               |
+[16K, 32K)          3279 |@@@@@@@@@@@@@@@@@@@@@@@@@@@                         |
+[32K, 64K)          6133 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            4 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2025, average 17444, total 35325165
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              32 |@                                                   |
+[8K, 16K)            984 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           974 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ |
+[32K, 64K)            35 |@                                                   |
+
+saves total (cumulative):    @saves_total: 262814
+restores total (cumulative): @restores_total: 287525
+
+=== Periodic report at 22:21:32 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10170, average 34923, total 355170363
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            710 |@@@@@                                               |
+[16K, 32K)          3273 |@@@@@@@@@@@@@@@@@@@@@@@@@@@                         |
+[32K, 64K)          6183 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2105, average 17202, total 36211046
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              62 |@@@                                                 |
+[8K, 16K)           1074 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           919 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@        |
+[32K, 64K)            52 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 272986
+restores total (cumulative): @restores_total: 298727
+
+=== Periodic report at 22:21:42 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10059, average 34940, total 351471125
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            681 |@@@@@                                               |
+[16K, 32K)          3313 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@                        |
+[32K, 64K)          6065 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2107, average 17142, total 36118725
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              77 |@@@                                                 |
+[8K, 16K)           1034 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           947 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@     |
+[32K, 64K)            49 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 283047
+restores total (cumulative): @restores_total: 309860
+
+=== Periodic report at 22:21:52 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10071, average 34979, total 352273888
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            706 |@@@@@@                                              |
+[16K, 32K)          3301 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@                        |
+[32K, 64K)          6063 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2090, average 17291, total 36139484
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              53 |@@                                                  |
+[8K, 16K)           1015 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           981 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  |
+[32K, 64K)            41 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 293118
+restores total (cumulative): @restores_total: 321000
+
+=== Periodic report at 22:22:02 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10034, average 35177, total 352973384
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            654 |@@@@@                                               |
+[16K, 32K)          3196 |@@@@@@@@@@@@@@@@@@@@@@@@@@                          |
+[32K, 64K)          6183 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2107, average 16808, total 35416127
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              90 |@@@@                                                |
+[8K, 16K)           1081 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           891 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@          |
+[32K, 64K)            45 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 303152
+restores total (cumulative): @restores_total: 332053
+
+=== Periodic report at 22:22:12 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9992, average 35225, total 351973666
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            665 |@@@@@                                               |
+[16K, 32K)          3112 |@@@@@@@@@@@@@@@@@@@@@@@@@@                          |
+[32K, 64K)          6215 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2065, average 16870, total 34838573
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              69 |@@@                                                 |
+[8K, 16K)           1067 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           888 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@         |
+[32K, 64K)            41 |@                                                   |
+
+saves total (cumulative):    @saves_total: 313144
+restores total (cumulative): @restores_total: 343104
+
+=== Periodic report at 22:22:22 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10012, average 35035, total 350778085
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            657 |@@@@@                                               |
+[16K, 32K)          3260 |@@@@@@@@@@@@@@@@@@@@@@@@@@@                         |
+[32K, 64K)          6096 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2112, average 17029, total 35967057
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              67 |@@@                                                 |
+[8K, 16K)           1086 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           915 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@         |
+[32K, 64K)            47 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 323160
+restores total (cumulative): @restores_total: 354187
+
+=== Periodic report at 22:22:32 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10127, average 35278, total 357269814
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            674 |@@@@@                                               |
+[16K, 32K)          3113 |@@@@@@@@@@@@@@@@@@@@@@@@@                           |
+[32K, 64K)          6340 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2100, average 16847, total 35378889
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              94 |@@@@                                                |
+[8K, 16K)           1038 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           926 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@      |
+[32K, 64K)            42 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 333287
+restores total (cumulative): @restores_total: 365293
+
+=== Periodic report at 22:22:42 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10283, average 34962, total 359516070
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            727 |@@@@@@                                              |
+[16K, 32K)          3316 |@@@@@@@@@@@@@@@@@@@@@@@@@@@                         |
+[32K, 64K)          6238 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            2 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2186, average 17264, total 37740032
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              80 |@@@                                                 |
+[8K, 16K)           1060 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           995 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    |
+[32K, 64K)            53 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 343572
+restores total (cumulative): @restores_total: 376588
+
+=== Periodic report at 22:22:52 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9901, average 34919, total 345734750
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            712 |@@@@@@                                              |
+[16K, 32K)          3163 |@@@@@@@@@@@@@@@@@@@@@@@@@@@                         |
+[32K, 64K)          6026 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2219, average 17056, total 37848052
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              83 |@@@                                                 |
+[8K, 16K)           1094 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           980 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@      |
+[32K, 64K)            62 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 353473
+restores total (cumulative): @restores_total: 387609
+
+=== Periodic report at 22:23:02 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10017, average 35067, total 351269348
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            732 |@@@@@@                                              |
+[16K, 32K)          3177 |@@@@@@@@@@@@@@@@@@@@@@@@@@@                         |
+[32K, 64K)          6107 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2109, average 16941, total 35729518
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              65 |@@@                                                 |
+[8K, 16K)           1095 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           902 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@          |
+[32K, 64K)            47 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 363494
+restores total (cumulative): @restores_total: 398690
+
+=== Periodic report at 22:23:12 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10107, average 35306, total 356842258
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            666 |@@@@@                                               |
+[16K, 32K)          3166 |@@@@@@@@@@@@@@@@@@@@@@@@@@                          |
+[32K, 64K)          6275 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2137, average 16822, total 35949361
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)             106 |@@@@@                                               |
+[8K, 16K)           1039 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           947 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@     |
+[32K, 64K)            45 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 373601
+restores total (cumulative): @restores_total: 409846
+
+=== Periodic report at 22:23:22 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10188, average 34973, total 356304924
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            724 |@@@@@@                                              |
+[16K, 32K)          3273 |@@@@@@@@@@@@@@@@@@@@@@@@@@@                         |
+[32K, 64K)          6190 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2054, average 17197, total 35324022
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              74 |@@@                                                 |
+[8K, 16K)           1030 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           907 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@       |
+[32K, 64K)            43 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 383793
+restores total (cumulative): @restores_total: 421010
+
+=== Periodic report at 22:23:32 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10133, average 35308, total 357781172
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            660 |@@@@@                                               |
+[16K, 32K)          3198 |@@@@@@@@@@@@@@@@@@@@@@@@@@                          |
+[32K, 64K)          6274 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2109, average 16893, total 35629320
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              83 |@@@                                                 |
+[8K, 16K)           1080 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           900 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@         |
+[32K, 64K)            46 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 393926
+restores total (cumulative): @restores_total: 432163
+
+=== Periodic report at 22:23:42 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 10046, average 35199, total 353617785
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            630 |@@@@@                                               |
+[16K, 32K)          3224 |@@@@@@@@@@@@@@@@@@@@@@@@@@@                         |
+[32K, 64K)          6192 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2244, average 16929, total 37989307
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)             118 |@@@@@                                               |
+[8K, 16K)           1105 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           976 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@       |
+[32K, 64K)            45 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 403976
+restores total (cumulative): @restores_total: 443317
+
+=== Periodic report at 22:23:52 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9959, average 34743, total 346012528
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            757 |@@@@@@                                              |
+[16K, 32K)          3252 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@                        |
+[32K, 64K)          5948 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            2 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2454, average 16324, total 40060308
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)             184 |@@@@@@@                                             |
+[8K, 16K)           1228 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           979 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@           |
+[32K, 64K)            62 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 413935
+restores total (cumulative): @restores_total: 454506
+
+=== Periodic report at 22:24:02 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9221, average 35111, total 323766006
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            572 |@@@@@                                               |
+[16K, 32K)          3066 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@                        |
+[32K, 64K)          5580 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            3 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2402, average 16051, total 38555539
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              84 |@@@                                                 |
+[8K, 16K)           1453 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           813 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@                       |
+[32K, 64K)            49 |@                                                   |
+[64K, 128K)            3 |                                                    |
+
+saves total (cumulative):    @saves_total: 423160
+restores total (cumulative): @restores_total: 465171
+
+=== Periodic report at 22:24:12 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9828, average 35337, total 347299502
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            646 |@@@@@                                               |
+[16K, 32K)          3131 |@@@@@@@@@@@@@@@@@@@@@@@@@@                          |
+[32K, 64K)          6051 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 1948, average 17688, total 34456240
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              56 |@@@                                                 |
+[8K, 16K)            953 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           867 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@     |
+[32K, 64K)            68 |@@@                                                 |
+[64K, 128K)            4 |                                                    |
+
+saves total (cumulative):    @saves_total: 432993
+restores total (cumulative): @restores_total: 475963
+
+=== Periodic report at 22:24:22 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9766, average 35290, total 344645453
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            665 |@@@@@                                               |
+[16K, 32K)          3009 |@@@@@@@@@@@@@@@@@@@@@@@@@                           |
+[32K, 64K)          6092 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 1970, average 17448, total 34373193
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              58 |@@                                                  |
+[8K, 16K)           1026 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           816 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@           |
+[32K, 64K)            67 |@@@                                                 |
+[64K, 128K)            3 |                                                    |
+
+saves total (cumulative):    @saves_total: 442762
+restores total (cumulative): @restores_total: 486736
+
+=== Periodic report at 22:24:32 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9651, average 35273, total 340421635
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            639 |@@@@@                                               |
+[16K, 32K)          3052 |@@@@@@@@@@@@@@@@@@@@@@@@@@                          |
+[32K, 64K)          5959 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2031, average 17374, total 35287353
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              58 |@@                                                  |
+[8K, 16K)           1020 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           888 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@       |
+[32K, 64K)            64 |@@@                                                 |
+[64K, 128K)            1 |                                                    |
+
+saves total (cumulative):    @saves_total: 452421
+restores total (cumulative): @restores_total: 497436
+
+=== Periodic report at 22:24:42 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9857, average 35210, total 347067953
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            657 |@@@@@                                               |
+[16K, 32K)          3154 |@@@@@@@@@@@@@@@@@@@@@@@@@@@                         |
+[32K, 64K)          6045 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2097, average 17517, total 36733321
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              81 |@@@                                                 |
+[8K, 16K)           1074 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           856 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@           |
+[32K, 64K)            86 |@@@@                                                |
+
+saves total (cumulative):    @saves_total: 462282
+restores total (cumulative): @restores_total: 508364
+
+=== Periodic report at 22:24:52 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9605, average 35216, total 338258370
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            676 |@@@@@                                               |
+[16K, 32K)          3015 |@@@@@@@@@@@@@@@@@@@@@@@@@@                          |
+[32K, 64K)          5914 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2033, average 17449, total 35474782
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              52 |@@                                                  |
+[8K, 16K)           1057 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           857 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@          |
+[32K, 64K)            67 |@@@                                                 |
+
+saves total (cumulative):    @saves_total: 471887
+restores total (cumulative): @restores_total: 519021
+
+=== Periodic report at 22:25:02 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9574, average 35171, total 336730600
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            640 |@@@@@                                               |
+[16K, 32K)          3043 |@@@@@@@@@@@@@@@@@@@@@@@@@@                          |
+[32K, 64K)          5891 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2073, average 17077, total 35401840
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              66 |@@@                                                 |
+[8K, 16K)           1094 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           843 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@            |
+[32K, 64K)            70 |@@@                                                 |
+
+saves total (cumulative):    @saves_total: 481461
+restores total (cumulative): @restores_total: 529706
+
+=== Periodic report at 22:25:12 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9810, average 35414, total 347414611
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            646 |@@@@@                                               |
+[16K, 32K)          3030 |@@@@@@@@@@@@@@@@@@@@@@@@@                           |
+[32K, 64K)          6133 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 1974, average 17332, total 34213876
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              50 |@@                                                  |
+[8K, 16K)           1024 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           834 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@          |
+[32K, 64K)            66 |@@@                                                 |
+
+saves total (cumulative):    @saves_total: 491275
+restores total (cumulative): @restores_total: 540522
+
+=== Periodic report at 22:25:22 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9667, average 35279, total 341044561
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            660 |@@@@@                                               |
+[16K, 32K)          3005 |@@@@@@@@@@@@@@@@@@@@@@@@@@                          |
+[32K, 64K)          6002 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2034, average 17406, total 35405734
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              64 |@@@                                                 |
+[8K, 16K)           1034 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           864 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@         |
+[32K, 64K)            67 |@@@                                                 |
+[64K, 128K)            5 |                                                    |
+
+saves total (cumulative):    @saves_total: 500946
+restores total (cumulative): @restores_total: 551244
+
+=== Periodic report at 22:25:32 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9644, average 35371, total 341126191
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            629 |@@@@@                                               |
+[16K, 32K)          3006 |@@@@@@@@@@@@@@@@@@@@@@@@@@                          |
+[32K, 64K)          6008 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2034, average 16853, total 34279550
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              61 |@@                                                  |
+[8K, 16K)           1124 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           787 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@                |
+[32K, 64K)            61 |@@                                                  |
+[64K, 128K)            1 |                                                    |
+
+saves total (cumulative):    @saves_total: 510594
+restores total (cumulative): @restores_total: 561939
+
+=== Periodic report at 22:25:42 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9683, average 35398, total 342764642
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            612 |@@@@@                                               |
+[16K, 32K)          3025 |@@@@@@@@@@@@@@@@@@@@@@@@@@                          |
+[32K, 64K)          6046 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 1961, average 17376, total 34075240
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              25 |@                                                   |
+[8K, 16K)           1063 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           812 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@             |
+[32K, 64K)            58 |@@                                                  |
+[64K, 128K)            3 |                                                    |
+
+saves total (cumulative):    @saves_total: 520277
+restores total (cumulative): @restores_total: 572614
+
+=== Periodic report at 22:25:52 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9739, average 35439, total 345145719
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            596 |@@@@@                                               |
+[16K, 32K)          3023 |@@@@@@@@@@@@@@@@@@@@@@@@@                           |
+[32K, 64K)          6119 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2064, average 17166, total 35431214
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              74 |@@@                                                 |
+[8K, 16K)           1080 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           846 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@            |
+[32K, 64K)            64 |@@@                                                 |
+
+saves total (cumulative):    @saves_total: 530016
+restores total (cumulative): @restores_total: 583381
+
+=== Periodic report at 22:26:02 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9672, average 35348, total 341888320
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            645 |@@@@@                                               |
+[16K, 32K)          2988 |@@@@@@@@@@@@@@@@@@@@@@@@@                           |
+[32K, 64K)          6032 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            3 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2002, average 17190, total 34415463
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              63 |@@@                                                 |
+[8K, 16K)           1043 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           832 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@           |
+[32K, 64K)            64 |@@@                                                 |
+
+saves total (cumulative):    @saves_total: 539692
+restores total (cumulative): @restores_total: 594069
+
+=== Periodic report at 22:26:12 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9815, average 35452, total 347964243
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            623 |@@@@@                                               |
+[16K, 32K)          3024 |@@@@@@@@@@@@@@@@@@@@@@@@@                           |
+[32K, 64K)          6168 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            2 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 1936, average 17326, total 33544136
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              47 |@@                                                  |
+[8K, 16K)           1012 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           815 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@           |
+[32K, 64K)            62 |@@@                                                 |
+
+saves total (cumulative):    @saves_total: 549509
+restores total (cumulative): @restores_total: 604851
+
+=== Periodic report at 22:26:22 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9713, average 35458, total 344408579
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            614 |@@@@@                                               |
+[16K, 32K)          2976 |@@@@@@@@@@@@@@@@@@@@@@@@@                           |
+[32K, 64K)          6122 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 1994, average 17269, total 34435769
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              51 |@@                                                  |
+[8K, 16K)           1039 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           839 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@           |
+[32K, 64K)            67 |@@@                                                 |
+
+saves total (cumulative):    @saves_total: 559226
+restores total (cumulative): @restores_total: 615599
+
+=== Periodic report at 22:26:32 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9771, average 35508, total 346951019
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            649 |@@@@@                                               |
+[16K, 32K)          2950 |@@@@@@@@@@@@@@@@@@@@@@@@                            |
+[32K, 64K)          6168 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            4 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 1969, average 17454, total 34366997
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              41 |@@                                                  |
+[8K, 16K)           1021 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           844 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@          |
+[32K, 64K)            63 |@@@                                                 |
+
+saves total (cumulative):    @saves_total: 568997
+restores total (cumulative): @restores_total: 626359
+
+=== Periodic report at 22:26:42 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9793, average 35571, total 348354756
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            624 |@@@@@                                               |
+[16K, 32K)          2962 |@@@@@@@@@@@@@@@@@@@@@@@@                            |
+[32K, 64K)          6207 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 1931, average 17573, total 33933793
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              30 |@                                                   |
+[8K, 16K)            972 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           867 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@      |
+[32K, 64K)            61 |@@@                                                 |
+[64K, 128K)            1 |                                                    |
+
+saves total (cumulative):    @saves_total: 578794
+restores total (cumulative): @restores_total: 637103
+
+=== Periodic report at 22:26:52 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9835, average 35340, total 347572966
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            633 |@@@@@                                               |
+[16K, 32K)          3056 |@@@@@@@@@@@@@@@@@@@@@@@@@                           |
+[32K, 64K)          6145 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2104, average 17358, total 36523137
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              77 |@@@                                                 |
+[8K, 16K)           1089 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           861 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@           |
+[32K, 64K)            73 |@@@                                                 |
+[64K, 128K)            4 |                                                    |
+
+saves total (cumulative):    @saves_total: 588629
+restores total (cumulative): @restores_total: 648000
+
+=== Periodic report at 22:27:02 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9777, average 35536, total 347437006
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            604 |@@@@@                                               |
+[16K, 32K)          3004 |@@@@@@@@@@@@@@@@@@@@@@@@@                           |
+[32K, 64K)          6165 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 1946, average 17369, total 33801018
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              75 |@@@@                                                |
+[8K, 16K)            974 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           832 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@        |
+[32K, 64K)            62 |@@@                                                 |
+[64K, 128K)            3 |                                                    |
+
+saves total (cumulative):    @saves_total: 598406
+restores total (cumulative): @restores_total: 658757
+
+=== Periodic report at 22:27:12 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9658, average 35467, total 342543099
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            612 |@@@@@                                               |
+[16K, 32K)          2933 |@@@@@@@@@@@@@@@@@@@@@@@@                            |
+[32K, 64K)          6113 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2168, average 17070, total 37008631
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              80 |@@@                                                 |
+[8K, 16K)           1168 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           847 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@               |
+[32K, 64K)            70 |@@@                                                 |
+[64K, 128K)            3 |                                                    |
+
+saves total (cumulative):    @saves_total: 608064
+restores total (cumulative): @restores_total: 669534
+
+=== Periodic report at 22:27:22 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9715, average 35423, total 344140753
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            656 |@@@@@                                               |
+[16K, 32K)          2920 |@@@@@@@@@@@@@@@@@@@@@@@@                            |
+[32K, 64K)          6139 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 1944, average 17462, total 33946405
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              47 |@@                                                  |
+[8K, 16K)           1000 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           831 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@         |
+[32K, 64K)            66 |@@@                                                 |
+
+saves total (cumulative):    @saves_total: 617784
+restores total (cumulative): @restores_total: 680244
+
+=== Periodic report at 22:27:32 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9810, average 35579, total 349036892
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            616 |@@@@@                                               |
+[16K, 32K)          2981 |@@@@@@@@@@@@@@@@@@@@@@@@                            |
+[32K, 64K)          6213 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 1940, average 17520, total 33988804
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              56 |@@@                                                 |
+[8K, 16K)            932 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           892 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   |
+[32K, 64K)            60 |@@@                                                 |
+
+saves total (cumulative):    @saves_total: 627594
+restores total (cumulative): @restores_total: 691010
+
+=== Periodic report at 22:27:42 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9702, average 35455, total 343990245
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            660 |@@@@@                                               |
+[16K, 32K)          2893 |@@@@@@@@@@@@@@@@@@@@@@@@                            |
+[32K, 64K)          6145 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 1981, average 17293, total 34257484
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              66 |@@@                                                 |
+[8K, 16K)           1002 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           845 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@         |
+[32K, 64K)            64 |@@@                                                 |
+[64K, 128K)            4 |                                                    |
+
+saves total (cumulative):    @saves_total: 637297
+restores total (cumulative): @restores_total: 701722
+
+=== Periodic report at 22:27:52 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9750, average 35619, total 347287127
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            628 |@@@@@                                               |
+[16K, 32K)          2950 |@@@@@@@@@@@@@@@@@@@@@@@@                            |
+[32K, 64K)          6172 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 1898, average 17446, total 33114067
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              51 |@@                                                  |
+[8K, 16K)            964 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           820 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@        |
+[32K, 64K)            61 |@@@                                                 |
+[64K, 128K)            2 |                                                    |
+
+saves total (cumulative):    @saves_total: 647047
+restores total (cumulative): @restores_total: 712431
+
+=== Periodic report at 22:28:02 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9702, average 35482, total 344254820
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            639 |@@@@@                                               |
+[16K, 32K)          2911 |@@@@@@@@@@@@@@@@@@@@@@@@                            |
+[32K, 64K)          6152 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2097, average 16883, total 35403776
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)             116 |@@@@@                                               |
+[8K, 16K)           1075 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           844 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@            |
+[32K, 64K)            60 |@@                                                  |
+[64K, 128K)            2 |                                                    |
+
+saves total (cumulative):    @saves_total: 656749
+restores total (cumulative): @restores_total: 723145
+
+=== Periodic report at 22:28:12 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9689, average 35515, total 344112226
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            609 |@@@@@                                               |
+[16K, 32K)          2938 |@@@@@@@@@@@@@@@@@@@@@@@@                            |
+[32K, 64K)          6141 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2067, average 16548, total 34204801
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)             108 |@@@@@                                               |
+[8K, 16K)           1095 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           823 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@             |
+[32K, 64K)            41 |@                                                   |
+
+saves total (cumulative):    @saves_total: 666440
+restores total (cumulative): @restores_total: 733829
+
+=== Periodic report at 22:28:22 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9682, average 35439, total 343128646
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            666 |@@@@@                                               |
+[16K, 32K)          2849 |@@@@@@@@@@@@@@@@@@@@@@@@                            |
+[32K, 64K)          6166 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2046, average 17082, total 34950996
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              80 |@@@                                                 |
+[8K, 16K)           1091 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           814 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@              |
+[32K, 64K)            61 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 676130
+restores total (cumulative): @restores_total: 744528
+
+=== Periodic report at 22:28:32 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9741, average 35763, total 348372132
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            581 |@@@@                                                |
+[16K, 32K)          2875 |@@@@@@@@@@@@@@@@@@@@@@@                             |
+[32K, 64K)          6283 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            2 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 1949, average 17254, total 33628518
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              76 |@@@@                                                |
+[8K, 16K)            946 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           869 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@     |
+[32K, 64K)            58 |@@@                                                 |
+
+saves total (cumulative):    @saves_total: 685871
+restores total (cumulative): @restores_total: 755191
+
+=== Periodic report at 22:28:42 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9871, average 35658, total 351989738
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            605 |@@@@                                                |
+[16K, 32K)          2955 |@@@@@@@@@@@@@@@@@@@@@@@@                            |
+[32K, 64K)          6311 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2069, average 17225, total 35639012
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              68 |@@@                                                 |
+[8K, 16K)           1065 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           878 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@          |
+[32K, 64K)            58 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 695746
+restores total (cumulative): @restores_total: 766052
+
+=== Periodic report at 22:28:52 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9754, average 35541, total 346668883
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            636 |@@@@@                                               |
+[16K, 32K)          2923 |@@@@@@@@@@@@@@@@@@@@@@@@                            |
+[32K, 64K)          6194 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2104, average 17272, total 36341102
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              59 |@@                                                  |
+[8K, 16K)           1098 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           885 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@           |
+[32K, 64K)            61 |@@                                                  |
+[64K, 128K)            1 |                                                    |
+
+saves total (cumulative):    @saves_total: 705504
+restores total (cumulative): @restores_total: 776849
+
+=== Periodic report at 22:29:02 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9694, average 35571, total 344834707
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            626 |@@@@@                                               |
+[16K, 32K)          2925 |@@@@@@@@@@@@@@@@@@@@@@@@                            |
+[32K, 64K)          6142 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            3 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2107, average 16907, total 35623064
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              74 |@@@                                                 |
+[8K, 16K)           1097 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           886 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@           |
+[32K, 64K)            50 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 715200
+restores total (cumulative): @restores_total: 787605
+
+=== Periodic report at 22:29:12 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9606, average 35579, total 341773362
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            644 |@@@@@                                               |
+[16K, 32K)          2851 |@@@@@@@@@@@@@@@@@@@@@@@@                            |
+[32K, 64K)          6111 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2130, average 16625, total 35413190
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              88 |@@@@                                                |
+[8K, 16K)           1124 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           868 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@            |
+[32K, 64K)            50 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 724806
+restores total (cumulative): @restores_total: 798302
+
+=== Periodic report at 22:29:22 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9751, average 35636, total 347496193
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            650 |@@@@@                                               |
+[16K, 32K)          2912 |@@@@@@@@@@@@@@@@@@@@@@@@                            |
+[32K, 64K)          6188 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2060, average 17251, total 35538332
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              50 |@@                                                  |
+[8K, 16K)           1080 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           875 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@          |
+[32K, 64K)            55 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 734565
+restores total (cumulative): @restores_total: 809104
+
+=== Periodic report at 22:29:32 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9692, average 35651, total 345537074
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            633 |@@@@@                                               |
+[16K, 32K)          2892 |@@@@@@@@@@@@@@@@@@@@@@@@                            |
+[32K, 64K)          6168 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2096, average 16919, total 35462377
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              76 |@@@                                                 |
+[8K, 16K)           1096 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           869 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@           |
+[32K, 64K)            55 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 744259
+restores total (cumulative): @restores_total: 819856
+
+=== Periodic report at 22:29:42 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9717, average 35714, total 347035878
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            597 |@@@@@                                               |
+[16K, 32K)          2913 |@@@@@@@@@@@@@@@@@@@@@@@@                            |
+[32K, 64K)          6205 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2067, average 17125, total 35397711
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              62 |@@@                                                 |
+[8K, 16K)           1074 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           873 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@          |
+[32K, 64K)            58 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 753976
+restores total (cumulative): @restores_total: 830592
+
+=== Periodic report at 22:29:52 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 9693, average 35481, total 343926310
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            671 |@@@@@                                               |
+[16K, 32K)          2901 |@@@@@@@@@@@@@@@@@@@@@@@@                            |
+[32K, 64K)          6120 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2211, average 16549, total 36590106
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)             146 |@@@@@@                                              |
+[8K, 16K)           1141 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           857 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@             |
+[32K, 64K)            67 |@@@                                                 |
+
+saves total (cumulative):    @saves_total: 763676
+restores total (cumulative): @restores_total: 841378
+
+=== Periodic report at 22:30:02 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 8391, average 35678, total 299374933
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            482 |@@@@                                                |
+[16K, 32K)          2698 |@@@@@@@@@@@@@@@@@@@@@@@@@@                          |
+[32K, 64K)          5210 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2933, average 15570, total 45668827
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              68 |@                                                   |
+[8K, 16K)           1990 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           795 |@@@@@@@@@@@@@@@@@@@@                                |
+[32K, 64K)            80 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 772068
+restores total (cumulative): @restores_total: 851745
+
+=== Periodic report at 22:30:12 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 8203, average 35493, total 291156225
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            435 |@@@@                                                |
+[16K, 32K)          2769 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@                        |
+[32K, 64K)          4998 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 3068, average 15560, total 47738650
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              91 |@@                                                  |
+[8K, 16K)           2114 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           760 |@@@@@@@@@@@@@@@@@@                                  |
+[32K, 64K)           103 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 780271
+restores total (cumulative): @restores_total: 862040
+
+=== Periodic report at 22:30:22 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 8160, average 35480, total 289522353
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            457 |@@@@                                                |
+[16K, 32K)          2752 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@                        |
+[32K, 64K)          4947 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            4 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 3060, average 15026, total 45981830
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)             119 |@@                                                  |
+[8K, 16K)           2138 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           743 |@@@@@@@@@@@@@@@@@@                                  |
+[32K, 64K)            57 |@                                                   |
+[64K, 128K)            3 |                                                    |
+
+saves total (cumulative):    @saves_total: 788439
+restores total (cumulative): @restores_total: 872338
+
+=== Periodic report at 22:30:32 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 8204, average 35737, total 293190389
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            445 |@@@@                                                |
+[16K, 32K)          2721 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@                        |
+[32K, 64K)          5036 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            2 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 3015, average 15274, total 46052989
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              71 |@                                                   |
+[8K, 16K)           2145 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           723 |@@@@@@@@@@@@@@@@@                                   |
+[32K, 64K)            73 |@                                                   |
+[64K, 128K)            3 |                                                    |
+
+saves total (cumulative):    @saves_total: 796645
+restores total (cumulative): @restores_total: 882620
+
+=== Periodic report at 22:30:42 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 8218, average 35675, total 293179404
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            442 |@@@@                                                |
+[16K, 32K)          2745 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@                        |
+[32K, 64K)          5031 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 3084, average 15367, total 47394690
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)             103 |@@                                                  |
+[8K, 16K)           2139 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           756 |@@@@@@@@@@@@@@@@@@                                  |
+[32K, 64K)            88 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 804865
+restores total (cumulative): @restores_total: 892959
+
+=== Periodic report at 22:30:52 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 8299, average 35809, total 297186919
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            413 |@@@@                                                |
+[16K, 32K)          2777 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@                        |
+[32K, 64K)          5111 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            2 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2962, average 15792, total 46776568
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              65 |@                                                   |
+[8K, 16K)           2006 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           792 |@@@@@@@@@@@@@@@@@@@@                                |
+[32K, 64K)           104 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 813172
+restores total (cumulative): @restores_total: 903300
+
+=== Periodic report at 22:31:02 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 8200, average 35558, total 291577562
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            436 |@@@@                                                |
+[16K, 32K)          2825 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@                       |
+[32K, 64K)          4936 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            3 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2972, average 15200, total 45174969
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)             114 |@@                                                  |
+[8K, 16K)           2066 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           716 |@@@@@@@@@@@@@@@@@@                                  |
+[32K, 64K)            76 |@                                                   |
+
+saves total (cumulative):    @saves_total: 821372
+restores total (cumulative): @restores_total: 913570
+
+=== Periodic report at 22:31:12 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 8205, average 35707, total 292984085
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            453 |@@@@                                                |
+[16K, 32K)          2743 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@                        |
+[32K, 64K)          5007 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            2 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 3051, average 15184, total 46328882
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              94 |@@                                                  |
+[8K, 16K)           2136 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           751 |@@@@@@@@@@@@@@@@@@                                  |
+[32K, 64K)            69 |@                                                   |
+[64K, 128K)            1 |                                                    |
+
+saves total (cumulative):    @saves_total: 829577
+restores total (cumulative): @restores_total: 923880
+
+=== Periodic report at 22:31:22 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 8247, average 35740, total 294753096
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            420 |@@@@                                                |
+[16K, 32K)          2747 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@                        |
+[32K, 64K)          5078 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            2 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 3027, average 15732, total 47623327
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              73 |@                                                   |
+[8K, 16K)           2051 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           803 |@@@@@@@@@@@@@@@@@@@@                                |
+[32K, 64K)           100 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 837824
+restores total (cumulative): @restores_total: 934206
+
+=== Periodic report at 22:31:32 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 8178, average 35927, total 293818394
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            397 |@@@@                                                |
+[16K, 32K)          2758 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@                        |
+[32K, 64K)          5020 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            3 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2960, average 15318, total 45341711
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)             100 |@@                                                  |
+[8K, 16K)           2058 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           733 |@@@@@@@@@@@@@@@@@@                                  |
+[32K, 64K)            69 |@                                                   |
+
+saves total (cumulative):    @saves_total: 846006
+restores total (cumulative): @restores_total: 944451
+
+=== Periodic report at 22:31:42 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 8290, average 35751, total 296383800
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            455 |@@@@                                                |
+[16K, 32K)          2778 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@                        |
+[32K, 64K)          5051 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            6 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2976, average 15395, total 45816610
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              64 |@                                                   |
+[8K, 16K)           2087 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           755 |@@@@@@@@@@@@@@@@@@                                  |
+[32K, 64K)            70 |@                                                   |
+
+saves total (cumulative):    @saves_total: 854304
+restores total (cumulative): @restores_total: 954790
+
+=== Periodic report at 22:31:52 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 8268, average 35717, total 295312589
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            456 |@@@@                                                |
+[16K, 32K)          2749 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@                        |
+[32K, 64K)          5062 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 3002, average 15575, total 46758027
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              81 |@@                                                  |
+[8K, 16K)           2055 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           784 |@@@@@@@@@@@@@@@@@@@                                 |
+[32K, 64K)            82 |@@                                                  |
+
+saves total (cumulative):    @saves_total: 862572
+restores total (cumulative): @restores_total: 965120
+
+=== Periodic report at 22:32:02 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 8189, average 35744, total 292710696
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            436 |@@@@                                                |
+[16K, 32K)          2765 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@                        |
+[32K, 64K)          4988 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 3041, average 15426, total 46912851
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              95 |@@                                                  |
+[8K, 16K)           2107 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           749 |@@@@@@@@@@@@@@@@@@                                  |
+[32K, 64K)            89 |@@                                                  |
+[64K, 128K)            1 |                                                    |
+
+saves total (cumulative):    @saves_total: 870765
+restores total (cumulative): @restores_total: 975405
+
+=== Periodic report at 22:32:12 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 8167, average 35799, total 292371415
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            429 |@@@@                                                |
+[16K, 32K)          2758 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@                        |
+[32K, 64K)          4978 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            2 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 3006, average 15288, total 45958531
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              72 |@                                                   |
+[8K, 16K)           2125 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           730 |@@@@@@@@@@@@@@@@@                                   |
+[32K, 64K)            79 |@                                                   |
+
+saves total (cumulative):    @saves_total: 878936
+restores total (cumulative): @restores_total: 985685
+
+=== Periodic report at 22:32:22 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 8224, average 35866, total 294965869
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            424 |@@@@                                                |
+[16K, 32K)          2726 |@@@@@@@@@@@@@@@@@@@@@@@@@@@                         |
+[32K, 64K)          5074 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 3084, average 15110, total 46601817
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)             162 |@@@@                                                |
+[8K, 16K)           2094 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           752 |@@@@@@@@@@@@@@@@@@                                  |
+[32K, 64K)            76 |@                                                   |
+
+saves total (cumulative):    @saves_total: 887160
+restores total (cumulative): @restores_total: 996016
+
+=== Periodic report at 22:32:32 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 8269, average 35848, total 296434865
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            450 |@@@@                                                |
+[16K, 32K)          2748 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@                        |
+[32K, 64K)          5073 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2997, average 15226, total 45634685
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              90 |@@                                                  |
+[8K, 16K)           2081 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           758 |@@@@@@@@@@@@@@@@@@                                  |
+[32K, 64K)            68 |@                                                   |
+
+saves total (cumulative):    @saves_total: 895431
+restores total (cumulative): @restores_total: 1006347
+
+=== Periodic report at 22:32:42 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 8369, average 35934, total 300738108
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            415 |@@@@                                                |
+[16K, 32K)          2776 |@@@@@@@@@@@@@@@@@@@@@@@@@@@                         |
+[32K, 64K)          5175 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 2887, average 15729, total 45411333
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              68 |@                                                   |
+[8K, 16K)           1973 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           766 |@@@@@@@@@@@@@@@@@@@@                                |
+[32K, 64K)            79 |@@                                                  |
+[64K, 128K)            1 |                                                    |
+
+saves total (cumulative):    @saves_total: 903800
+restores total (cumulative): @restores_total: 1016677
+
+=== Periodic report at 22:32:52 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 8007, average 35529, total 284486448
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            463 |@@@@@                                               |
+[16K, 32K)          2736 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@                       |
+[32K, 64K)          4808 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 3169, average 15053, total 47704473
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              96 |@@                                                  |
+[8K, 16K)           2278 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           724 |@@@@@@@@@@@@@@@@                                    |
+[32K, 64K)            71 |@                                                   |
+
+saves total (cumulative):    @saves_total: 911809
+restores total (cumulative): @restores_total: 1026927
+
+=== Periodic report at 22:33:02 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 8277, average 35875, total 296941569
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            447 |@@@@                                                |
+[16K, 32K)          2745 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@                        |
+[32K, 64K)          5079 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            2 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 3002, average 15468, total 46436681
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              80 |@                                                   |
+[8K, 16K)           2095 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           743 |@@@@@@@@@@@@@@@@@@                                  |
+[32K, 64K)            82 |@@                                                  |
+[64K, 128K)            2 |                                                    |
+
+saves total (cumulative):    @saves_total: 920086
+restores total (cumulative): @restores_total: 1037270
+
+=== Periodic report at 22:33:12 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 8171, average 35964, total 293868700
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            414 |@@@@                                                |
+[16K, 32K)          2714 |@@@@@@@@@@@@@@@@@@@@@@@@@@@                         |
+[32K, 64K)          5042 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 3081, average 15193, total 46811832
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)             115 |@@                                                  |
+[8K, 16K)           2153 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           727 |@@@@@@@@@@@@@@@@@                                   |
+[32K, 64K)            84 |@@                                                  |
+[64K, 128K)            2 |                                                    |
+
+saves total (cumulative):    @saves_total: 928261
+restores total (cumulative): @restores_total: 1047578
+
+=== Periodic report at 22:33:22 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 8083, average 35652, total 288178915
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            459 |@@@@                                                |
+[16K, 32K)          2745 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@                       |
+[32K, 64K)          4876 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 3110, average 15284, total 47534928
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              79 |@                                                   |
+[8K, 16K)           2214 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           739 |@@@@@@@@@@@@@@@@@                                   |
+[32K, 64K)            78 |@                                                   |
+
+saves total (cumulative):    @saves_total: 936349
+restores total (cumulative): @restores_total: 1057834
+
+=== Periodic report at 22:33:32 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 8248, average 36028, total 297164789
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            412 |@@@@                                                |
+[16K, 32K)          2746 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@                        |
+[32K, 64K)          5088 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            2 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 3094, average 15118, total 46775605
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)             126 |@@@                                                 |
+[8K, 16K)           2129 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           771 |@@@@@@@@@@@@@@@@@@                                  |
+[32K, 64K)            68 |@                                                   |
+
+saves total (cumulative):    @saves_total: 944597
+restores total (cumulative): @restores_total: 1068172
+
+=== Periodic report at 22:33:42 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 8172, average 35845, total 292933054
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            473 |@@@@                                                |
+[16K, 32K)          2699 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@                        |
+[32K, 64K)          4999 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 3081, average 15355, total 47311155
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              79 |@                                                   |
+[8K, 16K)           2137 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           793 |@@@@@@@@@@@@@@@@@@@                                 |
+[32K, 64K)            72 |@                                                   |
+
+saves total (cumulative):    @saves_total: 952771
+restores total (cumulative): @restores_total: 1078440
+
+=== Periodic report at 22:33:52 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 8234, average 36124, total 297449755
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            395 |@@@@                                                |
+[16K, 32K)          2735 |@@@@@@@@@@@@@@@@@@@@@@@@@@@                         |
+[32K, 64K)          5102 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            2 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 3116, average 15086, total 47008269
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)             143 |@@@                                                 |
+[8K, 16K)           2137 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           774 |@@@@@@@@@@@@@@@@@@                                  |
+[32K, 64K)            61 |@                                                   |
+[64K, 128K)            1 |                                                    |
+
+saves total (cumulative):    @saves_total: 961007
+restores total (cumulative): @restores_total: 1088795
+
+=== Periodic report at 22:34:02 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 8141, average 36007, total 293138961
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            423 |@@@@                                                |
+[16K, 32K)          2706 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@                        |
+[32K, 64K)          5010 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            2 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 3120, average 15000, total 46801948
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)             113 |@@                                                  |
+[8K, 16K)           2205 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           741 |@@@@@@@@@@@@@@@@@                                   |
+[32K, 64K)            61 |@                                                   |
+
+saves total (cumulative):    @saves_total: 969148
+restores total (cumulative): @restores_total: 1099115
+
+=== Periodic report at 22:34:12 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 8292, average 36162, total 299862032
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            438 |@@@@                                                |
+[16K, 32K)          2673 |@@@@@@@@@@@@@@@@@@@@@@@@@@                          |
+[32K, 64K)          5178 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 3016, average 15364, total 46339047
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              77 |@                                                   |
+[8K, 16K)           2077 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           793 |@@@@@@@@@@@@@@@@@@@                                 |
+[32K, 64K)            69 |@                                                   |
+
+saves total (cumulative):    @saves_total: 977440
+restores total (cumulative): @restores_total: 1109460
+
+=== Periodic report at 22:34:22 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 8284, average 36186, total 299768768
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            438 |@@@@                                                |
+[16K, 32K)          2672 |@@@@@@@@@@@@@@@@@@@@@@@@@@                          |
+[32K, 64K)          5172 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            2 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 3028, average 15202, total 46034679
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              83 |@@                                                  |
+[8K, 16K)           2116 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           771 |@@@@@@@@@@@@@@@@@@                                  |
+[32K, 64K)            60 |@                                                   |
+
+saves total (cumulative):    @saves_total: 985726
+restores total (cumulative): @restores_total: 1119812
+
+=== Periodic report at 22:34:32 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 8177, average 36223, total 296197092
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            411 |@@@@                                                |
+[16K, 32K)          2653 |@@@@@@@@@@@@@@@@@@@@@@@@@@                          |
+[32K, 64K)          5114 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 3117, average 14956, total 46619527
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)             127 |@@@                                                 |
+[8K, 16K)           2174 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           750 |@@@@@@@@@@@@@@@@@                                   |
+[32K, 64K)            66 |@                                                   |
+
+saves total (cumulative):    @saves_total: 993916
+restores total (cumulative): @restores_total: 1130148
+
+=== Periodic report at 22:34:42 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 8109, average 35939, total 291436741
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            423 |@@@@                                                |
+[16K, 32K)          2683 |@@@@@@@@@@@@@@@@@@@@@@@@@@@                         |
+[32K, 64K)          5002 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 3119, average 14978, total 46716880
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)             141 |@@@                                                 |
+[8K, 16K)           2188 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           720 |@@@@@@@@@@@@@@@@@                                   |
+[32K, 64K)            70 |@                                                   |
+
+saves total (cumulative):    @saves_total: 1002025
+restores total (cumulative): @restores_total: 1140411
+
+=== Periodic report at 22:34:52 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 8170, average 35969, total 293868991
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            426 |@@@@                                                |
+[16K, 32K)          2705 |@@@@@@@@@@@@@@@@@@@@@@@@@@@                         |
+[32K, 64K)          5034 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            1 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 3190, average 15138, total 48291281
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)             120 |@@                                                  |
+[8K, 16K)           2204 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           799 |@@@@@@@@@@@@@@@@@@                                  |
+[32K, 64K)            67 |@                                                   |
+
+saves total (cumulative):    @saves_total: 1010195
+restores total (cumulative): @restores_total: 1150738
+
+=== Periodic report at 22:35:02 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 7952, average 36246, total 288235387
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)            399 |@@@@                                                |
+[16K, 32K)          2562 |@@@@@@@@@@@@@@@@@@@@@@@@@@                          |
+[32K, 64K)          4985 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[64K, 128K)            2 |                                                    |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 3207, average 14794, total 47445743
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)             184 |@@@@                                                |
+[8K, 16K)           2168 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)           803 |@@@@@@@@@@@@@@@@@@@                                 |
+[32K, 64K)            52 |@                                                   |
+
+saves total (cumulative):    @saves_total: 1018147
+restores total (cumulative): @restores_total: 1160872
+
+=== Periodic report at 22:35:12 (since last report) ===
+--- V‑state switches (llama-server involved) ---
+Stats:
+@v_interval_stats: count 13, average 21429, total 278587
+
+Histogram (ns):
+@v_interval_hist: 
+[8K, 16K)              9 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[16K, 32K)             1 |@@@@@                                               |
+[32K, 64K)             3 |@@@@@@@@@@@@@@@@@                                   |
+
+--- Non‑V‑state switches (llama-server involved) ---
+Stats:
+@non_v_interval_stats: count 72, average 16589, total 1194471
+
+Histogram (ns):
+@non_v_interval_hist: 
+[4K, 8K)              11 |@@@@@@@@@@@@@@@@@                                   |
+[8K, 16K)             25 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@             |
+[16K, 32K)            33 |@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|
+[32K, 64K)             3 |@@@@                                                |
+
+saves total (cumulative):    @saves_total: 1018160
+restores total (cumulative): @restores_total: 1160909
+
+========== SUMMARY ==========
+saves total:    @saves_total: 1018160
+restores total: @restores_total: 1160909
+
+=== 每个核的 save 次数 ===
+@cpu_saves[4]: 3032
+@cpu_saves[6]: 12938
+@cpu_saves[5]: 18905
+@cpu_saves[7]: 25804
+@cpu_saves[1]: 228544
+@cpu_saves[3]: 234442
+@cpu_saves[0]: 242066
+@cpu_saves[2]: 252429
+
+=== 每个核 save 的进程分布 ===
+@cpu_saves_by_proc[4, llama-server]: 3032
+@cpu_saves_by_proc[6, llama-server]: 12938
+@cpu_saves_by_proc[5, llama-server]: 18905
+@cpu_saves_by_proc[7, llama-server]: 25804
+@cpu_saves_by_proc[1, llama-server]: 228544
+@cpu_saves_by_proc[3, llama-server]: 234442
+@cpu_saves_by_proc[0, llama-server]: 242066
+@cpu_saves_by_proc[2, llama-server]: 252429
+
+=== 每个核的 restore 次数 ===
+@cpu_restores[4]: 3179
+@cpu_restores[6]: 13361
+@cpu_restores[5]: 19549
+@cpu_restores[7]: 26666
+@cpu_restores[2]: 270494
+@cpu_restores[0]: 272873
+@cpu_restores[3]: 276262
+@cpu_restores[1]: 278525
+
+=== 每个核 restore 的进程分布 ===
+@cpu_restores_by_proc[4, llama-server]: 3179
+@cpu_restores_by_proc[6, llama-server]: 13361
+@cpu_restores_by_proc[5, llama-server]: 19549
+@cpu_restores_by_proc[7, llama-server]: 26666
+@cpu_restores_by_proc[2, llama-server]: 270494
+@cpu_restores_by_proc[0, llama-server]: 272873
+@cpu_restores_by_proc[3, llama-server]: 276262
+@cpu_restores_by_proc[1, llama-server]: 278525
+
+=== 每个线程(tid)在哪些核上发生过 save ===
+@tid_cpu_saves[1367, 2]: 1
+@tid_cpu_saves[1362, 1]: 1
+@tid_cpu_saves[1333, 1]: 1
+@tid_cpu_saves[1363, 2]: 1
+@tid_cpu_saves[1339, 0]: 34
+@tid_cpu_saves[1381, 2]: 54
+@tid_cpu_saves[1366, 1]: 63
+@tid_cpu_saves[1326, 1]: 71
+@tid_cpu_saves[1337, 5]: 88
+@tid_cpu_saves[1334, 0]: 89
+@tid_cpu_saves[1340, 1]: 90
+@tid_cpu_saves[1384, 6]: 136
+@tid_cpu_saves[1385, 0]: 137
+@tid_cpu_saves[1387, 2]: 146
+@tid_cpu_saves[1383, 4]: 163
+@tid_cpu_saves[1338, 7]: 191
+@tid_cpu_saves[1336, 5]: 270
+@tid_cpu_saves[1333, 6]: 298
+@tid_cpu_saves[1335, 7]: 331
+@tid_cpu_saves[1342, 6]: 340
+@tid_cpu_saves[1335, 6]: 358
+@tid_cpu_saves[1331, 7]: 372
+@tid_cpu_saves[1337, 7]: 435
+@tid_cpu_saves[1334, 6]: 436
+@tid_cpu_saves[1381, 6]: 443
+@tid_cpu_saves[1334, 5]: 456
+@tid_cpu_saves[1340, 6]: 497
+@tid_cpu_saves[1333, 5]: 510
+@tid_cpu_saves[1331, 6]: 519
+@tid_cpu_saves[1336, 6]: 549
+@tid_cpu_saves[1339, 5]: 567
+@tid_cpu_saves[1339, 6]: 653
+@tid_cpu_saves[1341, 4]: 688
+@tid_cpu_saves[1382, 5]: 697
+@tid_cpu_saves[1334, 7]: 743
+@tid_cpu_saves[1385, 6]: 753
+@tid_cpu_saves[1341, 6]: 763
+@tid_cpu_saves[1386, 6]: 834
+@tid_cpu_saves[1383, 6]: 857
+@tid_cpu_saves[1331, 5]: 864
+@tid_cpu_saves[1381, 5]: 872
+@tid_cpu_saves[1387, 5]: 885
+@tid_cpu_saves[1341, 5]: 902
+@tid_cpu_saves[1333, 7]: 920
+@tid_cpu_saves[1340, 5]: 944
+@tid_cpu_saves[1336, 7]: 972
+@tid_cpu_saves[1385, 5]: 1020
+@tid_cpu_saves[1335, 5]: 1032
+@tid_cpu_saves[1383, 7]: 1033
+@tid_cpu_saves[1384, 5]: 1131
+@tid_cpu_saves[1387, 6]: 1263
+@tid_cpu_saves[1341, 7]: 1276
+@tid_cpu_saves[1388, 6]: 1292
+@tid_cpu_saves[1342, 7]: 1354
+@tid_cpu_saves[1388, 7]: 1402
+@tid_cpu_saves[1382, 7]: 1408
+@tid_cpu_saves[1382, 6]: 1460
+@tid_cpu_saves[1337, 6]: 1487
+@tid_cpu_saves[1386, 5]: 1543
+@tid_cpu_saves[1383, 5]: 1563
+@tid_cpu_saves[1338, 5]: 1618
+@tid_cpu_saves[1340, 7]: 1866
+@tid_cpu_saves[1342, 5]: 1963
+@tid_cpu_saves[1381, 7]: 1964
+@tid_cpu_saves[1388, 5]: 1980
+@tid_cpu_saves[1384, 7]: 2169
+@tid_cpu_saves[1332, 4]: 2181
+@tid_cpu_saves[1386, 7]: 2187
+@tid_cpu_saves[1339, 7]: 2206
+@tid_cpu_saves[1387, 7]: 2257
+@tid_cpu_saves[1385, 7]: 2718
+@tid_cpu_saves[1366, 3]: 113728
+@tid_cpu_saves[1365, 0]: 113741
+@tid_cpu_saves[1368, 1]: 113768
+@tid_cpu_saves[1367, 1]: 114550
+@tid_cpu_saves[1364, 2]: 119767
+@tid_cpu_saves[1363, 3]: 120714
+@tid_cpu_saves[1362, 0]: 128065
+@tid_cpu_saves[1326, 2]: 132460
+
+=== 每个线程(tid)在哪些核上发生过 restore ===
+@tid_cpu_restores[1342, 0]: 1
+@tid_cpu_restores[1337, 3]: 1
+@tid_cpu_restores[1363, 2]: 2
+@tid_cpu_restores[1367, 2]: 2
+@tid_cpu_restores[1362, 1]: 2
+@tid_cpu_restores[1339, 0]: 34
+@tid_cpu_restores[1381, 2]: 53
+@tid_cpu_restores[1326, 1]: 76
+@tid_cpu_restores[1340, 1]: 89
+@tid_cpu_restores[1334, 0]: 90
+@tid_cpu_restores[1337, 5]: 93
+@tid_cpu_restores[1366, 1]: 107
+@tid_cpu_restores[1385, 0]: 136
+@tid_cpu_restores[1384, 6]: 144
+@tid_cpu_restores[1387, 2]: 145
+@tid_cpu_restores[1383, 4]: 173
+@tid_cpu_restores[1338, 7]: 202
+@tid_cpu_restores[1336, 5]: 283
+@tid_cpu_restores[1333, 6]: 312
+@tid_cpu_restores[1335, 7]: 344
+@tid_cpu_restores[1342, 6]: 361
+@tid_cpu_restores[1335, 6]: 379
+@tid_cpu_restores[1331, 7]: 389
+@tid_cpu_restores[1337, 7]: 453
+@tid_cpu_restores[1334, 6]: 460
+@tid_cpu_restores[1334, 5]: 471
+@tid_cpu_restores[1381, 6]: 471
+@tid_cpu_restores[1340, 6]: 505
+@tid_cpu_restores[1333, 5]: 530
+@tid_cpu_restores[1331, 6]: 557
+@tid_cpu_restores[1336, 6]: 565
+@tid_cpu_restores[1339, 5]: 592
+@tid_cpu_restores[1339, 6]: 665
+@tid_cpu_restores[1382, 5]: 723
+@tid_cpu_restores[1341, 4]: 728
+@tid_cpu_restores[1385, 6]: 772
+@tid_cpu_restores[1334, 7]: 775
+@tid_cpu_restores[1341, 6]: 779
+@tid_cpu_restores[1386, 6]: 862
+@tid_cpu_restores[1383, 6]: 884
+@tid_cpu_restores[1381, 5]: 898
+@tid_cpu_restores[1331, 5]: 915
+@tid_cpu_restores[1387, 5]: 917
+@tid_cpu_restores[1341, 5]: 936
+@tid_cpu_restores[1333, 7]: 961
+@tid_cpu_restores[1340, 5]: 971
+@tid_cpu_restores[1336, 7]: 1005
+@tid_cpu_restores[1385, 5]: 1056
+@tid_cpu_restores[1383, 7]: 1064
+@tid_cpu_restores[1335, 5]: 1073
+@tid_cpu_restores[1384, 5]: 1169
+@tid_cpu_restores[1387, 6]: 1282
+@tid_cpu_restores[1341, 7]: 1318
+@tid_cpu_restores[1388, 6]: 1337
+@tid_cpu_restores[1342, 7]: 1406
+@tid_cpu_restores[1388, 7]: 1435
+@tid_cpu_restores[1382, 7]: 1453
+@tid_cpu_restores[1382, 6]: 1508
+@tid_cpu_restores[1337, 6]: 1518
+@tid_cpu_restores[1386, 5]: 1586
+@tid_cpu_restores[1383, 5]: 1605
+@tid_cpu_restores[1338, 5]: 1687
+@tid_cpu_restores[1340, 7]: 1933
+@tid_cpu_restores[1342, 5]: 1997
+@tid_cpu_restores[1381, 7]: 2026
+@tid_cpu_restores[1388, 5]: 2047
+@tid_cpu_restores[1384, 7]: 2241
+@tid_cpu_restores[1339, 7]: 2265
+@tid_cpu_restores[1386, 7]: 2270
+@tid_cpu_restores[1332, 4]: 2278
+@tid_cpu_restores[1387, 7]: 2311
+@tid_cpu_restores[1385, 7]: 2815
+@tid_cpu_restores[1364, 2]: 135124
+@tid_cpu_restores[1326, 2]: 135168
+@tid_cpu_restores[1365, 0]: 136272
+@tid_cpu_restores[1362, 0]: 136340
+@tid_cpu_restores[1366, 3]: 138111
+@tid_cpu_restores[1363, 3]: 138150
+@tid_cpu_restores[1367, 1]: 139086
+@tid_cpu_restores[1368, 1]: 139165
+
+saves by proc:
+@saves[llama-server, 1335]: 1721
+@saves[llama-server, 1334]: 1724
+@saves[llama-server, 1333]: 1729
+@saves[llama-server, 1331]: 1755
+@saves[llama-server, 1336]: 1791
+@saves[llama-server, 1338]: 1809
+@saves[llama-server, 1337]: 2010
+@saves[llama-server, 1332]: 2181
+@saves[llama-server, 1381]: 3333
+@saves[llama-server, 1340]: 3397
+@saves[llama-server, 1384]: 3436
+@saves[llama-server, 1339]: 3460
+@saves[llama-server, 1382]: 3565
+@saves[llama-server, 1383]: 3616
+@saves[llama-server, 1341]: 3629
+@saves[llama-server, 1342]: 3657
+@saves[llama-server, 1387]: 4551
+@saves[llama-server, 1386]: 4564
+@saves[llama-server, 1385]: 4628
+@saves[llama-server, 1388]: 4674
+@saves[llama-server, 1365]: 113741
+@saves[llama-server, 1368]: 113768
+@saves[llama-server, 1366]: 113791
+@saves[llama-server, 1367]: 114551
+@saves[llama-server, 1364]: 119767
+@saves[llama-server, 1363]: 120715
+@saves[llama-server, 1362]: 128066
+@saves[llama-server, 1326]: 132531
+restores by proc:
+@restores[llama-server, 1334]: 1796
+@restores[llama-server, 1335]: 1796
+@restores[llama-server, 1333]: 1803
+@restores[llama-server, 1336]: 1853
+@restores[llama-server, 1331]: 1861
+@restores[llama-server, 1338]: 1889
+@restores[llama-server, 1337]: 2065
+@restores[llama-server, 1332]: 2278
+@restores[llama-server, 1381]: 3448
+@restores[llama-server, 1340]: 3498
+@restores[llama-server, 1384]: 3554
+@restores[llama-server, 1339]: 3556
+@restores[llama-server, 1382]: 3684
+@restores[llama-server, 1383]: 3726
+@restores[llama-server, 1341]: 3761
+@restores[llama-server, 1342]: 3765
+@restores[llama-server, 1387]: 4655
+@restores[llama-server, 1386]: 4718
+@restores[llama-server, 1385]: 4779
+@restores[llama-server, 1388]: 4819
+@restores[llama-server, 1364]: 135124
+@restores[llama-server, 1326]: 135244
+@restores[llama-server, 1365]: 136272
+@restores[llama-server, 1362]: 136342
+@restores[llama-server, 1363]: 138152
+@restores[llama-server, 1366]: 138218
+@restores[llama-server, 1367]: 139088
+@restores[llama-server, 1368]: 139165
+
+=== 计时 (需要 CONFIG_KPROBES=y) ===
+V-state 切换耗时 (ns):
+@v_total_stats: count 1018160, average 35661, total 36309080756
+
+非 V-state 切换耗时 (ns):
+@non_v_total_stats: count 252064, average 16584, total 4180448359
+
+@cpu_restores[4]: 3179
+@cpu_restores[6]: 13361
+@cpu_restores[5]: 19549
+@cpu_restores[7]: 26666
+@cpu_restores[2]: 270494
+@cpu_restores[0]: 272873
+@cpu_restores[3]: 276262
+@cpu_restores[1]: 278525
+@cpu_restores_by_proc[4, llama-server]: 3179
+@cpu_restores_by_proc[6, llama-server]: 13361
+@cpu_restores_by_proc[5, llama-server]: 19549
+@cpu_restores_by_proc[7, llama-server]: 26666
+@cpu_restores_by_proc[2, llama-server]: 270494
+@cpu_restores_by_proc[0, llama-server]: 272873
+@cpu_restores_by_proc[3, llama-server]: 276262
+@cpu_restores_by_proc[1, llama-server]: 278525
+@cpu_saves[4]: 3032
+@cpu_saves[6]: 12938
+@cpu_saves[5]: 18905
+@cpu_saves[7]: 25804
+@cpu_saves[1]: 228544
+@cpu_saves[3]: 234442
+@cpu_saves[0]: 242066
+@cpu_saves[2]: 252429
+@cpu_saves_by_proc[4, llama-server]: 3032
+@cpu_saves_by_proc[6, llama-server]: 12938
+@cpu_saves_by_proc[5, llama-server]: 18905
+@cpu_saves_by_proc[7, llama-server]: 25804
+@cpu_saves_by_proc[1, llama-server]: 228544
+@cpu_saves_by_proc[3, llama-server]: 234442
+@cpu_saves_by_proc[0, llama-server]: 242066
+@cpu_saves_by_proc[2, llama-server]: 252429
+
+
+
+
+@non_v_total_stats: count 252064, average 16584, total 4180448359
+
+
+@restores[llama-server, 1334]: 1796
+@restores[llama-server, 1335]: 1796
+@restores[llama-server, 1333]: 1803
+@restores[llama-server, 1336]: 1853
+@restores[llama-server, 1331]: 1861
+@restores[llama-server, 1338]: 1889
+@restores[llama-server, 1337]: 2065
+@restores[llama-server, 1332]: 2278
+@restores[llama-server, 1381]: 3448
+@restores[llama-server, 1340]: 3498
+@restores[llama-server, 1384]: 3554
+@restores[llama-server, 1339]: 3556
+@restores[llama-server, 1382]: 3684
+@restores[llama-server, 1383]: 3726
+@restores[llama-server, 1341]: 3761
+@restores[llama-server, 1342]: 3765
+@restores[llama-server, 1387]: 4655
+@restores[llama-server, 1386]: 4718
+@restores[llama-server, 1385]: 4779
+@restores[llama-server, 1388]: 4819
+@restores[llama-server, 1364]: 135124
+@restores[llama-server, 1326]: 135244
+@restores[llama-server, 1365]: 136272
+@restores[llama-server, 1362]: 136342
+@restores[llama-server, 1363]: 138152
+@restores[llama-server, 1366]: 138218
+@restores[llama-server, 1367]: 139088
+@restores[llama-server, 1368]: 139165
+@restores_total: 1160909
+@saves[llama-server, 1335]: 1721
+@saves[llama-server, 1334]: 1724
+@saves[llama-server, 1333]: 1729
+@saves[llama-server, 1331]: 1755
+@saves[llama-server, 1336]: 1791
+@saves[llama-server, 1338]: 1809
+@saves[llama-server, 1337]: 2010
+@saves[llama-server, 1332]: 2181
+@saves[llama-server, 1381]: 3333
+@saves[llama-server, 1340]: 3397
+@saves[llama-server, 1384]: 3436
+@saves[llama-server, 1339]: 3460
+@saves[llama-server, 1382]: 3565
+@saves[llama-server, 1383]: 3616
+@saves[llama-server, 1341]: 3629
+@saves[llama-server, 1342]: 3657
+@saves[llama-server, 1387]: 4551
+@saves[llama-server, 1386]: 4564
+@saves[llama-server, 1385]: 4628
+@saves[llama-server, 1388]: 4674
+@saves[llama-server, 1365]: 113741
+@saves[llama-server, 1368]: 113768
+@saves[llama-server, 1366]: 113791
+@saves[llama-server, 1367]: 114551
+@saves[llama-server, 1364]: 119767
+@saves[llama-server, 1363]: 120715
+@saves[llama-server, 1362]: 128066
+@saves[llama-server, 1326]: 132531
+@saves_total: 1018160
+
+
+
+@tid_cpu_restores[1342, 0]: 1
+@tid_cpu_restores[1337, 3]: 1
+@tid_cpu_restores[1363, 2]: 2
+@tid_cpu_restores[1367, 2]: 2
+@tid_cpu_restores[1362, 1]: 2
+@tid_cpu_restores[1339, 0]: 34
+@tid_cpu_restores[1381, 2]: 53
+@tid_cpu_restores[1326, 1]: 76
+@tid_cpu_restores[1340, 1]: 89
+@tid_cpu_restores[1334, 0]: 90
+@tid_cpu_restores[1337, 5]: 93
+@tid_cpu_restores[1366, 1]: 107
+@tid_cpu_restores[1385, 0]: 136
+@tid_cpu_restores[1384, 6]: 144
+@tid_cpu_restores[1387, 2]: 145
+@tid_cpu_restores[1383, 4]: 173
+@tid_cpu_restores[1338, 7]: 202
+@tid_cpu_restores[1336, 5]: 283
+@tid_cpu_restores[1333, 6]: 312
+@tid_cpu_restores[1335, 7]: 344
+@tid_cpu_restores[1342, 6]: 361
+@tid_cpu_restores[1335, 6]: 379
+@tid_cpu_restores[1331, 7]: 389
+@tid_cpu_restores[1337, 7]: 453
+@tid_cpu_restores[1334, 6]: 460
+@tid_cpu_restores[1334, 5]: 471
+@tid_cpu_restores[1381, 6]: 471
+@tid_cpu_restores[1340, 6]: 505
+@tid_cpu_restores[1333, 5]: 530
+@tid_cpu_restores[1331, 6]: 557
+@tid_cpu_restores[1336, 6]: 565
+@tid_cpu_restores[1339, 5]: 592
+@tid_cpu_restores[1339, 6]: 665
+@tid_cpu_restores[1382, 5]: 723
+@tid_cpu_restores[1341, 4]: 728
+@tid_cpu_restores[1385, 6]: 772
+@tid_cpu_restores[1334, 7]: 775
+@tid_cpu_restores[1341, 6]: 779
+@tid_cpu_restores[1386, 6]: 862
+@tid_cpu_restores[1383, 6]: 884
+@tid_cpu_restores[1381, 5]: 898
+@tid_cpu_restores[1331, 5]: 915
+@tid_cpu_restores[1387, 5]: 917
+@tid_cpu_restores[1341, 5]: 936
+@tid_cpu_restores[1333, 7]: 961
+@tid_cpu_restores[1340, 5]: 971
+@tid_cpu_restores[1336, 7]: 1005
+@tid_cpu_restores[1385, 5]: 1056
+@tid_cpu_restores[1383, 7]: 1064
+@tid_cpu_restores[1335, 5]: 1073
+@tid_cpu_restores[1384, 5]: 1169
+@tid_cpu_restores[1387, 6]: 1282
+@tid_cpu_restores[1341, 7]: 1318
+@tid_cpu_restores[1388, 6]: 1337
+@tid_cpu_restores[1342, 7]: 1406
+@tid_cpu_restores[1388, 7]: 1435
+@tid_cpu_restores[1382, 7]: 1453
+@tid_cpu_restores[1382, 6]: 1508
+@tid_cpu_restores[1337, 6]: 1518
+@tid_cpu_restores[1386, 5]: 1586
+@tid_cpu_restores[1383, 5]: 1605
+@tid_cpu_restores[1338, 5]: 1687
+@tid_cpu_restores[1340, 7]: 1933
+@tid_cpu_restores[1342, 5]: 1997
+@tid_cpu_restores[1381, 7]: 2026
+@tid_cpu_restores[1388, 5]: 2047
+@tid_cpu_restores[1384, 7]: 2241
+@tid_cpu_restores[1339, 7]: 2265
+@tid_cpu_restores[1386, 7]: 2270
+@tid_cpu_restores[1332, 4]: 2278
+@tid_cpu_restores[1387, 7]: 2311
+@tid_cpu_restores[1385, 7]: 2815
+@tid_cpu_restores[1364, 2]: 135124
+@tid_cpu_restores[1326, 2]: 135168
+@tid_cpu_restores[1365, 0]: 136272
+@tid_cpu_restores[1362, 0]: 136340
+@tid_cpu_restores[1366, 3]: 138111
+@tid_cpu_restores[1363, 3]: 138150
+@tid_cpu_restores[1367, 1]: 139086
+@tid_cpu_restores[1368, 1]: 139165
+@tid_cpu_saves[1367, 2]: 1
+@tid_cpu_saves[1362, 1]: 1
+@tid_cpu_saves[1333, 1]: 1
+@tid_cpu_saves[1363, 2]: 1
+@tid_cpu_saves[1339, 0]: 34
+@tid_cpu_saves[1381, 2]: 54
+@tid_cpu_saves[1366, 1]: 63
+@tid_cpu_saves[1326, 1]: 71
+@tid_cpu_saves[1337, 5]: 88
+@tid_cpu_saves[1334, 0]: 89
+@tid_cpu_saves[1340, 1]: 90
+@tid_cpu_saves[1384, 6]: 136
+@tid_cpu_saves[1385, 0]: 137
+@tid_cpu_saves[1387, 2]: 146
+@tid_cpu_saves[1383, 4]: 163
+@tid_cpu_saves[1338, 7]: 191
+@tid_cpu_saves[1336, 5]: 270
+@tid_cpu_saves[1333, 6]: 298
+@tid_cpu_saves[1335, 7]: 331
+@tid_cpu_saves[1342, 6]: 340
+@tid_cpu_saves[1335, 6]: 358
+@tid_cpu_saves[1331, 7]: 372
+@tid_cpu_saves[1337, 7]: 435
+@tid_cpu_saves[1334, 6]: 436
+@tid_cpu_saves[1381, 6]: 443
+@tid_cpu_saves[1334, 5]: 456
+@tid_cpu_saves[1340, 6]: 497
+@tid_cpu_saves[1333, 5]: 510
+@tid_cpu_saves[1331, 6]: 519
+@tid_cpu_saves[1336, 6]: 549
+@tid_cpu_saves[1339, 5]: 567
+@tid_cpu_saves[1339, 6]: 653
+@tid_cpu_saves[1341, 4]: 688
+@tid_cpu_saves[1382, 5]: 697
+@tid_cpu_saves[1334, 7]: 743
+@tid_cpu_saves[1385, 6]: 753
+@tid_cpu_saves[1341, 6]: 763
+@tid_cpu_saves[1386, 6]: 834
+@tid_cpu_saves[1383, 6]: 857
+@tid_cpu_saves[1331, 5]: 864
+@tid_cpu_saves[1381, 5]: 872
+@tid_cpu_saves[1387, 5]: 885
+@tid_cpu_saves[1341, 5]: 902
+@tid_cpu_saves[1333, 7]: 920
+@tid_cpu_saves[1340, 5]: 944
+@tid_cpu_saves[1336, 7]: 972
+@tid_cpu_saves[1385, 5]: 1020
+@tid_cpu_saves[1335, 5]: 1032
+@tid_cpu_saves[1383, 7]: 1033
+@tid_cpu_saves[1384, 5]: 1131
+@tid_cpu_saves[1387, 6]: 1263
+@tid_cpu_saves[1341, 7]: 1276
+@tid_cpu_saves[1388, 6]: 1292
+@tid_cpu_saves[1342, 7]: 1354
+@tid_cpu_saves[1388, 7]: 1402
+@tid_cpu_saves[1382, 7]: 1408
+@tid_cpu_saves[1382, 6]: 1460
+@tid_cpu_saves[1337, 6]: 1487
+@tid_cpu_saves[1386, 5]: 1543
+@tid_cpu_saves[1383, 5]: 1563
+@tid_cpu_saves[1338, 5]: 1618
+@tid_cpu_saves[1340, 7]: 1866
+@tid_cpu_saves[1342, 5]: 1963
+@tid_cpu_saves[1381, 7]: 1964
+@tid_cpu_saves[1388, 5]: 1980
+@tid_cpu_saves[1384, 7]: 2169
+@tid_cpu_saves[1332, 4]: 2181
+@tid_cpu_saves[1386, 7]: 2187
+@tid_cpu_saves[1339, 7]: 2206
+@tid_cpu_saves[1387, 7]: 2257
+@tid_cpu_saves[1385, 7]: 2718
+@tid_cpu_saves[1366, 3]: 113728
+@tid_cpu_saves[1365, 0]: 113741
+@tid_cpu_saves[1368, 1]: 113768
+@tid_cpu_saves[1367, 1]: 114550
+@tid_cpu_saves[1364, 2]: 119767
+@tid_cpu_saves[1363, 3]: 120714
+@tid_cpu_saves[1362, 0]: 128065
+@tid_cpu_saves[1326, 2]: 132460
+
+
+
+@v_total_stats: count 1018160, average 35661, total 36309080756
+
