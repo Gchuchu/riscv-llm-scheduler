@@ -1,0 +1,4 @@
+﻿platform,url,mode,trial,groups,requests,successful,failed,prompt_token_setting,output_tokens,wall_time_s,aggregate_throughput_tps,avg_tps,avg_tps_xfirst,p95_tps_xfirst,avg_ttft_ms,p95_ttft_ms,avg_prompt_ms,p95_prompt_ms,avg_e2e_ms,p95_e2e_ms
+riscv,http://192.168.124.101:8080/completion,all-at-once,1,20,20,20,0,64,20,137.7776,2.9032,1.0201,0.9691,1.0833,5727.96,26313.47,5727.96,26313.47,96661.83,137741.15
+riscv,http://192.168.124.101:8080/completion,all-at-once,2,20,20,20,0,64,20,113.1557,3.535,0.9701,0.9216,1.1434,1181.17,1604.31,1181.17,1604.31,72184.62,113137.92
+riscv,http://192.168.124.101:8080/completion,all-at-once,3,20,20,20,0,64,20,111.812,3.5774,1.0209,0.9698,1.1662,1730.1,4944.37,1730.1,4944.37,71134.79,111796.16
