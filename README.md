@@ -17,18 +17,35 @@ riscv-llm-scheduler/
 │   ├── scheduler/             # 调度器调研（CFS、其他策略、性能损失分析）
 │   ├── tracker/               # 跟踪工具与性能指标（perf、kprobe、affinity）
 │   ├── setup/                 # 环境搭建指南（QEMU、板卡选型、llama.cpp）
-│   └── benchmark/             # 性能评测方法与指标定义
+│   ├── benchmark/             # 性能评测方法与指标定义
+│   ├── x86-vstate/            # x86 V-state 调研
+│   ├── llama-server-cr-fix/   # llama-server -Cr/-Crb 修复方案
+│   └── tracker/量化相关脚本/   # 量化相关脚本
 ├── src/
 │   ├── tracker/               # 量化分析工具（bpftrace 脚本，已实现）
-│   ├── scheduler/             # 调度优化实现（方案规划）
+│   ├── scheduler/             # 调度优化实现（vec_affine_sched，已实现）
 │   └── benchmark/             # 性能评测脚本（基准测试 + 自动化测试运行器）
-├── scripts/                   # 构建与运行脚本
 ├── results/                   # 测试结果与数据
 ├── hardware/                  # 硬件配置与说明
 └── .gitignore
 ```
 
 ## 源码模块说明
+
+### 模型下载
+
+本项目使用 Llama-3.2 Instruct Q4_K_M GGUF 量化模型：
+
+| 模型 | 大小 | 下载链接 |
+|------|:---:|------|
+| Llama-3.2-1B-Instruct Q4_K_M | ~0.8 GB | [hugging-quants/Llama-3.2-1B-Instruct-Q4_K_M-GGUF](https://huggingface.co/hugging-quants/Llama-3.2-1B-Instruct-Q4_K_M-GGUF) |
+| Llama-3.2-3B-Instruct Q4_K_M | ~2.1 GB | [hugging-quants/Llama-3.2-3B-Instruct-Q4_K_M-GGUF](https://huggingface.co/hugging-quants/Llama-3.2-3B-Instruct-Q4_K_M-GGUF) |
+
+```bash
+# 下载示例
+huggingface-cli download hugging-quants/Llama-3.2-3B-Instruct-Q4_K_M-GGUF \
+  llama-3.2-3b-instruct-q4_k_m.gguf --local-dir /path/to/models
+```
 
 ### src/tracker/ — 量化分析工具（已实现）
 
@@ -65,6 +82,7 @@ riscv-llm-scheduler/
 | [benchmark_llama.py](src/benchmark/benchmark_llama.py) | **基准测试主脚本**，支持 `qemu`、`local`、`remote` 普通模式，以及自动化远程实验矩阵（1B/3B/8B p4、3B p2/p4/p8/p16）。通过 bpftrace 采集轮次级 V-state，输出 Client TTFT、Server TTFT、Queue+Net、E2E、TPS 与汇总/逐请求 CSV。详见[性能评测指南](docs/benchmark/性能评测指南.md)。 |
 | [bench_runner.py](src/benchmark/bench_runner.py) | **自动化测试运行器（单配置版）**，通过 SSH 连接板卡，自动启停 `llama-server` + `bpftrace`，发送 50 个并发 HTTP 推理请求，采集 TPS/TTFT/P95 和 V-state 计数，结果保存为 CSV。支持多种绑核/调度方法轮换。 |
 | [bench_runner_all.py](src/benchmark/bench_runner_all.py) | **自动化测试运行器（多配置版）**，在 `bench_runner.py` 基础上预定义了 10 组测试配置（覆盖 Llama-3.2-1B/3B Q4_K_M 模型、不同线程数、上下文长度、并行度、prompt 长度、输出 token 数），自动遍历并输出结果。 |
+| [quantification.py](src/benchmark/quantification.py) | **量化统计脚本**，用于 V 状态量化分析。 |
 
 #### 支持的绑核/调度方法
 

@@ -11,6 +11,7 @@
 | [benchmark_llama.py](benchmark_llama.py) | **基准测试主脚本**，支持 `qemu`、`local`、`remote` 普通模式和自动化远程实验矩阵。矩阵可运行 1B/3B/8B p4 与 3B p2/p4/p8/p16，自动管理 server 生命周期，输出轮次汇总和逐请求 CSV。 |
 | [bench_runner.py](bench_runner.py) | **自动化测试运行器（单配置版）**，通过 SSH 连接板卡，自动启停 `llama-server` + `bpftrace`，发送 50 个并发 HTTP 推理请求，采集 TPS/TTFT/P95 和 V-state 计数，结果保存为 CSV。支持多种绑核/调度方法轮换。 |
 | [bench_runner_all.py](bench_runner_all.py) | **自动化测试运行器（多配置版）**，在 `bench_runner.py` 基础上预定义了 10 组测试配置（覆盖 1B/3B 模型、不同线程数、上下文长度、并行度），自动遍历并输出结果。 |
+| [quantification.py](quantification.py) | **量化统计脚本**，用于 V 状态量化分析。 |
 
 ## 支持的绑核/调度方法
 
@@ -18,7 +19,7 @@
 |------|------|:--------:|
 | `taskset` | `taskset -c X-Y` 绑定推理线程到指定核心 | 单向 |
 | `cpuset` | cgroup 设置 `cpuset.cpus` + PID 移入 | 单向 |
-| `cpu-range` | `taskset` + `--cpu-strict 1`（存疑，未测试） | 单向 |
+| `cpu-range` | `taskset` + `--cpu-strict 1` | 单向 |
 | `partition-root` | cgroup + `echo root > cpuset.cpus.partition` | **双向** |
 | `systemd-scope` | `AllowedCPUs` + `systemd-run --scope` | 单向（等效） |
 | `taskset-chrt-b` | `taskset` + `chrt -b 0`（SCHED_BATCH） | 单向 + BATCH |
@@ -39,7 +40,7 @@
 
 ## 测试场景
 
-- 模型：Llama-3.2-1B / 3B Instruct Q4_K_M
+- 模型：[Llama-3.2-1B](https://huggingface.co/hugging-quants/Llama-3.2-1B-Instruct-Q4_K_M-GGUF) / [Llama-3.2-3B](https://huggingface.co/hugging-quants/Llama-3.2-3B-Instruct-Q4_K_M-GGUF) Instruct Q4_K_M
 - 并发数：2 / 4 / 8
 - Prompt 长度：64 / 128 / 256 token
 - 输出 token 数：32 / 64 / 128 / 256
@@ -127,4 +128,4 @@ bench_runner.py
 
 ## 当前状态
 
-✅ 已完成（benchmark_llama.py + bench_runner.py + bench_runner_all.py）
+✅ 已完成（benchmark_llama.py + bench_runner.py + bench_runner_all.py + quantification.py）
