@@ -1,0 +1,85 @@
+ python python_send.py --platform riscv --ip 192.168.124.101 --port 8080 --mode all-at-once --output-tokens 20 --trials 3 --output-dir resultORG_stress
+
+Trial 1/3
+连续发送: 总请求数=20，线程池=20
+  Req-02 Group=1 PromptN=64 OutputN=20 TTFT=11814.5ms TPS=0.28 Tokens=20
+  Req-05 Group=1 PromptN=64 OutputN=20 TTFT=35879.4ms TPS=0.53 Tokens=20
+  Req-04 Group=1 PromptN=64 OutputN=20 TTFT=35885.2ms TPS=0.53 Tokens=20
+  Req-01 Group=1 PromptN=64 OutputN=20 TTFT=35892.0ms TPS=0.53 Tokens=20
+  Req-03 Group=1 PromptN=64 OutputN=20 TTFT=1871.7ms TPS=0.50 Tokens=20
+  Req-08 Group=1 PromptN=64 OutputN=20 TTFT=2370.2ms TPS=0.50 Tokens=20
+  Req-06 Group=1 PromptN=64 OutputN=20 TTFT=2376.5ms TPS=0.50 Tokens=20
+  Req-07 Group=1 PromptN=64 OutputN=20 TTFT=2378.0ms TPS=0.50 Tokens=20
+  Req-09 Group=1 PromptN=64 OutputN=20 TTFT=1796.6ms TPS=0.50 Tokens=20
+  Req-12 Group=1 PromptN=64 OutputN=20 TTFT=3691.8ms TPS=0.52 Tokens=20
+  Req-11 Group=1 PromptN=64 OutputN=20 TTFT=3698.6ms TPS=0.52 Tokens=20
+  Req-10 Group=1 PromptN=64 OutputN=20 TTFT=3693.7ms TPS=0.52 Tokens=20
+  Req-13 Group=1 PromptN=64 OutputN=20 TTFT=2185.4ms TPS=0.46 Tokens=20
+  Req-14 Group=1 PromptN=64 OutputN=20 TTFT=4096.2ms TPS=0.49 Tokens=20
+  Req-16 Group=1 PromptN=64 OutputN=20 TTFT=4089.6ms TPS=0.49 Tokens=20
+  Req-15 Group=1 PromptN=64 OutputN=20 TTFT=4091.7ms TPS=0.49 Tokens=20
+  Req-17 Group=1 PromptN=64 OutputN=20 TTFT=1707.9ms TPS=0.50 Tokens=20
+  Req-20 Group=1 PromptN=64 OutputN=20 TTFT=3055.4ms TPS=0.51 Tokens=20
+  Req-18 Group=1 PromptN=64 OutputN=20 TTFT=3062.7ms TPS=0.51 Tokens=20
+  Req-19 Group=1 PromptN=64 OutputN=20 TTFT=3064.4ms TPS=0.51 Tokens=20
+
+  --- 统计 (n=20) ---
+  TTFT: avg=8335.1ms  std=12061.4ms  p95=35885.2ms
+  TPS:  avg=0.49  std=0.05
+
+Trial 2/3
+连续发送: 总请求数=20，线程池=20
+  Req-01 Group=1 PromptN=64 OutputN=20 TTFT=1891.5ms TPS=0.52 Tokens=20
+  Req-02 Group=1 PromptN=64 OutputN=20 TTFT=1677.0ms TPS=0.50 Tokens=20
+  Req-03 Group=1 PromptN=64 OutputN=20 TTFT=1678.6ms TPS=0.50 Tokens=20
+  Req-05 Group=1 PromptN=64 OutputN=20 TTFT=1680.5ms TPS=0.50 Tokens=20
+  Req-04 Group=1 PromptN=64 OutputN=20 TTFT=3137.2ms TPS=0.51 Tokens=20
+  Req-08 Group=1 PromptN=64 OutputN=20 TTFT=1543.2ms TPS=0.49 Tokens=20
+  Req-06 Group=1 PromptN=64 OutputN=20 TTFT=1548.1ms TPS=0.49 Tokens=20
+  Req-07 Group=1 PromptN=64 OutputN=20 TTFT=1555.7ms TPS=0.49 Tokens=20
+  Req-09 Group=1 PromptN=64 OutputN=20 TTFT=3439.2ms TPS=0.50 Tokens=20
+  Req-11 Group=1 PromptN=64 OutputN=20 TTFT=2317.8ms TPS=0.49 Tokens=20
+  Req-12 Group=1 PromptN=64 OutputN=20 TTFT=2322.7ms TPS=0.49 Tokens=20
+  Req-10 Group=1 PromptN=64 OutputN=20 TTFT=2328.7ms TPS=0.49 Tokens=20
+  Req-14 Group=1 PromptN=64 OutputN=20 TTFT=2534.0ms TPS=0.50 Tokens=20
+  Req-18 Group=1 PromptN=64 OutputN=20 TTFT=2302.8ms TPS=0.49 Tokens=20
+  Req-15 Group=1 PromptN=64 OutputN=20 TTFT=2304.5ms TPS=0.49 Tokens=20
+  Req-13 Group=1 PromptN=64 OutputN=20 TTFT=2306.3ms TPS=0.49 Tokens=20
+  Req-19 Group=1 PromptN=64 OutputN=20 TTFT=3486.0ms TPS=0.50 Tokens=20
+  Req-20 Group=1 PromptN=64 OutputN=20 TTFT=2385.0ms TPS=0.50 Tokens=20
+  Req-17 Group=1 PromptN=64 OutputN=20 TTFT=2386.8ms TPS=0.50 Tokens=20
+  Req-16 Group=1 PromptN=64 OutputN=20 TTFT=2389.0ms TPS=0.50 Tokens=20
+
+  --- 统计 (n=20) ---
+  TTFT: avg=2260.7ms  std=583.6ms  p95=3439.2ms
+  TPS:  avg=0.50  std=0.01
+
+Trial 3/3
+连续发送: 总请求数=20，线程池=20
+  Req-01 Group=1 PromptN=64 OutputN=20 TTFT=1197.6ms TPS=0.52 Tokens=20
+  Req-02 Group=1 PromptN=64 OutputN=20 TTFT=2342.7ms TPS=0.51 Tokens=20
+  Req-04 Group=1 PromptN=64 OutputN=20 TTFT=2344.4ms TPS=0.51 Tokens=20
+  Req-03 Group=1 PromptN=64 OutputN=20 TTFT=2350.1ms TPS=0.51 Tokens=20
+  Req-05 Group=1 PromptN=64 OutputN=20 TTFT=3029.8ms TPS=0.53 Tokens=20
+  Req-08 Group=1 PromptN=64 OutputN=20 TTFT=1802.3ms TPS=0.51 Tokens=20
+  Req-10 Group=1 PromptN=64 OutputN=20 TTFT=1800.4ms TPS=0.51 Tokens=20
+  Req-07 Group=1 PromptN=64 OutputN=20 TTFT=1808.1ms TPS=0.51 Tokens=20
+  Req-09 Group=1 PromptN=64 OutputN=20 TTFT=3677.8ms TPS=0.49 Tokens=20
+  Req-13 Group=1 PromptN=64 OutputN=20 TTFT=2196.7ms TPS=0.47 Tokens=20
+  Req-11 Group=1 PromptN=64 OutputN=20 TTFT=2198.4ms TPS=0.47 Tokens=20
+  Req-06 Group=1 PromptN=64 OutputN=20 TTFT=2200.2ms TPS=0.47 Tokens=20
+  Req-12 Group=1 PromptN=64 OutputN=20 TTFT=3939.8ms TPS=0.49 Tokens=20
+  Req-15 Group=1 PromptN=64 OutputN=20 TTFT=2094.7ms TPS=0.47 Tokens=20
+  Req-16 Group=1 PromptN=64 OutputN=20 TTFT=2101.6ms TPS=0.47 Tokens=20
+  Req-14 Group=1 PromptN=64 OutputN=20 TTFT=2096.5ms TPS=0.47 Tokens=20
+  Req-18 Group=1 PromptN=64 OutputN=20 TTFT=3876.0ms TPS=0.51 Tokens=20
+  Req-20 Group=1 PromptN=64 OutputN=20 TTFT=1624.8ms TPS=0.50 Tokens=20
+  Req-17 Group=1 PromptN=64 OutputN=20 TTFT=1626.5ms TPS=0.50 Tokens=20
+  Req-19 Group=1 PromptN=64 OutputN=20 TTFT=1632.2ms TPS=0.50 Tokens=20
+
+  --- 统计 (n=20) ---
+  TTFT: avg=2297.0ms  std=763.4ms  p95=3876.0ms
+  TPS:  avg=0.50  std=0.02
+
+逐请求记录: E:\gh\workspace\wslhome\workspace\claudePro\oscomp\tmpsched\python_send\resultORG_stress\quant_riscv_all-at-once_20260729_233955_requests.csv
+汇总记录:   E:\gh\workspace\wslhome\workspace\claudePro\oscomp\tmpsched\python_send\resultORG_stress\quant_riscv_all-at-once_20260729_233955_summary.csv
