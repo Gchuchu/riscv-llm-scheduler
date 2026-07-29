@@ -1,0 +1,4 @@
+wall_s,agg_tps,avg_ttft_ms,p95_ttft_ms,avg_tps,total_tokens,v_saves,v_restores,target_saves,nontarget_saves,cpu0_saves,cpu1_saves,cpu2_saves,cpu3_saves,cpu4_saves,cpu5_saves,cpu6_saves,cpu7_saves,trial,method
+1134.0,2.82,27047.0,173067.0,0.47,3200,16721,17049,11562,5159,2075,991,900,1193,2081,1068,1035,7378,1,partition-root
+1131.0,2.83,27136.0,173749.0,0.47,3200,13907,14119,10454,3453,790,1643,79,941,3964,1857,745,3888,2,partition-root
+1136.0,2.82,27029.0,172885.0,0.47,3200,12311,12430,6572,5739,191,2231,1746,1571,4567,1472,456,77,3,partition-root
