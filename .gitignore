@@ -24,7 +24,7 @@ __pycache__/
 Thumbs.db
 
 # Results
-results/raw/
+tests/raw/
 
 # Benchmark output
 benchmark_*.csv

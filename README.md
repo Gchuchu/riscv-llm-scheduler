@@ -36,6 +36,7 @@ LLM 推理是典型的高强度持续向量计算场景。在 RISC-V 架构中�
 
 ```
 riscv-llm-scheduler/
+├── README.md
 ├── src/                        # 🎯 核心源代码
 │   ├── tracker/                # 📊 量化分析工具（bpftrace 脚本）
 │   │   ├── vstate_trace.bt           # 基础版：全局 V 状态统计
@@ -53,7 +54,8 @@ riscv-llm-scheduler/
 │       ├── quantification.py          # V 状态量化统计脚本
 │       ├── README.md
 │       └── README_bench_runner.md
-├── docs/                       # 📖 技术调研与文档
+├── docs/                       # 📖 提交文档与技术调研
+│   ├── 项目说明书.pdf
 │   ├── competition/            # 赛题说明与任务拆解
 │   ├── scheduler/              # 调度器调研（CFS、其他策略、性能分析）
 │   ├── tracker/                # 跟踪工具与性能指标调研
@@ -61,20 +63,22 @@ riscv-llm-scheduler/
 │   ├── benchmark/              # 性能评测方法与指标定义
 │   ├── x86-vstate/             # x86 "V"状态 横向对比调研
 │   └── llama-server-cr-fix/    # llama-server -Cr/-Crb 修复方案
-├── results/                    # 📈 测试结果与数据
+├── tests/                      # 📈 测试及验证材料
 │   ├── rvv/                    # 真实 RVV 板卡 benchmark 数据
 │   ├── quantification/         # V 状态量化实验结果
 │   ├── sched_ext/              # 自定义调度器实验结果
 │   ├── test/                   # 绑核/调度策略对比测试（group1~10）
 │   └── README.md
+├── demo/                       # 🎥 实机运行录像
+│   ├── 绑核+策略方法/
+│   └── 自定义调度/
+├── presentation/               # 🎤 决赛演示材料
+│   ├── 决赛现场演示PPT.pptx
+│   └── 决赛演示视频.mp4
 ├── hardware/                   # 🔌 硬件配置与使用说明
 │   └── README.md
-├── 01-芯火燎原-原创承诺书.docx    # ✍️ 原创承诺书
-├── 02-芯火燎原-作品介绍PPT.pptx   # 📊 作品介绍 PPT
-├── 03-芯火燎原-项目说明书.pdf      # 📖 项目说明书
-├── 04-芯火燎原-演示视频.mp4      # 🎥 演示视频
-├── .github/                    # 🔄 CI 工作流与 PR 模板
-└── 实际运行演示视频合集/           # 🎥 优化策略，自定义调度演示视频
+├── 作品原创承诺书.pdf
+└── .github/                    # 🔄 CI 工作流与 PR 模板
 ```
 
 ---
