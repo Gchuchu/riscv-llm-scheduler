@@ -56,6 +56,7 @@ riscv-llm-scheduler/
 │       └── README_bench_runner.md
 ├── docs/                       # 📖 提交文档与技术调研
 │   ├── 项目说明书.pdf
+│   ├── 项目创新说明.md
 │   ├── competition/            # 赛题说明与任务拆解
 │   ├── scheduler/              # 调度器调研（CFS、其他策略、性能分析）
 │   ├── tracker/                # 跟踪工具与性能指标调研
