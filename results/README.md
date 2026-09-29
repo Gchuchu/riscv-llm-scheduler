@@ -29,3 +29,7 @@
 ### sched_ext 调度策略对比
 
 见 [sched_ext/README.md](sched_ext/README.md)，对比 CFS vs sched_ext 在不同时间片配置和负载条件下的推理性能。
+
+### 最终实验数据集
+
+`final_test/` 汇总两组对照实验：5 个无外部负载对照场景（`noopt_c0_3`、`noopt_c4_7`、`opt_nobind`、`sched_opt`、`sched_noopt`）+ `stress_test/`（stress-ng 分级负载 20–100%，内含 `stressng_opt`、`stressng_sched_opt`），共 135 轮 trial。完整说明见 [final_test/README.md](final_test/README.md)。

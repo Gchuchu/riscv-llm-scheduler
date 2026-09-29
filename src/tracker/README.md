@@ -12,6 +12,7 @@
 |------|------|
 | [vstate_trace.bt](vstate_trace.bt) | **基础版** — 全局统计 V 状态 save/restore 总次数，按进程名和 PID 分组。通过缓存 `task_struct` 指针 + `start_time` 校验解决 PID 复用问题，并区分 save 侧（当前被抢占进程）和 restore 侧（被调度回来的进程）。每 10s 输出一次中间结果，END 时输出完整 SUMMARY。 |
 | [vstate_trace_cpu.bt](vstate_trace_cpu.bt) | **per-CPU 增强版** — 在基础版之上增加了 per-CPU 统计维度：`@cpu_saves`、`@cpu_restores`、`@cpu_saves_by_proc`、`@tid_cpu_saves`、`@tid_cpu_restores`，可精确到每个 CPU 核上哪个线程发生了 V 状态切换，用于识别绑核后 V 状态泄漏（非目标核上仍出现 V 状态 save 即为泄漏）。 |
+| [vstate_trace_llama_server.bt](vstate_trace_llama_server.bt) | **llama-server 专用版（在线压测用）** — 只统计涉及 `llama-server` 的切换，并用 `kprobe:finish_task_switch` 采集切换耗时，区分 V 状态/非 V 状态两类，每 10s 输出区间 stats + histogram，END 输出全量 SUMMARY。用于量化抢占对推理进程的实际开销。 |
 
 ### 核心原理
 
