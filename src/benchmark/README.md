@@ -11,6 +11,7 @@
 | [benchmark_llama.py](benchmark_llama.py) | **基准测试主脚本**，支持 `qemu`、`local`、`remote` 普通模式和自动化远程实验矩阵。矩阵可运行 1B/3B/8B p4 与 3B p2/p4/p8/p16，自动管理 server 生命周期，输出轮次汇总和逐请求 CSV。 |
 | [bench_runner.py](bench_runner.py) | **自动化测试运行器（单配置版）**，通过 SSH 连接板卡，自动启停 `llama-server` + `bpftrace`，发送 50 个并发 HTTP 推理请求，采集 TPS/TTFT/P95 和 V-state 计数，结果保存为 CSV。支持多种绑核/调度方法轮换。 |
 | [bench_runner_all.py](bench_runner_all.py) | **自动化测试运行器（多配置版）**，在 `bench_runner.py` 基础上预定义了 10 组测试配置（覆盖 1B/3B 模型、不同线程数、上下文长度、并行度），自动遍历并输出结果。 |
+| [bench_runner_final.py](bench_runner_final.py) | **自动化测试运行器（最终版）**，由 `SCENARIOS` 字典 + `RUN` 列表驱动的场景配置版：支持 sched_ext 场景级常驻、`cpu_stress` 压测、`stress-ng` 分级负载（20–100% 占空比，负载先于 server 启动）、`-Cr` 绑核，自动遍历 2/4/8 并发 × 3 trial；每轮结束立即落盘 CSV，中断最多丢当前一轮。 |
 | [quantification.py](quantification.py) | **量化统计脚本**，用于 V 状态量化分析。 |
 
 ## 支持的绑核/调度方法
@@ -87,6 +88,18 @@ python bench_runner.py
 python bench_runner_all.py
 ```
 
+### 方式四：bench_runner_final.py（最终版）
+
+```bash
+# 安装依赖（宿主机）
+pip install paramiko
+
+# 场景定义在 SCENARIOS 字典、执行顺序由 RUN 列表决定，改完直接运行
+python bench_runner_final.py
+```
+
+场景字段：`build`（优化版/普通版）、`cpus`+`method`（`-Cr` 绑核）、`sched`（sched_ext 场景级常驻，trial 间不重启）、`stress`（`cpu_stress` 4 线程压 0-3）、`stress_ng`/`loads`（单档/多档 stress-ng 负载，多档在场景内逐档循环）、`par`（并发）、`trials`（重复次数）。切换实验只需改 `RUN` 列表，不用改代码或删配置。
+
 ## 数据流
 
 ```
@@ -128,4 +141,4 @@ bench_runner.py
 
 ## 当前状态
 
-✅ 已完成（benchmark_llama.py + bench_runner.py + bench_runner_all.py + quantification.py）
+✅ 已完成（benchmark_llama.py + bench_runner.py + bench_runner_all.py + bench_runner_final.py + quantification.py）
