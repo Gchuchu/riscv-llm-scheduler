@@ -13,6 +13,8 @@
 | [bench_runner_all.py](bench_runner_all.py) | **自动化测试运行器（多配置版）**，在 `bench_runner.py` 基础上预定义了 10 组测试配置（覆盖 1B/3B 模型、不同线程数、上下文长度、并行度），自动遍历并输出结果。 |
 | [bench_runner_final.py](bench_runner_final.py) | **自动化测试运行器（最终版）**，由 `SCENARIOS` 字典 + `RUN` 列表驱动的场景配置版：支持 sched_ext 场景级常驻、`cpu_stress` 压测、`stress-ng` 分级负载（20–100% 占空比，负载先于 server 启动）、`-Cr` 绑核，自动遍历 2/4/8 并发 × 3 trial；每轮结束立即落盘 CSV，中断最多丢当前一轮。 |
 | [quantification.py](quantification.py) | **量化统计脚本**，用于 V 状态量化分析。 |
+| [cb_ab.py](cb_ab.py) | **Continuous Batching 开关对照实验**，支持单波与闭环多请求两种负载，复用基准脚本的 TTFT/TPS 指标口径。 |
+| [plot_cb_ab.py](plot_cb_ab.py) | 从实验 JSON 结果生成 TPS 与 P95 TTFT 对照图（PNG/SVG）。 |
 
 ## 支持的绑核/调度方法
 
@@ -69,6 +71,17 @@ python benchmark_llama.py --mode remote --host <BOARD_IP> --ssh-user root \
 ```
 
 自动化矩阵每轮通过客户端启动屏障并发发送 32 条请求，不做批内 warmup 排除；V-state、吞吐和延迟统计覆盖同一轮完整请求。完整参数、指标边界和结果字段见[性能评测指南](../../docs/benchmark/性能评测指南.md)。
+
+### Continuous Batching 开关对照
+
+```powershell
+# 配置 BOARD_HOST、BOARD_PASS、LLAMA_SERVER_BIN、LLAMA_MODEL_PATH 后
+python cb_ab.py --dry-run
+python cb_ab.py --concurrency 8 --requests 24 --trials 3 --warmup 1 --tag cb8
+python plot_cb_ab.py
+```
+
+实验条件、指标和原始结果见 [CB 开关对照实验](../../docs/benchmark/CB开关对照实验.md)。
 
 ### 方式二：bench_runner.py（单配置自动化）
 
