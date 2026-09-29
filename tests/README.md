@@ -1,5 +1,9 @@
 # 测试结果
 
+## Continuous Batching 开关对照
+
+[实验说明与结论](../docs/benchmark/CB开关对照实验.md)对应 issue #30。正式原始数据和可重绘图位于 benchmark/cb-ab/；只纳入单波和三波两组正式实验，校准 pilot 不作为结论数据提交。
+
 ## 数据集
 
 本目录同时保存 WSL 基线和真实 RVV 板卡的原始 benchmark 结果。实验参数、指标定义与 CSV 字段说明见[性能评测指南](../docs/benchmark/性能评测指南.md)。

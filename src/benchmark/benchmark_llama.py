@@ -354,6 +354,7 @@ def send_request(url, prompt, max_tokens, timeout, start_barrier=None):
     """
     if start_barrier is not None:
         start_barrier.wait()
+    request_started_at = time.perf_counter()
 
     payload = make_request_data(prompt, max_tokens, url)
     # requests.post() returns after response headers, not after the first generated token.
@@ -364,6 +365,7 @@ def send_request(url, prompt, max_tokens, timeout, start_barrier=None):
 
         ttft_ms = None
         prompt_ms = 0
+        prompt_n = 0
         tokens = 0
         tps = 0
 
@@ -386,6 +388,7 @@ def send_request(url, prompt, max_tokens, timeout, start_barrier=None):
             if "timings" in chunk:
                 timings = chunk["timings"]
                 prompt_ms = timings["prompt_ms"]
+                prompt_n = timings.get("prompt_n", 0)
                 tokens = timings["predicted_n"]
                 tps = timings["predicted_per_second"]
 
@@ -394,8 +397,10 @@ def send_request(url, prompt, max_tokens, timeout, start_barrier=None):
             return None
 
         return {
+            "_request_started_at": request_started_at,
             "ttft_ms": ttft_ms,
             "prompt_ms": prompt_ms,
+            "prompt_n": prompt_n,
             "tokens": tokens,
             "tps": tps,
             "e2e_ms": (time.perf_counter() - req_start) * 1000,
@@ -436,30 +441,40 @@ def run_trial(
     vstate=None,
     print_request_details=False,
     trial_label="",
+    requests_total=None,
 ):
     """执行一个客户端请求 burst，返回本轮聚合指标和原始样本。
 
-    concurrency 是客户端发送并发，可大于 llama-server 的 --parallel；超出的请求由 server 排队。
+    concurrency 是客户端 worker 数，可大于 llama-server 的 --parallel；超出的请求由 server 排队。
+    默认发送一波 concurrency 个请求。requests_total 较大时，首波同时启动，后续请求在 worker 空闲后派发。
     返回的 _ttft_samples / _prompt_samples / _e2e_samples 用于跨 trial 池化计算 P95。
     """
     results = []
+    request_count = concurrency if requests_total is None else requests_total
+    if request_count < 1:
+        raise ValueError("requests_total must be at least 1")
+    first_wave = min(concurrency, request_count)
 
     with ThreadPoolExecutor(max_workers=concurrency) as pool:
         batch_start = []
         start_barrier = threading.Barrier(
-            concurrency + 1,
+            first_wave + 1,
             action=lambda: batch_start.append(time.perf_counter()),
         )
-        futures = {
-            pool.submit(send_request, url, prompt, max_tokens, timeout, start_barrier): request_index + 1
-            for request_index in range(concurrency)
-        }
+        futures = {}
+        for request_index in range(request_count):
+            barrier = start_barrier if request_index < first_wave else None
+            future = pool.submit(send_request, url, prompt, max_tokens, timeout, barrier)
+            futures[future] = request_index + 1
         start_barrier.wait()
         for completion_rank, future in enumerate(as_completed(futures), start=1):
             result = future.result()
             if result is not None:
                 result["request_id"] = futures[future]
                 result["completion_rank"] = completion_rank
+                result["start_offset_s"] = round(
+                    result.pop("_request_started_at") - batch_start[0], 6
+                )
                 results.append(result)
                 if print_request_details:
                     _print_request_result(result, trial_label)
