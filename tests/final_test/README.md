@@ -65,7 +65,7 @@ stress-ng --cpu 0 --cpu-load <P> --timeout 3600 --metrics-brief
 
 | 文件 | 内容 |
 |---|---|
-| `{场景}_par{P}_none.csv`（无负载对照）/ `{场景}_load{P}_par{Q}_none.csv`（分级负载） | 轮次汇总，每 trial 一行 |
+| `{场景}_par{P}_{method}.csv`（无负载对照；`-Cr` 场景为 `_cr`，其余为 `_none`）/ `{场景}_load{P}_par{Q}_none.csv`（分级负载） | 轮次汇总，每 trial 一行 |
 | 同名 `_detail.csv` | 逐请求明细，每请求一行（`ttft_ms` / `tps` / `tokens` / `e2e_ms`） |
 
 ## 汇总 CSV 字段

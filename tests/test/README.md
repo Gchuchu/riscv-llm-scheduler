@@ -4,7 +4,7 @@
 
 ## 测试方法
 
-每组测试参数见 `bench_runner.py` 中的 `GROUPS` 列表。每组测试执行 8 种绑核/调度方法（taskset、cgroup cpuset、partition-root、systemd-scope、SCHED_BATCH、SCHED_FIFO），每种方法重复 3 次 trial。每次 trial 发送 50 个并发 HTTP 请求，bpftrace 在板子后台采集 V-state save/restore 数据。
+每组测试参数见 `bench_runner_all.py` 中的 `GROUPS` 列表。每组测试执行 6 种绑核/调度方法（taskset、cgroup cpuset、partition-root、systemd-scope、SCHED_BATCH、SCHED_FIFO），每种方法重复 3 次 trial。每次 trial 发送 50 个并发 HTTP 请求，bpftrace 在板子后台采集 V-state save/restore 数据。
 
 ## 目录结构
 
