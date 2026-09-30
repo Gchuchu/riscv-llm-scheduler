@@ -20,7 +20,11 @@
 
 LLM 推理是典型的高强度持续向量计算场景。在 RISC-V 架构中，每个 hart 拥有 32 个向量寄存器（v0–v31），单次完整 V 状态保存需要 512 字节以上的内存写入。Linux 默认调度策略（CFS）对向量密集型推理线程与普通线程一视同仁，导致推理线程在计算关键路径上被频繁抢占，不断累积的 V 状态切换开销造成整体吞吐下降与尾延迟恶化。
 
-本项目的核心目标是：**量化 V 状态上下文切换开销，并实现 V 状态感知的调度优化策略**。
+本项目的核心目标是：**量化 V 状态上下文切换开销，优化推理的 TTFT 和 TPS**。
+
+### 应用场景
+
+在 Milk-V Jupiter（SpacemiT K1，RVV 1.0，VLEN=256）上用 llama.cpp 的 `llama-server` 做多请求并发推理，同时板上还有系统任务或其他 CPU 负载。推理线程被抢占时要保存、恢复向量寄存器。本仓库用来统计这类 V 状态切换，并把它和同一次运行的吞吐、TTFT 放在一起比较；再用绑核、cgroup 或 sched_ext 把矩阵乘 worker 与普通任务分开。
 
 ### ⭐ 核心亮点
 
@@ -41,6 +45,7 @@ riscv-llm-scheduler/
 │   ├── tracker/                # 📊 量化分析工具（bpftrace 脚本）
 │   │   ├── vstate_trace.bt           # 基础版：全局 V 状态统计
 │   │   ├── vstate_trace_cpu.bt       # per-CPU 增强版：核级别 V 状态分布
+│   │   ├── vstate_trace_llama_server.bt  # llama-server 专用：save/restore 与切换耗时
 │   │   └── README.md
 │   ├── scheduler/              # ⚙️ 调度优化实现
 │   │   ├── vec_affine_sched.bpf.c    # sched_ext BPF 内核态调度引擎
@@ -51,6 +56,9 @@ riscv-llm-scheduler/
 │       ├── benchmark_llama.py         # 基准测试主脚本（QEMU/本机/远程）
 │       ├── bench_runner.py            # 自动化测试运行器（单配置）
 │       ├── bench_runner_all.py        # 自动化测试运行器（多配置批量）
+│       ├── bench_runner_final.py      # 终版场景运行器
+│       ├── cb_ab.py                   # Continuous Batching 开关对照
+│       ├── plot_cb_ab.py              # CB 对照结果绘图
 │       ├── quantification.py          # V 状态量化统计脚本
 │       ├── README.md
 │       └── README_bench_runner.md
@@ -69,6 +77,8 @@ riscv-llm-scheduler/
 │   ├── quantification/         # V 状态量化实验结果
 │   ├── sched_ext/              # 自定义调度器实验结果
 │   ├── test/                   # 绑核/调度策略对比测试（group1~10）
+│   ├── final_test/             # 终版场景与 stress-ng 分级负载
+│   ├── benchmark/              # CB 开关对照原始结果与图
 │   └── README.md
 ├── demo/                       # 🎥 实机运行录像
 │   ├── 绑核+策略方法/
@@ -115,7 +125,7 @@ riscv-llm-scheduler/
 
 ---
 
-## ⭐ 核心特性
+## ⭐ 主要功能
 
 ### 📊 量化分析工具
 
@@ -125,6 +135,7 @@ riscv-llm-scheduler/
 |------|------|
 | `vstate_trace.bt` | **基础版** — 全局统计 V 状态 save/restore 总次数，按进程名和 PID 分组 |
 | `vstate_trace_cpu.bt` | **per-CPU 增强版** — 每个 CPU 核上的 V 状态分布，用于识别绑核后 V 状态泄漏 |
+| `vstate_trace_llama_server.bt` | **llama-server 专用版** — 只统计 `llama-server` 的切换，并区分 V 状态与非 V 状态切换耗时 |
 
 > 💡 不依赖 `riscv_vstate_save` 的具体内核符号，通过 tracepoint 接口采集，兼容性更好。
 
@@ -160,6 +171,8 @@ riscv-llm-scheduler/
 | `benchmark_llama.py` | 基准测试主脚本，支持 QEMU/本机/远程板卡，含自动化实验矩阵 |
 | `bench_runner.py` | 自动化测试运行器（单配置），SSH 连接板卡，自动启停 server + bpftrace |
 | `bench_runner_all.py` | 多配置批量测试，预定义 10 组测试配置自动遍历 |
+| `bench_runner_final.py` | 终版场景运行器：构建版本、`-Cr`、sched_ext、stress-ng |
+| `cb_ab.py` | Continuous Batching 开关对照（单波 / 多请求闭环） |
 | `quantification.py` | V 状态量化统计脚本 |
 
 **📊 输出指标**：
@@ -175,7 +188,7 @@ riscv-llm-scheduler/
 
 ---
 
-## 🛠️ 开发环境
+## 🛠️ 系统环境
 
 ### 🔌 硬件要求
 
@@ -197,11 +210,56 @@ riscv-llm-scheduler/
 | Python 3 | 用于 benchmark 脚本（宿主机） |
 | llama.cpp | 支持 RVV 1.0 的 llama-server |
 
+实验板卡为 openEuler，内核 6.18.38。开启 sched_ext 的移植步骤见 [OS移植方法](docs/setup/OS移植方法.md)。
+
 ### 🔬 QEMU 验证环境
 
 ```bash
 qemu-system-riscv64 -cpu rv64,v=true,vlen=256,elen=64,vext_spec=v1.0
 ```
+
+---
+
+## 依赖要求
+
+| 位置 | 依赖 |
+|------|------|
+| 板卡内核 | `CONFIG_BPF`、`CONFIG_BPF_EVENTS`、`CONFIG_DEBUG_INFO_BTF`；使用 sched_ext 时再开启 `CONFIG_SCHED_CLASS_EXT` |
+| 板卡软件 | `bpftrace`、`clang`、`bpftool`、`gcc`、libbpf、libelf、zlib；`python3`、`python3-requests`、`curl`；绑核批量测试另需 `python3-numpy`；分级负载测试另需 `stress-ng` |
+| 宿主机 | Python 3；`pip install paramiko requests numpy`。重绘 CB 对照图另需 `matplotlib` |
+| 模型与服务 | 支持 RVV 1.0 的 `llama-server`，以及 Llama-3.2 Instruct Q4_K_M GGUF |
+
+bpftrace 脚本和 Python 评测脚本没有单独的安装包。`llama-server` 不在本仓库内编译。
+
+---
+
+## 构建方法
+
+追踪脚本与评测脚本无需编译。需要在板卡上编译的是 `src/scheduler/` 中的 `vec_affine_sched`。在该目录执行：
+
+```bash
+# 1. 从运行中的内核导出类型
+bpftool btf dump file /sys/kernel/btf/vmlinux format c > vmlinux.h
+
+# 2. 编译 BPF 字节码（include 换成当前内核树）
+clang -g -O2 -target bpf -D__TARGET_ARCH_riscv \
+    -I/path/to/linux/tools/sched_ext/include \
+    -I. -c vec_affine_sched.bpf.c -o vec_affine_sched.bpf.o
+
+# 3. 生成 skeleton
+bpftool gen skeleton vec_affine_sched.bpf.o > vec_affine_sched.skel.h
+
+# 4. 编译 loader（libbpf 与头文件路径换成当前内核树）
+gcc -g -O2 -Wall -I. \
+    -I/path/to/linux/tools/include \
+    -I/path/to/linux/tools/lib \
+    vec_affine_sched.c /path/to/linux/tools/lib/bpf/libbpf.a \
+    -lelf -lz -o vec_affine_sched
+```
+
+实验机上的完整 include 路径见 [src/scheduler/README.md](src/scheduler/README.md)。内核配置与交叉编译见 [OS移植方法](docs/setup/OS移植方法.md)。
+
+终版实验使用两套已装到板卡上的 llama.cpp：优化版（spacemit）和普通版（通用 RVV）。二进制与 `libggml-cpu.so` 路径写在 `src/benchmark/bench_runner_final.py` 的 `LLAMA_BUILDS` 中，换环境时改这里。
 
 ---
 
@@ -222,7 +280,9 @@ huggingface-cli download hugging-quants/Llama-3.2-3B-Instruct-Q4_K_M-GGUF \
 
 ---
 
-## 🚀 快速上手
+## 🚀 运行方法
+
+追踪和 `llama-server`、sched_ext 在板卡上运行。评测脚本在宿主机运行，通过 SSH 操作板卡。调度器需先按上一节编译。
 
 ### ⚡ 1. 性能 Governor 设置
 
@@ -246,6 +306,9 @@ sudo bpftrace src/tracker/vstate_trace.bt
 
 # per-CPU 增强版 — 推荐
 sudo bpftrace src/tracker/vstate_trace_cpu.bt
+
+# llama-server 专用版 — 只统计该进程，并记录切换耗时
+sudo bpftrace src/tracker/vstate_trace_llama_server.bt
 
 # 输出重定向到文件
 sudo bpftrace src/tracker/vstate_trace_cpu.bt > /tmp/vstate_result.log
@@ -297,7 +360,12 @@ python src/benchmark/benchmark_llama.py \
 
 # 一键多组对比测试
 python src/benchmark/bench_runner_all.py
+
+# 终版场景（先改 SCENARIOS / RUN 和板卡路径）
+python src/benchmark/bench_runner_final.py
 ```
+
+运行前把 `bench_runner.py`、`bench_runner_all.py`、`bench_runner_final.py` 顶部的板卡地址、SSH、模型路径和结果目录改成当前环境。
 
 ---
 
@@ -331,6 +399,30 @@ bench_runner.py (宿主机)
 - **硬件无关设计**：bpftrace 追踪方案基于 tracepoint 通用接口，兼容不同 RISC-V 内核
 - **自动化程度高**：bench_runner 一键完成 server 启停、bpftrace 采集、请求发送、结果汇总
 - **可复现性强**：所有实验参数、server 命令、模型等均记录在 CSV 中
+
+---
+
+## 测试方法
+
+| 目的 | 命令 | 归档结果 |
+|------|------|----------|
+| 绑核 / 调度策略，10 组参数 | `python src/benchmark/bench_runner_all.py` | [tests/test/](tests/test/README.md) |
+| 单组参数轮换方法 | `python src/benchmark/bench_runner.py` | 脚本配置的结果目录 |
+| 构建版本、`-Cr`、sched_ext、stress-ng | `python src/benchmark/bench_runner_final.py` | [tests/final_test/](tests/final_test/README.md) |
+| 模型规模与并发矩阵 | `benchmark_llama.py --experiment-matrix full` | [tests/rvv/](tests/rvv/README.md)，索引见 [tests/README.md](tests/README.md) |
+| Continuous Batching 开关 | `python src/benchmark/cb_ab.py` | [tests/benchmark/cb-ab/](tests/benchmark/cb-ab/)，说明见 [CB开关对照实验](docs/benchmark/CB开关对照实验.md) |
+| sched_ext 与 CFS | 先运行 `vec_affine_sched`，再用评测脚本 | [tests/sched_ext/](tests/sched_ext/README.md) |
+
+`bench_runner*.py` 的 CSV 写到脚本里的结果目录（实验时为宿主机上的 `D:/比赛/results/`）。仓库里的 `tests/` 是归档副本。
+
+CB 对照在宿主机设置 `BOARD_HOST`、`BOARD_USER`、`BOARD_PASS`、`LLAMA_SERVER_BIN`、`LLAMA_MODEL_PATH` 后执行。绘图：
+
+```bash
+python src/benchmark/cb_ab.py --concurrency 8 --requests 24 --trials 3 --warmup 1 --tag cb8
+python src/benchmark/plot_cb_ab.py
+```
+
+指标口径、控制变量和字段见 [性能评测指南](docs/benchmark/性能评测指南.md)。单配置运行器的方法顺序见 [README_bench_runner.md](src/benchmark/README_bench_runner.md)。
 
 ---
 
@@ -387,6 +479,17 @@ bench_runner.py (宿主机)
 
 > 📥 **下载链接**：[百度网盘 - 第三届参赛视频](https://pan.baidu.com/s/1KA0q4gDr-5d6B1QJSDIqvQ?pwd=qxji)
 > 🔑 提取码：qxji
+
+---
+
+## 已知限制
+
+- `vec_affine_sched` 按 K1 的核分组编写：矩阵乘 worker 放在 CPU 0–3，普通任务放在 CPU 4–7。
+- V 状态 save/restore 是次数。一次计数覆盖整轮请求，不能分到单条 HTTP 请求，次数本身也不能换成微秒。切换耗时由 `vstate_trace_llama_server.bt` 在 `finish_task_switch` 上另行统计。更换内核、板卡或厂商补丁后，需要重新核对 BTF、`task_struct` 和内核栈布局。说明见 [性能评测指南](docs/benchmark/性能评测指南.md)。
+- 推理线程已经占住目标核时，保存次数下降不一定带来吞吐上升。见「测试验证」。
+- `tests/sched_ext/` 与六种绑核方法的内核和参数不同，只在组内比较。
+- `bench_runner.py`、`bench_runner_all.py`、`bench_runner_final.py` 把 SSH、板上路径和结果目录写在脚本里。`src/scheduler/README.md` 里的编译 include 路径对应当时的实验机内核树。换环境需要自行修改。
+- 分级负载使用 `stress-ng --cpu-method all`。同一矩阵内参数一致，但单次负载稳定性低于固定压力方法。
 
 ---
 
